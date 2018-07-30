@@ -12,6 +12,7 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
+const cors = require('cors');
     
 
 mongoose.Promise = Promise;
@@ -33,6 +34,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+// Middleware Setup
+var whitelist = [
+  'http://localhost:4200',
+];
+var corsOptions = {
+  origin: function(origin, callback){
+      var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+      callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
 
 // Express View engine setup
 
@@ -69,6 +82,8 @@ app.use(session({
   secret: 'irongenerator',
   resave: true,
   saveUninitialized: true,
+  cookie: {httpOnly: true,
+  maxAge: 2419200000},
   store: new MongoStore( { mongooseConnection: mongoose.connection })
 }))
 app.use(flash());
@@ -79,7 +94,7 @@ const index = require('./routes/index');
 app.use('/', index);
 
 const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
       
 
 module.exports = app;
