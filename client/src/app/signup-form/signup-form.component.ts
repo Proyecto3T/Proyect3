@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session.service';
 import { Router } from '../../../node_modules/@angular/router'
+import {AuthService,  FacebookLoginProvider,  GoogleLoginProvider} from 'angular-6-social-login';
 
 @Component({
   selector: 'app-signup-form',
@@ -9,7 +10,7 @@ import { Router } from '../../../node_modules/@angular/router'
 })
 export class SignupFormComponent implements OnInit {
 
-  constructor(public sessionService: SessionService) { }
+  constructor(public sessionService: SessionService, private socialAuthService: AuthService ) { }
 
   ngOnInit() {
   }
@@ -21,5 +22,21 @@ export class SignupFormComponent implements OnInit {
       console.log(user);
       //this.router.navigate(['/']);
     });
+  }
+
+  public socialSignIn(socialPlatform : string) {
+    let socialPlatformProvider;
+    if(socialPlatform == "facebook"){
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    }else if(socialPlatform == "google"){
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    } 
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform+" sign in data : " , userData);
+        // Now sign-in with userData
+        // ... 
+      }
+    );
   }
 }
