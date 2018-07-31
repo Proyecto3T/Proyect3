@@ -37,8 +37,7 @@ import { environment } from '../environments/environment.prod';
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.GAPI
-    })
-  ],
+    }) ],
   providers: [],
   bootstrap: [AppComponent]
 })
