@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Chart } from 'chart.js';
 import { SessionService } from '../../services/session.service';
+=======
+import { SessionService } from '../../services/session.service';
+import { MatchService } from '../../services/match.service';
+>>>>>>> ad17a196fea8b0e5eb1cf12ffd415c49b22d539c
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +13,7 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+<<<<<<< HEAD
 
   user:any;
 
@@ -59,4 +65,20 @@ export class ProfileComponent implements OnInit {
   
  
                 
+=======
+  matches:any;
+  constructor(public sessionService: SessionService, private matchService:MatchService) { 
+    
+  }
+  
+  ngOnInit() {
+    this.sessionService.isLogged().subscribe(() => this.getMatches(this.sessionService.user._id))
+  }
+
+  getMatches(id){
+    this.matchService.getMatches(id).subscribe(matches => {
+      this.matches = matches;
+    })
+  }
+>>>>>>> ad17a196fea8b0e5eb1cf12ffd415c49b22d539c
 }

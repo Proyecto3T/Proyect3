@@ -12,6 +12,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ValorationComponent } from './valoration/valoration.component';
 
 
+import { NewMatchComponent } from './new-match/new-match.component';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from '../environments/environment.prod';
 
 
 
@@ -24,13 +27,17 @@ import { ValorationComponent } from './valoration/valoration.component';
     SignupFormComponent,
     LoginFormComponent,
     ProfileComponent,
-    ValorationComponent
+    ValorationComponent,
+    NewMatchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: environment.GAPI
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,19 +1,21 @@
-<form>
-  <h2> Signup </h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="username" name="username"/>
-  <br>
-  <label> Email </label>
-  <input type="text" [(ngModel)]="email" name="email"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="password" name="password"/>
-
-  <button (click)="signup(username, password,email)"> SIGNUP </button>
-  <br>
- 
-  <div (click)="socialSignup()" class="g-signin2"></div>
+<div class="back">
+  <form>
+    <h2> Signup </h2>
+    <label> Username </label>
+    <input type="text" [(ngModel)]="username" name="username"/>
+    <br>
+    <label> Email </label>
+    <input type="text" [(ngModel)]="email" name="email"/>
+    <br>
+    <label> Password </label>
+    <input type="password" [(ngModel)]="password" name="password"/>
   
-  
-</form>
-<p class="error"> {{ error }} </p>
+    <button (click)="signup(username, password,email)"> SIGNUP </button>
+    <br>
+   
+    <div (click)="socialSignup()" class="g-signin2"></div>
+    
+    
+  </form>
+  <p class="error"> {{ error }} </p>
+</div>
