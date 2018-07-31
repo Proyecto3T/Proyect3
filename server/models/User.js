@@ -14,8 +14,8 @@ const userSchema = new Schema({
     volley: {type:Number, default:0},
     resistance: {type:Number, default:0}
   },
-  points:Number,
-  league:String
+  points:{type:Number, default:0},
+  league:{type: String, default: "0"}
 }, {
   timestamps: {
     createdAt: 'created_at',

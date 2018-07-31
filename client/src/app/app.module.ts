@@ -6,6 +6,8 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '../../node_modules/@angular/router';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
