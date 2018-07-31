@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,10 +9,11 @@ import { Chart } from 'chart.js';
 })
 export class ProfileComponent implements OnInit {
 
+  user:any;
 
   public chart = [];
-  constructor( ) { 
-   
+  constructor( public sessionService:SessionService) { 
+   this.user=sessionService.user;
   }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class ProfileComponent implements OnInit {
       datasets: [
         {
          label: "Your Statistics",
-          data: [2,5,7,3,5],
+          data: [this.user.statistics.drive,this.user.statistics.backhand,this.user.statistics.serve,this.user.statistics.volley,this.user.statistics.resistance],
           borderColor: 'rgba(20, 29, 222, 1)',
           backgroundColor: 'rgba(20, 29, 222, 0.2)',
 

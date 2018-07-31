@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '../../node_modules/@angular/router';
 import { routes } from './routes';
 import { ProfileComponent } from './profile/profile.component';
+import { ValorationComponent } from './valoration/valoration.component';
 
 
 
@@ -22,7 +23,8 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     SignupFormComponent,
     LoginFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    ValorationComponent
   ],
   imports: [
     BrowserModule,

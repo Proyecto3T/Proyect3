@@ -89,4 +89,15 @@ export class SessionService {
     )
   }
 
+  postValorations(valorations:object){
+    return this.http.post(`${BASEURL}/api/valoration`,valorations).pipe(
+      map((res:Response) =>{
+        let user = res.json();
+        this.user = user;
+        return this.user;
+      }), 
+      catchError( e => of(this.errorHandler(e)))
+    )
+  }
+
 }
