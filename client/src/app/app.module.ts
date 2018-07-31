@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '../../node_modules/@angular/router';
 import { routes } from './routes';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -20,7 +21,8 @@ import { routes } from './routes';
   declarations: [
     AppComponent,
     SignupFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
