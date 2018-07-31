@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Chart } from 'chart.js';
 import { SessionService } from '../../services/session.service';
-=======
-import { SessionService } from '../../services/session.service';
 import { MatchService } from '../../services/match.service';
->>>>>>> ad17a196fea8b0e5eb1cf12ffd415c49b22d539c
 
 @Component({
   selector: 'app-profile',
@@ -13,16 +9,16 @@ import { MatchService } from '../../services/match.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-<<<<<<< HEAD
 
   user:any;
 
   public chart = [];
-  constructor( public sessionService:SessionService) { 
+  constructor( public sessionService:SessionService, private matchService:MatchService) { 
    this.user=sessionService.user;
   }
 
   ngOnInit() {
+    this.sessionService.isLogged().subscribe(() => this.getMatches(this.sessionService.user._id))
     var canvas = <HTMLCanvasElement> document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
     this.chart =new Chart(ctx, {
@@ -65,20 +61,14 @@ export class ProfileComponent implements OnInit {
   
  
                 
-=======
   matches:any;
-  constructor(public sessionService: SessionService, private matchService:MatchService) { 
-    
-  }
   
-  ngOnInit() {
-    this.sessionService.isLogged().subscribe(() => this.getMatches(this.sessionService.user._id))
-  }
+  
+    
 
   getMatches(id){
     this.matchService.getMatches(id).subscribe(matches => {
       this.matches = matches;
     })
   }
->>>>>>> ad17a196fea8b0e5eb1cf12ffd415c49b22d539c
 }

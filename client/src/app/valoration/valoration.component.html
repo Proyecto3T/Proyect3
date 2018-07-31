@@ -1,6 +1,6 @@
-<h1>Mi primer formulario angular</h1>
+<h1>¿Quieres valorar a tu rival?</h1>
 
-<form (ngSubmit)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value)" #myForm="ngForm">
+<form  #myForm="ngForm">
   <p> Drive
       <input #drive type=“number” name=“” id=“” value=5>
   <p> Backhand
@@ -18,5 +18,7 @@
   <p>
       <textarea name="textarea" rows="20" cols="80">Write something here</textarea>
   </p>
-  <button type="submit"> Submit </button>
+  <button (click)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value)"   > Submit </button>
+
+  <button [routerLink]="['/profile']" > Skip </button>
 </form>

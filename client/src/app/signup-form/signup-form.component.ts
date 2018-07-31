@@ -27,8 +27,5 @@ export class SignupFormComponent implements OnInit {
       this.router.navigate(['/profile']);
     });
   }
-
-
-  
-  
+    
 }

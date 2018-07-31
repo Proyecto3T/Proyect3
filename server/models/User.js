@@ -14,11 +14,11 @@ const userSchema = new Schema({
     resistance: {type:Number, default:5}
   },
   statisticsAverage:{
-    drive: {type:Number, default:5},
-    backhand: {type:Number, default:5},
-    serve: {type:Number, default:5},
-    volley: {type:Number, default:5},
-    resistance: {type:Number, default:5}
+    drive: [{type:Number, default:5}],
+    backhand: [{type:Number, default:5}],
+    serve: [{type:Number, default:5}],
+    volley: [{type:Number, default:5}],
+    resistance: [{type:Number, default:5}]
   },
   points:{type:Number, default:0},
   league:{type: String, default: "0"}

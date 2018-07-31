@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session.service';
-
+import { Router } from '../../../node_modules/@angular/router';
 @Component({
   selector: 'app-valoration',
   templateUrl: './valoration.component.html',
@@ -8,7 +8,7 @@ import { SessionService } from '../../services/session.service';
 })
 export class ValorationComponent implements OnInit {
   statistics:object;
-  constructor(private service : SessionService) { }
+  constructor(private service : SessionService, private router:Router) { }
 
   ngOnInit() {
   }
@@ -21,7 +21,9 @@ export class ValorationComponent implements OnInit {
     resistance=Number(resistance);
     this.statistics={drive,backhand,serve,volley,resistance}
     console.log(this.statistics)
-    this.service.postValorations(this.statistics);
+    this.service.postValorations(this.statistics).subscribe(() =>{
+      this.router.navigate(['/profile']);
+    })
   }
 
 }

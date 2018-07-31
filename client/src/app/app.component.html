@@ -3,6 +3,7 @@
   <li *ngIf="!sessionService.user"><a [routerLink]="['/login']">Login</a></li>
   <li *ngIf="sessionService.user"><a [routerLink]="['/profile']">Profile</a></li>
   <li *ngIf="sessionService.user"><a [routerLink]="['/new-match']">New Match</a></li>
+  <li *ngIf="sessionService.user"><a [routerLink]="['/valoration']">valoration</a></li>
   <li *ngIf="sessionService.user"><a href="#" (click)="logout()">Logut</a></li>
 
 </ul>
