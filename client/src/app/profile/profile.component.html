@@ -1,3 +1,9 @@
-<p>
-  profile works!
-</p>
+
+<div class="profileResume">
+  <h2 *ngIf="sessionService.user">WELCOME BACK {{sessionService.user.username}}</h2>
+</div>
+
+<div class="matches" *ngFor="let match of matches">
+  
+  <p>Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}}</p>
+</div>

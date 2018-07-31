@@ -95,6 +95,10 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
+
+const matchRoutes = require('./routes/match');
+app.use('/api/matches', matchRoutes);
+      
       
 
 module.exports = app;

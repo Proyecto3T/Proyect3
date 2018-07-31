@@ -9,8 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '../../node_modules/@angular/router';
 import { routes } from './routes';
 import { ProfileComponent } from './profile/profile.component';
-
-
+import { NewMatchComponent } from './new-match/new-match.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -22,13 +22,17 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     SignupFormComponent,
     LoginFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewMatchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBxPwsjseakKUF7D5hzzT77NlVpJss_HII'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

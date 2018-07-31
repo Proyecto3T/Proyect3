@@ -11,7 +11,7 @@ import {AuthService,  FacebookLoginProvider,  GoogleLoginProvider} from 'angular
 })
 export class SignupFormComponent implements OnInit {
 
-  constructor(public sessionService: SessionService) { }
+  constructor(public sessionService: SessionService, public router:Router) { }
 
   ngOnInit() {
   }
@@ -24,7 +24,7 @@ export class SignupFormComponent implements OnInit {
     this.sessionService.signup(username,password,email).subscribe( (user:any) =>{
       console.log(`WELCOME USER ${user.username}, register OK`);
       console.log(user);
-      //this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
     });
   }
 

@@ -6,7 +6,6 @@ const userSchema = new Schema({
   password: String,
   email:String,
   comments:[{type:Schema.Types.ObjectId, ref: 'Comments'}],
-  matches:[{type:Schema.Types.ObjectId, ref: 'Match'}],
   statistics:{
     drive: {type:Number, default:0},
     backhand: {type:Number, default:0},

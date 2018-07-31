@@ -12,6 +12,7 @@ import * as firebase from "firebase/app"
 const {BASEURL} = environment;
 
 interface UserObject{
+  _id:string,
   username:string,
 }
 
