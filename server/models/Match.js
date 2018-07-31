@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const matchSchema = new Schema(
   {
+    _author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     players: [{ type: Schema.Types.ObjectId, ref: "User" }],
     date: { type: Date, default: Date.now() },
     hour: String,

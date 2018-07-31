@@ -8,6 +8,7 @@ const Match = require("../models/Match");
 router.get('/:id', (req, res, next) => {
   const playerId = req.params.id
   Match.find({ players: { $elemMatch: { $eq: playerId} } })
+  .populate("_author")
     .then(matches => {
       console.log(matches)
       res.status(200).json(matches);
@@ -27,6 +28,7 @@ router.post('/new', (req, res, next) => {
     coordinates: [Number(req.body.lat), Number(req.body.lng)]
 }
   const newMatch = new Match({
+    _author: req.user._id,
     players,
     hour: req.body.hour,
     date: req.body.date,
