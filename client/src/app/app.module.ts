@@ -11,6 +11,7 @@ import { routes } from './routes';
 import { ProfileComponent } from './profile/profile.component';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { AgmCoreModule } from '@agm/core';
+import { environment } from '../environments/environment.prod';
 
 
 
@@ -31,7 +32,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBxPwsjseakKUF7D5hzzT77NlVpJss_HII'
+      apiKey: environment.GAPI
     })
   ],
   providers: [],

@@ -14,10 +14,7 @@ export class ProfileComponent implements OnInit {
   }
   
   ngOnInit() {
-
-    console.log(this.sessionService.isLogged());
-
-    if(this.sessionService.user)this.getMatches(this.sessionService.user._id)
+    this.sessionService.isLogged().subscribe(() => this.getMatches(this.sessionService.user._id))
   }
 
   getMatches(id){
