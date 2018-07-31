@@ -9,6 +9,11 @@
   <label> Password </label>
   <input type="password" [(ngModel)]="password" name="password"/>
 
-  <button (click)="signup(username, password, email)"> SIGNUP </button>
+  <button (click)="signup(username, password,email)"> SIGNUP </button>
+  <br>
+ 
+  <div (click)="socialSignup()" class="g-signin2"></div>
+  
+  
 </form>
 <p class="error"> {{ error }} </p>

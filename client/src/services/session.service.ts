@@ -2,9 +2,11 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import { environment } from '../environments/environment';
 
+
 import {map, catchError} from 'rxjs/operators';
 import { Observable } from "../../node_modules/rxjs";
 import { of } from 'rxjs';
+import * as firebase from "firebase/app"
 
 
 const {BASEURL} = environment;
@@ -20,13 +22,23 @@ interface UserObject{
 export class SessionService {
 
   user:UserObject;
+  socialUser:Observable<firebase.User>
 
   options:object = {withCredentials:true};
 
   constructor(private http:Http) {
+    // this.socialUser = afAuth.authState;
     this.isLogged().subscribe();
   }
 
+  // loginWithGoogle(){
+  //   const provider = new firebase.auth.GithubAuthProvider()
+  //   this.afAuth.auth.signInWithPopup(provider)
+  // }
+
+  // socialLogout(){
+  //   this.afAuth.auth.signOut()
+  // }
   isLogged(){
     return this.http.get(`${BASEURL}/api/auth/currentuser`,this.options).pipe(
       map( (res:Response) => {
