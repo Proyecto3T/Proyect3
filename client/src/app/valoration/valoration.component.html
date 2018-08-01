@@ -1,24 +1,33 @@
-<h1>¿Quieres valorar a tu rival?</h1>
 
-<form  (ngSubmit)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value)" #myForm="ngForm">
-  <p> Drive
-      <input #drive type='number' name='' id='' value=5 min="1" max="10">
-  <p> Backhand
-      <input #backhand type='number' name='' id='' value=5 min="1" max="10">
-  </p>
-  <p> Serve
-      <input #serve type='number' name='' id='' value=5 min="1" max="10">
-  </p>
-  <p> Volley
-      <input #volley type='number' name='' id='' value=5 min="1" max="10">
-  </p>
-  <p> Resistance
-      <input #resistance type='number' name='' id='' value=5 min="1" max="10">
-  </p>
-  <p>
-      <textarea name="textarea" rows="20" cols="80" placeholder="What do you think about the other user?"></textarea>
-  </p>
-  <button type="submit "  > Submit </button>
-
-  <button [routerLink]="['/profile']" > Skip </button>
-</form>
+<clr-wizard #wizardmd [(clrWizardOpen)]="mdOpen" clrWizardSize="md">
+        <clr-wizard-title></clr-wizard-title>
+        <!-- <button  [routerLink]="['/profile']" class="btn btn-success">Submit</button>
+        <button type="submit "  class="btn btn-primary">Skip</button> -->
+        <clr-wizard-button  (click)="service.popVal()">Cancel</clr-wizard-button>
+        <clr-wizard-button  (click)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value)"   class="btn btn-primary">Submit</clr-wizard-button>
+        <!-- -->
+        <clr-wizard-page>
+            <ng-template clrPageTitle>Puntuando a tu rival, lo ayudas a mejorar</ng-template>
+            <form   #myForm="ngForm">
+              <p> Drive
+                  <input #drive type='number' name='' id='' value=5 min="1" max="10">
+              <p> Backhand
+                  <input #backhand type='number' name='' id='' value=5 min="1" max="10">
+              </p>
+              <p> Serve
+                  <input #serve type='number' name='' id='' value=5 min="1" max="10">
+              </p>
+              <p> Volley
+                  <input #volley type='number' name='' id='' value=5 min="1" max="10">
+              </p>
+              <p> Resistance
+                  <input #resistance type='number' name='' id='' value=5 min="1" max="10">
+              </p>
+              <p>
+                  <textarea name="textarea" rows="5" placeholder="What do you think about the other user?"></textarea>
+              </p>
+            </form>
+        </clr-wizard-page>
+    </clr-wizard>
+    
+    

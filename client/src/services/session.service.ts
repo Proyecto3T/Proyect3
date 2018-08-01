@@ -18,6 +18,7 @@ interface UserObject {
   providedIn: "root"
 })
 export class SessionService {
+  popValue=false;
   user: UserObject;
   socialUser: Observable<firebase.User>;
 
@@ -129,6 +130,12 @@ export class SessionService {
         }),
         catchError(e => of(this.errorHandler(e))))
   }
+
+  popVal(){
+    this.popValue=!this.popValue;
+  }
+
+
 }
 
 

@@ -5,14 +5,9 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email:String,
+  wonMatches:{type:Number,default:1},
+  lostMatches:{type:Number,default:1},
   comments:[{type:Schema.Types.ObjectId, ref: 'Comments'}],
-  statistics:{
-    drive: {type:Number, defult:5},
-    backhand: {type:Number, default:5},
-    serve: {type:Number, default:5},
-    volley: {type:Number, default:5},
-    resistance: {type:Number, default:5}
-  },
   statisticsAverage:{
     drive: [{type:Number, default:5}],
     backhand: [{type:Number, default:5}],
