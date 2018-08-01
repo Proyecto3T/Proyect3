@@ -10,7 +10,25 @@
   <h2 *ngIf="sessionService.user">WELCOME BACK {{sessionService.user.username}}</h2>
 </div>
 
+<clr-tabs>
+    <clr-tab>
+        <button clrTabLink>Record</button>
+        <ng-template [(clrIfActive)]="dashboardActive">
+            <clr-tab-content>
+                <app-record></app-record>
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
 
-<div class="matches" *ngFor="let match of matches">
-  <p>Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}} - Created By: {{match._author.username}}</p>
-</div>
+    <clr-tab>
+        <button clrTabLink>My matches</button>
+        <ng-template [(clrIfActive)]="managementActive">
+            <clr-tab-content>
+                <app-my-matches></app-my-matches>
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+
+    
+</clr-tabs>
+

@@ -17,6 +17,7 @@ interface marker {
 })
 
 export class NewMatchComponent implements OnInit {
+  minDate:number;
   markers: marker[] = [
 	  {
 		  lat: 51.673858,
@@ -37,10 +38,10 @@ export class NewMatchComponent implements OnInit {
 		  draggable: true
 	  }
   ]
-  
   constructor(private matchService: MatchService, private router:Router) { }
 
   ngOnInit() {
+    this.minDate = Date.now()
   }
   mapClicked($event: MouseEvent, lat, lng) {
     lat.value = $event.coords.lat
@@ -52,7 +53,6 @@ export class NewMatchComponent implements OnInit {
       draggable: true
     });
   }
-
   createMatch(hour, date, lat, lng){
     console.log(hour, date, lat, lng)
     this.matchService.createMatch(hour, date, lat, lng).subscribe(() => {

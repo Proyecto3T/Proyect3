@@ -5,12 +5,10 @@ const Match = require("../models/Match");
 
 //Match.find({ roomId: { $in: [req.params.id] } })
 
-router.get('/:id', (req, res, next) => {
-  const playerId = req.params.id
-  Match.find({ players: { $elemMatch: { $eq: playerId} } })
+router.get('/', (req, res, next) => {
+  Match.find({finish: {$eq: false}})
   .populate("_author")
     .then(matches => {
-      console.log(matches)
       res.status(200).json(matches);
     })
     .catch( e => {
@@ -20,6 +18,22 @@ router.get('/:id', (req, res, next) => {
       })
     })
 });
+
+router.get('/:id', (req, res, next) => {
+  const playerId = req.params.id
+  Match.find({ players: { $elemMatch: { $eq: playerId} } })
+  .populate("_author")
+    .then(matches => {
+      res.status(200).json(matches);
+    })
+    .catch( e => {
+      res.status(500).json({
+        status:'error',
+        error:e.message
+      })
+    })
+});
+
 router.post('/new', (req, res, next) => {
   let players = []
   players.push(req.user._id)

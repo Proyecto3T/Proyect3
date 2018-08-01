@@ -1,18 +1,19 @@
 <form>
     <h2> New Match</h2>
     <label> Hour </label>
-    <input type="time" [(ngModel)]="hour" name="hour"/>
+    <input type="time" [(ngModel)]="hour" name="hour" required/>
     <br>
     <label> Date </label>
-    <input type="date" [(ngModel)]="date" name="date"/>
+    <input type="date" [(ngModel)]="date" name="date" min="{{minDate}}" required/>
     <br>
     <label> Place </label>
     <label for="latitude">Latitude: </label>
-    <input id="lat" type="text" #lat name="lat" placeholder="choose a latitude">
+    <input id="lat" type="text" #lat name="lat" placeholder="choose a latitude" required>
     <label for="Longitude">Longitude: </label>
-    <input id="lng" type="text" #lng name="lng" placeholder="choose a longitude">
+    <input id="lng" type="text" #lng name="lng" placeholder="choose a longitude" required>
     <br>
     <agm-map [latitude]="40.4167" [longitude]="-3.70325" [zoom]="14" (mapClick)="mapClicked($event, lat,lng)">
+        
         <agm-marker *ngFor="let m of markers; let i = index"  [latitude]="m.lat" [longitude]="m.lng" [label]="m.label"></agm-marker>
    
       

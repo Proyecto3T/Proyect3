@@ -1,0 +1,5 @@
+<div *ngIf="matches">
+  <div  class="matches" *ngFor="let match of matches">
+      <p>Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}} - Created By: {{match._author.username}}</p>
+  </div>
+</div>

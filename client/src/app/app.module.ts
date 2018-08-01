@@ -15,6 +15,11 @@ import { ValorationComponent } from './valoration/valoration.component';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment.prod';
+import { HomeComponent } from './home/home.component';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecordComponent } from './record/record.component';
+import { MyMatchesComponent } from './my-matches/my-matches.component';
 
 
 
@@ -28,7 +33,10 @@ import { environment } from '../environments/environment.prod';
     LoginFormComponent,
     ProfileComponent,
     ValorationComponent,
-    NewMatchComponent
+    NewMatchComponent,
+    HomeComponent,
+    RecordComponent,
+    MyMatchesComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,9 @@ import { environment } from '../environments/environment.prod';
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.GAPI
-    })
+    }),
+    ClarityModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

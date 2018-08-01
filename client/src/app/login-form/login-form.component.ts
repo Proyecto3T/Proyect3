@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit {
     console.log("login....");
     this.sessionService.login(username,password).subscribe( user => {
       console.log(user);
-      this.router.navigate(['/profile']);
+      if(this.sessionService.user)this.router.navigate(['/profile']);
     });
   }
 }
