@@ -7,6 +7,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+
 router.post("/login", (req, res, next) => {
   
   passport.authenticate("local", (err, theUser, failureDetails) => {

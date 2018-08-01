@@ -3,12 +3,19 @@ const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 
+
 router.post('/valoration', (req, res, next) => {
-  
-  User.findByIdAndUpdate({id:req.user._id},{statisticsAverage:drive.push(req.body.drive)},{statisticsAverage:backhand.push(req.body.backhand)},{statisticsAverage:serve.push(req.body.serve)},{statisticsAverage:volley.push(req.body.volley)},{statisticsAverage:resistance.push(req.body.resistance)})
+  console.log(req.body)
+  User.findById({_id:req.user._id})
   .then(user => {
-    console.log(user)
-    res.status(200).json(user);
+    user.statisticsAverage.drive.unshift(req.body.drive)
+    user.statisticsAverage.backhand.unshift(req.body.backhand)
+    user.statisticsAverage.serve.unshift(req.body.serve)
+    user.statisticsAverage.volley.unshift(req.body.volley)
+    user.statisticsAverage.resistance.unshift(req.body.resistance)
+    user.save().then(()=>{
+      res.status(200).json(user)})
+    
   })
   .catch( e => {
     res.status(500).json({

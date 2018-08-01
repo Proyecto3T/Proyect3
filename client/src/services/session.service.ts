@@ -101,17 +101,34 @@ export class SessionService {
   }
 
   postValorations(valorations) {
-    console.log(`${url}/api/profile/valoration`);
     return this.http
       .post(`${url}/api/profiles/valoration`, valorations, this.options)
       .pipe(
         map((res: Response) => {
-          console.log("Sddfsdfsad");
           let user = res.json();
+          console.log(user)
           this.user = user;
           return this.user;
         }),
         catchError(e => of(this.errorHandler(e)))
       );
   }
+
+  isRegistered(userdata): Observable<object>{
+    const username = userdata.username;
+    const password = userdata.password;
+   const email = userdata.email;
+   const id = userdata.id;
+    return this.http
+      .post(`${url}/api/auth/search`, {username,password,email,id}, this.options)
+      .pipe(
+        map((res: Response) => {
+          let user = res.json();
+          this.user = user;
+          return this.user;
+        }),
+        catchError(e => of(this.errorHandler(e))))
+  }
 }
+
+

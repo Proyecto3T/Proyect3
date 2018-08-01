@@ -21,14 +21,19 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@clr/angular": "^0.12.6",
     "angular-6-social-login": "^1.1.1",
     "angular-chart.js": "^1.1.1",
     "angularfire2": "^5.0.0-rc.11",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
     "firebase": "^5.3.0",
-    "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26"
+    "rxjs": "^6.2.2",
+    "rxjs-compat": "^6.2.2",
+    "zone.js": "^0.8.26",
+    "@clr/ui": "^0.12.6",
+    "@clr/icons": "^0.12.6",
+    "@webcomponents/custom-elements": "^1.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",

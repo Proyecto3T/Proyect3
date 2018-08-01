@@ -15,6 +15,32 @@ import { ValorationComponent } from './valoration/valoration.component';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment.prod';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+// Configs 
+export function getAuthServiceConfigs() {
+let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("944542655731188")
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("912413154126-em3a55n7drhrluj86nsv474vj0no3t6r.apps.googleusercontent.com")
+      },
+    ]
+);
+return config;
+}
 
 
 
@@ -37,8 +63,14 @@ import { environment } from '../environments/environment.prod';
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: environment.GAPI
-    }) ],
-  providers: [],
+    }),
+    SocialLoginModule,
+    ClarityModule,
+    BrowserAnimationsModule ],
+  providers: [ {
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

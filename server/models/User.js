@@ -7,7 +7,7 @@ const userSchema = new Schema({
   email:String,
   comments:[{type:Schema.Types.ObjectId, ref: 'Comments'}],
   statistics:{
-    drive: {type:Number, default:5},
+    drive: {type:Number, defult:5},
     backhand: {type:Number, default:5},
     serve: {type:Number, default:5},
     volley: {type:Number, default:5},

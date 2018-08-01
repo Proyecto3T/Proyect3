@@ -11,7 +11,7 @@ import {AuthService,  FacebookLoginProvider,  GoogleLoginProvider} from 'angular
 })
 export class SignupFormComponent implements OnInit {
 
-  constructor(public sessionService: SessionService, public router:Router) { }
+  constructor(public sessionService: SessionService, public router:Router, private socialAuthService: AuthService) { }
 
   ngOnInit() {
   }
@@ -26,6 +26,48 @@ export class SignupFormComponent implements OnInit {
       console.log(user);
       this.router.navigate(['/profile']);
     });
+  }
+
+  public socialSignIn(socialPlatform : string) {
+    let socialPlatformProvider;
+    if(socialPlatform == "facebook"){
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    }else if(socialPlatform == "google"){
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform+" sign in data : " , userData);
+        this.sessionService.signup(userData.name,userData.id,userData.email).subscribe( (user:any) =>{
+          console.log(`WELCOME USER ${user.username}, register OK`);
+          console.log(user);
+          this.router.navigate(['/profile']);
+        });
+        // Now sign-in with userData            
+      }
+    );
+  }
+
+  public socialLogIn(socialPlatform : string) {
+    let socialPlatformProvider;
+    if(socialPlatform == "facebook"){
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    }else if(socialPlatform == "google"){
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform+" sign in data : " , userData);
+        this.sessionService.login(userData.name,userData.id).subscribe( (user:any) =>{
+          console.log(`WELCOME USER ${user.username}, register OK`);
+          console.log(user);
+          this.router.navigate(['/profile']);
+        });
+        // Now sign-in with userData            
+      }
+    );
   }
     
 }
