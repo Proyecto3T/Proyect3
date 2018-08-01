@@ -42,32 +42,13 @@ export class SignupFormComponent implements OnInit {
         this.sessionService.signup(userData.name,userData.id,userData.email).subscribe( (user:any) =>{
           console.log(`WELCOME USER ${user.username}, register OK`);
           console.log(user);
-          this.router.navigate(['/profile']);
+          if(this.sessionService.user)this.router.navigate(['/profile']);
         });
         // Now sign-in with userData            
       }
     );
   }
 
-  public socialLogIn(socialPlatform : string) {
-    let socialPlatformProvider;
-    if(socialPlatform == "facebook"){
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    }else if(socialPlatform == "google"){
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-    
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(socialPlatform+" sign in data : " , userData);
-        this.sessionService.login(userData.name,userData.id).subscribe( (user:any) =>{
-          console.log(`WELCOME USER ${user.username}, register OK`);
-          console.log(user);
-          this.router.navigate(['/profile']);
-        });
-        // Now sign-in with userData            
-      }
-    );
-  }
+  
     
 }
