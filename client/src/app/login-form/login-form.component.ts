@@ -60,7 +60,7 @@ export class LoginFormComponent implements OnInit {
         this.sessionService.login(userData.name,userData.id).subscribe( (user:any) =>{
           console.log(`WELCOME USER ${user.username}, register OK`);
           console.log(user);
-          this.router.navigate(['/profile']);
+          if(this.sessionService.user)this.router.navigate(['/profile']);
         });
         // Now sign-in with userData            
       }
