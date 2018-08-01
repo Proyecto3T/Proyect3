@@ -24,10 +24,6 @@ export class LoginFormComponent implements OnInit {
       if(this.sessionService.user)this.router.navigate(['/profile']);
     });
   }
-
-  
-    
-    
   
 
   public socialLogIn(socialPlatform : string) {

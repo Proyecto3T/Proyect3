@@ -10,7 +10,9 @@ import { MatchService } from "../../services/match.service";
 })
 export class ProfileComponent implements OnInit {
   user: any;
-
+ winRate:number;
+ played:number;
+ wonMatches:number;
   public chart = [];
   constructor(
     public sessionService: SessionService,
@@ -24,6 +26,9 @@ export class ProfileComponent implements OnInit {
       .isLogged()
       .subscribe(() => { 
         this.user = this.sessionService.user;
+        this.played= this.user.wonMatches+this.user.lostMatches
+        this.wonMatches= this.user.wonMatches
+        this.winRate= this.user.wonMatches/(this.user.wonMatches+this.user.lostMatches)
         var canvas = <HTMLCanvasElement>document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
       this.chart = new Chart(ctx, {
@@ -60,7 +65,7 @@ export class ProfileComponent implements OnInit {
               backgroundColor: "rgba(20, 29, 222, 0.2)"
             },
             {
-              label: "  Media",
+              label: ["  Media"],
               data: [1, 2, 5, 8, 4],
               borderColor: "rgba(255, 99, 132, 0.2)",
               backgroundColor: "rgba(255, 99, 132, 0.2)"
@@ -68,6 +73,15 @@ export class ProfileComponent implements OnInit {
           ]
         },
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+                
+            }
+        },
           scale: {
             // Hides the scale
             ticks: {
@@ -88,4 +102,5 @@ export class ProfileComponent implements OnInit {
       this.matches = matches;
     });
   }
+
 }

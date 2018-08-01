@@ -1,3 +1,36 @@
 h2{
   text-align: center;
 }
+
+#canvas-container{
+  margin-top:5%;
+  margin-left:10%;
+  margin-bottom:5%;
+}
+
+.img-circle{
+  border-radius: 50%;
+  width:40%;
+  margin-top:5%;
+  margin-left:10%;
+}
+
+.username-profile{
+  margin-left:7%;
+}
+
+.profile-container{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  padding:0 3%;
+}
+
+.middle-text{
+  width:25%;
+}
+
+.profile-resume{
+  display:flex;
+  justify-content: center;
+}

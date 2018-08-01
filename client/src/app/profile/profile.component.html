@@ -1,15 +1,27 @@
-<p>
-  profile works!
-</p>
-
-<div [hidden]="!chart">
-    <canvas id="canvas">{{ chart }}</canvas>
-  </div>
-
-<div class="profileResume">
-  <h2 *ngIf="sessionService.user">WELCOME BACK {{sessionService.user.username}}</h2>
+<div class="profile-container">
+        <div class="profileResume">
+                <img src="https://i.dailymail.co.uk/i/pix/2016/05/05/12/25E03D4400000578-3574782-image-m-87_1462447093168.jpg" class="img-circle">
+              <h3 *ngIf="sessionService.user" class="username-profile"> {{sessionService.user.username}}</h3>
+            </div>
+<div class="middle-text">
+    <p>
+            Matches Played:{{played}}
+    </p>
+    <p>
+            Won: {{wonMatches}}
+    </p>
+    <p>
+            Win Rate:{{winRate}}
+    </p>
 </div>
-
+<div class="chart-container" widht="20px">
+<div [hidden]="!chart">
+        <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+    <canvas id="canvas">{{ chart }}</canvas>
+    </div>
+  </div>
+</div>
+</div>
 <clr-tabs>
     <clr-tab>
         <button clrTabLink>Record</button>
