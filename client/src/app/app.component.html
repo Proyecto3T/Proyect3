@@ -1,9 +1,15 @@
 <header class="header header-5">
+        <div class="branding">
+                <a [routerLink]="['/']" class="nav-link">
+                    <img src="../assets/Logo Aplicación tenis.png" alt="">
+                    <!-- <span class="title">Head to Head</span>  -->
+                </a>
+            </div>
     <div class="header-nav">
         <a  *ngIf="!sessionService.user" [routerLink]="['/signup']" class="nav-link"><span class="nav-text">Signup</span></a>
         <a *ngIf="!sessionService.user" [routerLink]="['/login']" class="nav-link"><span class="nav-text">Login</span></a>
         <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
-        <a *ngIf="sessionService.user" [routerLink]="['/new-match']" class="nav-link"><span class="nav-text">New Match</span></a>
+        <a *ngIf="sessionService.user" (click) = "toggleShow()" class="nav-link"><span class="nav-text">New Match</span></a>
         <a *ngIf="sessionService.user" [routerLink]="['/valoration']" class="nav-link"><span class="nav-text">Valoration</span></a>
         <!-- <a *ngIf="sessionService.user" href="#" class="nav-link" (click)="logout()"><span class="nav-text">Logout</span></a> -->
     </div>

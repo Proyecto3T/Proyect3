@@ -19,6 +19,20 @@ router.get('/', (req, res, next) => {
     })
 });
 
+router.get('/finish-matches', (req, res, next) => {
+  Match.find({finish: {$eq: true}})
+  .populate("_author")
+    .then(matches => {
+      res.status(200).json(matches);
+    })
+    .catch( e => {
+      res.status(500).json({
+        status:'error',
+        error:e.message
+      })
+    })
+});
+
 router.get('/:id', (req, res, next) => {
   const playerId = req.params.id
   Match.find({ players: { $elemMatch: { $eq: playerId} } })

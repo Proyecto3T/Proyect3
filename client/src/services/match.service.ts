@@ -10,6 +10,7 @@ const url = environment.BASEURL;
   providedIn: "root"
 })
 export class MatchService {
+  show:boolean = false;
   options: object = { withCredentials: true };
   constructor(private http: Http) {}
   

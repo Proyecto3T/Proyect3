@@ -1,5 +1,29 @@
-<div *ngIf="matches">
-  <div  class="matches" *ngFor="let match of matches">
-      <p>Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}} - Created By: {{match._author.username}}</p>
+<!-- <div *ngIf="matches">
+  <div  class="matches container card" *ngFor="let match of matches">
+    <p class="name">Created By: {{match._author.username}}</p>
+      <p class="about">Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}} </p>
   </div>
+</div> -->
+<!-- <div *ngIf="matches">
+<div class="container"*ngFor="let match of matches">
+    <div class="card">
+      <div class="user">
+        <div class="circle nick"></div>
+      </div>
+      <div class="info">
+        <div class="text"></div>
+        <p class="name">Created By: {{match._author.username}}</p>
+        <p class="about">Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}}</p>
+        <button class="like">Like</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="information message" *ngFor="let match of matches">
+    <div class="userImage">
+      <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg" alt="">
+    </div>
+    <h2>Created By: {{match._author.username}}</h2>
+    <p>Date: {{match.date}} - Hour: {{match.hour}} </p>
 </div>

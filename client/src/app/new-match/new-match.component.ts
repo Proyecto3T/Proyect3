@@ -1,8 +1,9 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { MapsAPILoader, MouseEvent } from '../../../node_modules/@agm/core';
 import { google, Marker } from '../../../node_modules/@agm/core/services/google-maps-types';
 import { MatchService } from '../../services/match.service';
 import { Router } from '../../../node_modules/@angular/router';
+import { ClrWizard } from '../../../node_modules/@clr/angular';
 
 interface marker {
   lat: number;
@@ -17,6 +18,13 @@ interface marker {
 })
 
 export class NewMatchComponent implements OnInit {
+    @ViewChild("wizardmd") wizardMedium: ClrWizard;
+    @ViewChild("wizardlg") wizardLarge: ClrWizard;
+    @ViewChild("wizardxl") wizardExtraLarge: ClrWizard;
+
+    mdOpen: boolean = false;
+    lgOpen: boolean = true;
+    xlOpen: boolean = false;
   minDate:number;
   markers: marker[] = [
 	  {
@@ -55,8 +63,16 @@ export class NewMatchComponent implements OnInit {
   }
   createMatch(hour, date, lat, lng){
     console.log(hour, date, lat, lng)
+    this.toggleShow()
     this.matchService.createMatch(hour, date, lat, lng).subscribe(() => {
       this.router.navigate(['/profile']);
     })
+  }
+
+  viewWizard(){
+    this.lgOpen= !this.lgOpen
+  }
+  toggleShow(){
+    this.matchService.show = !this.matchService.show
   }
 }

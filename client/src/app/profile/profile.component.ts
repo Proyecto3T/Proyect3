@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Chart } from "chart.js";
 import { SessionService } from "../../services/session.service";
 import { MatchService } from "../../services/match.service";
@@ -10,6 +10,7 @@ import { MatchService } from "../../services/match.service";
 })
 export class ProfileComponent implements OnInit {
   user: any;
+  show: boolean = false;
 
   public chart = [];
   constructor(
@@ -20,41 +21,41 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sessionService
-      .isLogged()
-      .subscribe(() => { 
-        this.user = this.sessionService.user;
-        var canvas = <HTMLCanvasElement>document.getElementById("canvas");
+    this.sessionService.isLogged().subscribe(() => {
+      this.user = this.sessionService.user;
+      var canvas = <HTMLCanvasElement>document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
       this.chart = new Chart(ctx, {
         type: "radar",
-  
+
         data: {
           labels: ["Drive", "Backhand", "Serve", "Volley", "Resistance"],
           datasets: [
             {
               label: "Your Statistics",
               data: [
-                this.user.statisticsAverage.drive.length ==0 ? 5 :
-               this.user.statisticsAverage.drive.reduce((a,b) =>
-               a+b
-              )/ this.user.statisticsAverage.drive.length,
-              this.user.statisticsAverage.backhand.length ==0 ? 5 :
-              this.user.statisticsAverage.backhand.reduce((a,b) =>
-              a+b
-             )/ this.user.statisticsAverage.backhand.length,
-             this.user.statisticsAverage.serve.length ==0 ? 5 :
-             this.user.statisticsAverage.serve.reduce((a,b) =>
-             a+b
-            )/ this.user.statisticsAverage.serve.length,
-            this.user.statisticsAverage.volley.length ==0 ? 5 :
-            this.user.statisticsAverage.volley.reduce((a,b) =>
-            a+b
-           )/ this.user.statisticsAverage.volley.length,
-           this.user.statisticsAverage.resistance.length ==0 ? 5 :
-           this.user.statisticsAverage.resistance.reduce((a,b) =>
-           a+b
-          )/ this.user.statisticsAverage.resistance.length
+                this.user.statisticsAverage.drive.length == 0
+                  ? 5
+                  : this.user.statisticsAverage.drive.reduce((a, b) => a + b) /
+                    this.user.statisticsAverage.drive.length,
+                this.user.statisticsAverage.backhand.length == 0
+                  ? 5
+                  : this.user.statisticsAverage.backhand.reduce(
+                      (a, b) => a + b
+                    ) / this.user.statisticsAverage.backhand.length,
+                this.user.statisticsAverage.serve.length == 0
+                  ? 5
+                  : this.user.statisticsAverage.serve.reduce((a, b) => a + b) /
+                    this.user.statisticsAverage.serve.length,
+                this.user.statisticsAverage.volley.length == 0
+                  ? 5
+                  : this.user.statisticsAverage.volley.reduce((a, b) => a + b) /
+                    this.user.statisticsAverage.volley.length,
+                this.user.statisticsAverage.resistance.length == 0
+                  ? 5
+                  : this.user.statisticsAverage.resistance.reduce(
+                      (a, b) => a + b
+                    ) / this.user.statisticsAverage.resistance.length
               ],
               borderColor: "rgba(20, 29, 222, 1)",
               backgroundColor: "rgba(20, 29, 222, 0.2)"
@@ -77,8 +78,8 @@ export class ProfileComponent implements OnInit {
             }
           }
         }
-      });});
-   
+      });
+    });
   }
 
   matches: any;
@@ -87,5 +88,9 @@ export class ProfileComponent implements OnInit {
     this.matchService.getMatches(id).subscribe(matches => {
       this.matches = matches;
     });
+  }
+
+  showNewMatch() {
+    this.show = !this.show;
   }
 }

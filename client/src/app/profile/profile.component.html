@@ -1,7 +1,3 @@
-<p>
-  profile works!
-</p>
-
 <div [hidden]="!chart">
     <canvas id="canvas">{{ chart }}</canvas>
   </div>
@@ -9,7 +5,10 @@
 <div class="profileResume">
   <h2 *ngIf="sessionService.user">WELCOME BACK {{sessionService.user.username}}</h2>
 </div>
-
+<div *ngIf="matchService.show">
+  <app-new-match></app-new-match>
+</div>
+<!-- <button class="btn btn-primary" (click)="showNewMatch()">Add match</button> -->
 <clr-tabs>
     <clr-tab>
         <button clrTabLink>Record</button>
