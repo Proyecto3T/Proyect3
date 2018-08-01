@@ -20,25 +20,41 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.sessionService.isLogged().subscribe(() => this.getMatches(this.sessionService.user._id))
-    this.sessionService.isLogged().subscribe(() => {
-      this.user = this.sessionService.user;
-      var canvas = <HTMLCanvasElement>document.getElementById("canvas");
+    this.sessionService
+      .isLogged()
+      .subscribe(() => { 
+        this.user = this.sessionService.user;
+        var canvas = <HTMLCanvasElement>document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
       this.chart = new Chart(ctx, {
         type: "radar",
-
+  
         data: {
           labels: ["Drive", "Backhand", "Serve", "Volley", "Resistance"],
           datasets: [
             {
               label: "Your Statistics",
               data: [
-                this.user.statistics.drive,
-                this.user.statistics.backhand,
-                this.user.statistics.serve,
-                this.user.statistics.volley,
-                this.user.statistics.resistance
+                this.user.statisticsAverage.drive.length ==0 ? 5 :
+               this.user.statisticsAverage.drive.reduce((a,b) =>
+               a+b
+              )/ this.user.statisticsAverage.drive.length,
+              this.user.statisticsAverage.backhand.length ==0 ? 5 :
+              this.user.statisticsAverage.backhand.reduce((a,b) =>
+              a+b
+             )/ this.user.statisticsAverage.backhand.length,
+             this.user.statisticsAverage.serve.length ==0 ? 5 :
+             this.user.statisticsAverage.serve.reduce((a,b) =>
+             a+b
+            )/ this.user.statisticsAverage.serve.length,
+            this.user.statisticsAverage.volley.length ==0 ? 5 :
+            this.user.statisticsAverage.volley.reduce((a,b) =>
+            a+b
+           )/ this.user.statisticsAverage.volley.length,
+           this.user.statisticsAverage.resistance.length ==0 ? 5 :
+           this.user.statisticsAverage.resistance.reduce((a,b) =>
+           a+b
+          )/ this.user.statisticsAverage.resistance.length
               ],
               borderColor: "rgba(20, 29, 222, 1)",
               backgroundColor: "rgba(20, 29, 222, 0.2)"
@@ -61,8 +77,8 @@ export class ProfileComponent implements OnInit {
             }
           }
         }
-      });
-    });
+      });});
+   
   }
 
   matches: any;

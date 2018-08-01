@@ -1,22 +1,24 @@
-<h1>Mi primer formulario angular</h1>
+<h1>¿Quieres valorar a tu rival?</h1>
 
-<form (ngSubmit)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value)" #myForm="ngForm">
+<form  (ngSubmit)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value)" #myForm="ngForm">
   <p> Drive
-      <input #drive type=“number” name=“” id=“” value=5>
+      <input #drive type='number' name='' id='' value=5 min="1" max="10">
   <p> Backhand
-      <input #backhand type=“number” name=“” id=“” value=5>
+      <input #backhand type='number' name='' id='' value=5 min="1" max="10">
   </p>
   <p> Serve
-      <input #serve type=“number” name=“” id=“” value=5>
+      <input #serve type='number' name='' id='' value=5 min="1" max="10">
   </p>
   <p> Volley
-      <input #volley type=“number” name=“” id=“” value=5>
+      <input #volley type='number' name='' id='' value=5 min="1" max="10">
   </p>
   <p> Resistance
-      <input #resistance type=“number” name=“” id=“” value=5>
+      <input #resistance type='number' name='' id='' value=5 min="1" max="10">
   </p>
   <p>
-      <textarea name="textarea" rows="20" cols="80">Write something here</textarea>
+      <textarea name="textarea" rows="20" cols="80" placeholder="What do you think about the other user?"></textarea>
   </p>
-  <button type="submit"> Submit </button>
+  <button type="submit "  > Submit </button>
+
+  <button [routerLink]="['/profile']" > Skip </button>
 </form>

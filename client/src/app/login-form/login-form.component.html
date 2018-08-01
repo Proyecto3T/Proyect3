@@ -8,6 +8,12 @@
     <input type="password" [(ngModel)]="password" name="password"/>
   
     <button (click)="login(username,password)"> login </button>
+    
   </form>
+  <button class="loginBtn loginBtn--google" (click)="socialLogIn('google')">Log in with Google</button>
+
+  <!-- <div *ngIf="signIn">
+      <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">Log in with Google</button>
+      </div> -->
   <p class="error"> {{ error }} </p>
 </div>

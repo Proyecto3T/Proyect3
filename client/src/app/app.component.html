@@ -4,6 +4,7 @@
         <a *ngIf="!sessionService.user" [routerLink]="['/login']" class="nav-link"><span class="nav-text">Login</span></a>
         <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
         <a *ngIf="sessionService.user" [routerLink]="['/new-match']" class="nav-link"><span class="nav-text">New Match</span></a>
+        <a *ngIf="sessionService.user" [routerLink]="['/valoration']" class="nav-link"><span class="nav-text">Valoration</span></a>
         <!-- <a *ngIf="sessionService.user" href="#" class="nav-link" (click)="logout()"><span class="nav-text">Logout</span></a> -->
     </div>
     <div  *ngIf="sessionService.user" class="header-actions">
@@ -23,6 +24,7 @@
   <li *ngIf="!sessionService.user"><a [routerLink]="['/login']">Login</a></li>
   <li *ngIf="sessionService.user"><a [routerLink]="['/profile']">Profile</a></li>
   <li *ngIf="sessionService.user"><a [routerLink]="['/new-match']">New Match</a></li>
+  <li *ngIf="sessionService.user"><a [routerLink]="['/valoration']">valoration</a></li>
   <li *ngIf="sessionService.user"><a href="#" (click)="logout()">Logut</a></li>
 
 </ul> -->

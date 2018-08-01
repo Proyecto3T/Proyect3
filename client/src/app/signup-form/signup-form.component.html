@@ -12,10 +12,7 @@
   
     <button (click)="signup(username, password,email)"> SIGNUP </button>
     <br>
-   
-    <div (click)="socialSignup()" class="g-signin2"></div>
-    
-    
+    <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">Sign in with Google</button>
   </form>
   <p class="error"> {{ error }} </p>
 </div>

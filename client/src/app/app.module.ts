@@ -16,10 +16,34 @@ import { NewMatchComponent } from './new-match/new-match.component';
 import { AgmCoreModule } from '@agm/core';
 import { environment } from '../environments/environment.prod';
 import { HomeComponent } from './home/home.component';
-import { ClarityModule } from '@clr/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './record/record.component';
 import { MyMatchesComponent } from './my-matches/my-matches.component';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+// Configs 
+export function getAuthServiceConfigs() {
+let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("944542655731188")
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("912413154126-em3a55n7drhrluj86nsv474vj0no3t6r.apps.googleusercontent.com")
+      },
+    ]
+);
+return config;
+}
 
 
 
@@ -46,10 +70,13 @@ import { MyMatchesComponent } from './my-matches/my-matches.component';
     AgmCoreModule.forRoot({
       apiKey: environment.GAPI
     }),
+    SocialLoginModule,
     ClarityModule,
-    BrowserAnimationsModule
-  ],
-  providers: [],
+    BrowserAnimationsModule ],
+  providers: [ {
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
