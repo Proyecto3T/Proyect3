@@ -63,7 +63,7 @@ export class NewMatchComponent implements OnInit {
   }
   createMatch(hour, date, lat, lng){
     console.log(hour, date, lat, lng)
-    this.toggleShow()
+    this.matchService.toggleShow()
     this.matchService.createMatch(hour, date, lat, lng).subscribe(() => {
       this.router.navigate(['/profile']);
     })
@@ -72,7 +72,5 @@ export class NewMatchComponent implements OnInit {
   viewWizard(){
     this.lgOpen= !this.lgOpen
   }
-  toggleShow(){
-    this.matchService.show = !this.matchService.show
-  }
+  
 }

@@ -27,6 +27,8 @@ export class MatchService {
       .get(`${url}/api/matches/${id}`, this.options)
       .pipe(map(res => res.json()));
   }
-
+  toggleShow(){
+    this.show = !this.show
+  }
   
 }

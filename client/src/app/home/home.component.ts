@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private server: SessionService) { }
+matches:Array<any>
   ngOnInit() {
+   this.server.getMatches().subscribe( matches => {
+    console.log(matches)
+    this.matches=[];
+    return this.matches = matches
+   })
   }
+
+
 
 }

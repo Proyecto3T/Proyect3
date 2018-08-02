@@ -10,14 +10,11 @@ import { MatchService } from "../../services/match.service";
 })
 export class ProfileComponent implements OnInit {
   user: any;
-<<<<<<< HEAD
   show: boolean = false;
 
-=======
  winRate:number;
  played:number;
  wonMatches:number;
->>>>>>> d54808cfd5f270fbeb46a9f78b26fcf47e5fe041
   public chart = [];
   constructor(
     public sessionService: SessionService,
@@ -27,11 +24,6 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-    this.sessionService.isLogged().subscribe(() => {
-      this.user = this.sessionService.user;
-      var canvas = <HTMLCanvasElement>document.getElementById("canvas");
-=======
     this.sessionService
       .isLogged()
       .subscribe(() => { 
@@ -40,7 +32,6 @@ export class ProfileComponent implements OnInit {
         this.wonMatches= this.user.wonMatches
         this.winRate= this.user.wonMatches/(this.user.wonMatches+this.user.lostMatches)
         var canvas = <HTMLCanvasElement>document.getElementById("canvas");
->>>>>>> d54808cfd5f270fbeb46a9f78b26fcf47e5fe041
       var ctx = canvas.getContext("2d");
       this.chart = new Chart(ctx, {
         type: "radar",
@@ -86,6 +77,7 @@ export class ProfileComponent implements OnInit {
           ]
         },
         options: {
+          position:'left',
           responsive: true,
           maintainAspectRatio: false,
           legend: {
@@ -116,10 +108,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
   showNewMatch() {
     this.show = !this.show;
   }
-=======
->>>>>>> d54808cfd5f270fbeb46a9f78b26fcf47e5fe041
 }

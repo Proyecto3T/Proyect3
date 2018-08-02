@@ -21,6 +21,7 @@ export class SessionService {
   popValue=false;
   user: UserObject;
   socialUser: Observable<firebase.User>;
+  matches:Array<any>;
 
   options: object = { withCredentials: true };
 
@@ -135,6 +136,16 @@ export class SessionService {
     this.popValue=!this.popValue;
   }
 
+  getMatches(){
+    return this.http.get(`${url}/api/matches`,this.options).pipe(
+      map( matches =>{
+        console.log(matches);
+        this.matches=[];
+        return this.matches=matches.json();
+      })
+    )
+  }
+  
 
 }
 
