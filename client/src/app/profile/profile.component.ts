@@ -77,6 +77,7 @@ export class ProfileComponent implements OnInit {
           ]
         },
         options: {
+          position:'left',
           responsive: true,
           maintainAspectRatio: false,
           legend: {

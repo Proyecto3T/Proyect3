@@ -4,13 +4,23 @@ import { environment } from "../environments/environment";
 import "rxjs";
 import { map } from "rxjs/operators";
 
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
 const url = environment.BASEURL;
 
 @Injectable({
   providedIn: "root"
 })
 export class MatchService {
-  showSingleMatch =  false;
+  matches: any;
+  matchId: string;
+  match: any;
+  marker: marker;
+  showSingleMatch1:boolean =  false;
   show:boolean = false;
   options: object = { withCredentials: true };
   constructor(private http: Http) {}
@@ -34,6 +44,22 @@ export class MatchService {
     return this.http
       .get(`${url}/api/matches/single-match/${id}`, this.options)
       .pipe(map(res => res.json()));
+  }
+
+  toggleShow(){
+    this.show = !this.show
+  }
+  
+  showSingleMatch(matchId) {
+    this.getMatch(matchId).subscribe(match => {
+      this.match = match;
+      this.showSingleMatch1 = !this.showSingleMatch1;
+      this.matchId = matchId;
+      this.marker = {lat: this.match.location.coordinates[0],
+      lng: this.match.location.coordinates[1],
+      label:"A" ,
+      draggable: true}
+    });
   }
 
   

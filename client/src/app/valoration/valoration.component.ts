@@ -39,8 +39,8 @@ export class ValorationComponent implements OnInit {
     this.service.popVal()
     this.statistics={drive,backhand,serve,volley,resistance}
     console.log(this.statistics)
-    this.service.postValorations(this.statistics).subscribe(() =>{
-
+    this.service.postValorations(this.statistics).subscribe(user =>{
+      this.service.user = user;
       this.router.navigate(['/profile']);
     })
   }

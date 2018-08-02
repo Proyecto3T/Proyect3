@@ -28,7 +28,7 @@
   <clr-wizard #wizardlg [(clrWizardOpen)]="lgOpen" clrWizardSize="lg">
     <clr-wizard-title>Add match</clr-wizard-title>
 
-    <clr-wizard-button [type]="'cancel'" (click)="toggleShow()">Cancel</clr-wizard-button>
+    <clr-wizard-button [type]="'cancel'" (click)="matchService.toggleShow()">Cancel</clr-wizard-button>
     <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
     <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
     <clr-wizard-button [type]="'finish'" (click)="createMatch(hour, date, lat.value, lng.value)">Finish</clr-wizard-button>

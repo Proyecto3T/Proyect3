@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ValorationComponent } from './valoration/valoration.component';
 import { NewMatchComponent } from './new-match/new-match.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 
 export const routes: Routes = [
+  {path:'home', component:HomeComponent},
   { path:'signup', component:SignupFormComponent},
   { path:'login', component:LoginFormComponent},
   {path:'profile', component:ProfileComponent},

@@ -3,14 +3,12 @@ h2{
 }
 
 #canvas-container{
-  margin-top:5%;
-  margin-left:10%;
-  margin-bottom:5%;
+float: left;
 }
 
 .img-circle{
   border-radius: 50%;
-  width:40%;
+  width:33%;
   margin-top:5%;
   margin-left:10%;
 }
@@ -19,15 +17,24 @@ h2{
   margin-left:7%;
 }
 
+#canvas{
+float: left;
+}
+
 .profile-container{
   display:flex;
-  justify-content:space-between;
+  justify-content:space-evenly;
   align-items: center;
   padding:0 3%;
 }
 
+.chart-container{
+  width:33%;
+  float: left;
+}
+
 .middle-text{
-  width:25%;
+  width:33%;
 }
 
 .profile-resume{
