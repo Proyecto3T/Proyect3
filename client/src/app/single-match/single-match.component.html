@@ -1,0 +1,27 @@
+<div class="modal" *ngIf="match">
+
+  <div class="modal-dialog fadeDown in" role="dialog">
+   
+    <div class="modal-content">
+        <h3 class="modal-title">Place</h3>
+      <div class="modal-body">
+        <agm-map [latitude]="marker.lat" [longitude]="marker.lng" [zoom]="14">
+
+          <agm-marker [latitude]="marker.lat" [longitude]="marker.lng" [label]="marker.label"></agm-marker>
+          <agm-info-window>
+            <strong>InfoWindow content</strong>
+          </agm-info-window>
+        </agm-map>
+      </div>
+
+      <div class="modal-footer">
+
+        <button class="btn btn-primary" (click)="showSingleMatch()" type="button">Ok</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="modal-backdrop fade in" aria-hidden="true"></div>

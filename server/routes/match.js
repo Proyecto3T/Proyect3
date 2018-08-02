@@ -71,4 +71,20 @@ router.post('/new', (req, res, next) => {
   });
 });
 
+router.get('/single-match/:id', (req, res, next) => {
+  const matchId = req.params.id
+  Match.findById(matchId)
+  .populate("_author")
+    .then(match => {
+      res.status(200).json(match);
+    })
+    .catch( e => {
+      res.status(500).json({
+        status:'error',
+        error:e.message
+      })
+    })
+});
+
+
 module.exports = router;

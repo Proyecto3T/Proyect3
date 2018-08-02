@@ -10,6 +10,7 @@ const url = environment.BASEURL;
   providedIn: "root"
 })
 export class MatchService {
+  showSingleMatch =  false;
   show:boolean = false;
   options: object = { withCredentials: true };
   constructor(private http: Http) {}
@@ -25,6 +26,13 @@ export class MatchService {
     console.log(id)
     return this.http
       .get(`${url}/api/matches/${id}`, this.options)
+      .pipe(map(res => res.json()));
+  }
+
+  getMatch(id){
+    console.log(id)
+    return this.http
+      .get(`${url}/api/matches/single-match/${id}`, this.options)
       .pipe(map(res => res.json()));
   }
 

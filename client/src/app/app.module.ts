@@ -26,6 +26,7 @@ import {
 } from "angular-6-social-login";
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SingleMatchComponent } from './single-match/single-match.component';
 
 
 // Configs 
@@ -60,7 +61,8 @@ return config;
     NewMatchComponent,
     HomeComponent,
     RecordComponent,
-    MyMatchesComponent
+    MyMatchesComponent,
+    SingleMatchComponent
   ],
   imports: [
     BrowserModule,

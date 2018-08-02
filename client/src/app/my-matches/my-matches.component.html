@@ -20,10 +20,12 @@
   </div>
 </div> -->
 
-<div class="information message" *ngFor="let match of matches">
+<div class="information message" (click)="showSingleMatch(match._id)" *ngFor="let match of matches">
     <div class="userImage">
       <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg" alt="">
     </div>
     <h2>Created By: {{match._author.username}}</h2>
     <p>Date: {{match.date}} - Hour: {{match.hour}} </p>
 </div>
+
+<app-single-match [matchId]="matchId" [match]="match" [marker]="marker" [hidden]="!matchService.showSingleMatch"></app-single-match>
