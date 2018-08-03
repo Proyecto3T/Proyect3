@@ -6,7 +6,7 @@ const Match = require("../models/Match");
 //Match.find({ roomId: { $in: [req.params.id] } })
 
 router.get('/', (req, res, next) => {
-  Match.find({"finish": {"$gt": "2000-01-23 012:00:00.000"}})
+  Match.find({})
   .populate("_author")
     .then(matches => {
       res.status(200).json(matches);
