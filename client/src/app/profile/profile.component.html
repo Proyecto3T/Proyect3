@@ -3,6 +3,7 @@
                 <img src="https://i.dailymail.co.uk/i/pix/2016/05/05/12/25E03D4400000578-3574782-image-m-87_1462447093168.jpg" class="img-circle">
               <h3 *ngIf="sessionService.user" class="username-profile"> {{sessionService.user.username}}</h3>
             </div>
+   
 <div class="middle-text">
     <p>
             Matches Played:{{played}}
@@ -14,20 +15,26 @@
             Win Rate:{{winRate}}
     </p>
 </div>
+
 <div class="chart-container" widht="20px">
 <div [hidden]="!chart">
         <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
-    <canvas id="canvas">{{ chart }}</canvas>
+            
+    <canvas id="canvas" class="canvas-avance-perfil">{{ chart }}</canvas>
     </div>
   </div>
 </div>
 </div>
 
+
+
+
 <!-- <button class="btn btn-primary" (click)="showNewMatch()">Add match</button> -->
+
 <clr-tabs>
     <clr-tab>
-        <button clrTabLink>Record</button>
-        <ng-template [(clrIfActive)]="dashboardActive">
+        <button clrTabLink  (click)="hideStats()">Record</button>
+        <ng-template [(clrIfActive)]="dashboardActive ">
             <clr-tab-content>
                 <app-record></app-record>
             </clr-tab-content>
@@ -35,13 +42,23 @@
     </clr-tab>
 
     <clr-tab>
-        <button clrTabLink>My matches</button>
+        <button clrTabLink  (click)="hideStats()">My matches</button>
         <ng-template [(clrIfActive)]="managementActive">
             <clr-tab-content>
                 <app-my-matches></app-my-matches>
             </clr-tab-content>
         </ng-template>
     </clr-tab>
+
+
+    <clr-tab>
+            <button clrTabLink  (click)="showStats()">Statistics</button>
+            <ng-template [(clrIfActive)]="StatisticsActive">
+                <clr-tab-content>
+                    <app-statistics></app-statistics>
+                </clr-tab-content>
+            </ng-template>
+        </clr-tab>
 
     
 </clr-tabs>

@@ -27,6 +27,7 @@ import {
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleMatchComponent } from './single-match/single-match.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 // Configs 
@@ -62,7 +63,8 @@ return config;
     HomeComponent,
     RecordComponent,
     MyMatchesComponent,
-    SingleMatchComponent
+    SingleMatchComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

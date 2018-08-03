@@ -40,4 +40,13 @@ float: left;
 .profile-resume{
   display:flex;
   justify-content: center;
+  align-content: center;
+}
+
+.profileResume{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  flex-direction: column;
 }

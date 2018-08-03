@@ -62,5 +62,11 @@ export class MatchService {
     });
   }
 
+
+  showFinishMatches(){
+    return this.http
+      .get(`${url}/api/matches/finish-matches`, this.options)
+      .pipe(map(res => res.json()));
+  }
   
 }

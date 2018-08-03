@@ -19,7 +19,7 @@ const matchSchema = new Schema(
     result: String,
     winner: { type: Schema.Types.ObjectId, ref: "User" },
     loser: { type: Schema.Types.ObjectId, ref: "User" },
-    finish: { type: Boolean, default: false }
+    finish: {type:Date, default:"2018-01-06 13:39:35.039"}
   },
   {
     timestamps: {
