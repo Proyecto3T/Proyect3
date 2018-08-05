@@ -35,6 +35,7 @@ export class SessionService {
   matches: Array<any>;
   socket: SocketIOClient.Socket;
   messages: Array<Message> = [];
+  users: Array<any>;
 
   
   options: object = { withCredentials: true };
@@ -186,4 +187,15 @@ export class SessionService {
   //       catchError(e => of(this.errorHandler(e)))
   //     );
   // }
+  
+
+  getUsers(){
+    return this.http.get(`${url}/api/profiles/users`, this.options).pipe(
+      map(users =>{
+        console.log(users)
+        this.users=[];
+        return (this.users=users.json())
+      })
+    )
+  }
 }

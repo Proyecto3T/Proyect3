@@ -1,0 +1,57 @@
+
+<div id="hidden-stats">
+    <!-- <h1>{{sessioService.user.name}}</h1> -->
+    <div class="charts">
+    <div class="chart-container" widht="20px">
+      <div >
+        <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+  
+          <canvas id="canvas1">{{ chart }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="chart-container" widht="20px">
+        <div>
+                <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+                    
+            <canvas id="canvas2">{{ chart }}</canvas>
+            </div>
+          </div>
+        </div>
+  
+    <div class="chart-container" widht="20px">
+      <div [hidden]="!chart">
+        <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+  
+          <canvas id="canvas2">{{ chart }}</canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+    <br>
+    <div>
+    <h1>You played: {{singleUserStats.played}} matches</h1>
+    <h1>You won: {{singleUserStats.wonMatches}} matches</h1>
+    <h1>Your winRate is: {{singleUserStats.winRate}} %</h1>
+  </div>
+  <button (click)="hideStats()">Skip</button>
+  </div>
+
+<div *ngFor="let stat of stats">
+  <div class="information message"  (click)='showStats(stat.name)'>
+    <div class="userImage">
+      <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg"
+        alt="">
+    </div>
+    <h2>User: {{stat.name}}</h2>
+    <p>Games Played: {{stat.played}}</p>
+    <p>Games Won: {{stat.wonMatches}}</p>
+    <p>Win Rate: {{stat.winRate}}%</p>
+  </div>
+</div>
+
+
+
+
+
+  

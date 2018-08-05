@@ -30,16 +30,13 @@ import { SingleMatchComponent } from './single-match/single-match.component';
 import { ChatComponent } from './chat/chat.component';
 import {SnotifyModule, SnotifyService, ToastDefaults} from '../../node_modules/ng-snotify'
 import { StatisticsComponent } from './statistics/statistics.component';
+import { UsersComponent } from './users/users.component';
 
 
 // Configs 
 export function getAuthServiceConfigs() {
 let config = new AuthServiceConfig(
     [
-      {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("944542655731188")
-      },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider("912413154126-em3a55n7drhrluj86nsv474vj0no3t6r.apps.googleusercontent.com")
@@ -66,7 +63,8 @@ return config;
     MyMatchesComponent,
     SingleMatchComponent,
     ChatComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
