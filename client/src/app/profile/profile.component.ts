@@ -3,6 +3,7 @@ import { Chart } from "chart.js";
 import { SessionService } from "../../services/session.service";
 import { MatchService } from "../../services/match.service";
 import  * as $ from 'jquery'
+import { GraphsService } from "../../services/graphs.service";
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -19,7 +20,8 @@ canvas:any={};
   public chart = [];
   constructor(
     public sessionService: SessionService,
-    private matchService: MatchService
+    private matchService: MatchService,
+    private draw:GraphsService
   ) 
   {
     this.user = sessionService.user;
@@ -33,145 +35,13 @@ canvas:any={};
         this.played= this.user.wonMatches+this.user.lostMatches
         this.wonMatches= this.user.wonMatches
         this.winRate= this.user.wonMatches/(this.user.wonMatches+this.user.lostMatches)
-         this.canvas = <HTMLCanvasElement>document.getElementById("canvas");
-      var ctx = this.canvas.getContext("2d");
-      this.chart = new Chart(ctx, {
-        type: "radar",
-
-        data: {
-          labels: ["Drive", "Backhand", "Serve", "Volley", "Resistance"],
-          datasets: [
-            {
-              label: "Your Statistics",
-              data: [
-                this.user.statisticsAverage.drive.length == 0
-                  ? 5
-                  : this.user.statisticsAverage.drive.reduce((a, b) => a + b) /
-                    this.user.statisticsAverage.drive.length,
-                this.user.statisticsAverage.backhand.length == 0
-                  ? 5
-                  : this.user.statisticsAverage.backhand.reduce(
-                      (a, b) => a + b
-                    ) / this.user.statisticsAverage.backhand.length,
-                this.user.statisticsAverage.serve.length == 0
-                  ? 5
-                  : this.user.statisticsAverage.serve.reduce((a, b) => a + b) /
-                    this.user.statisticsAverage.serve.length,
-                this.user.statisticsAverage.volley.length == 0
-                  ? 5
-                  : this.user.statisticsAverage.volley.reduce((a, b) => a + b) /
-                    this.user.statisticsAverage.volley.length,
-                this.user.statisticsAverage.resistance.length == 0
-                  ? 5
-                  : this.user.statisticsAverage.resistance.reduce(
-                      (a, b) => a + b
-                    ) / this.user.statisticsAverage.resistance.length
-              ],
-              borderColor: "rgba(20, 29, 222, 1)",
-              backgroundColor: "rgba(20, 29, 222, 0.2)"
-            },
-            {
-              label: ["  Media"],
-              data: [1, 2, 5, 8, 4],
-              borderColor: "rgba(255, 99, 132, 0.2)",
-              backgroundColor: "rgba(255, 99, 132, 0.2)"
-            }
-          ]
-        },
-        options: {
-          position:'left',
-          responsive: true,
-          maintainAspectRatio: false,
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-                
-            }
-        },
-          scale: {
-            // Hides the scale
-            ticks: {
-              // changes here
-              max: 10,
-              min: 0
-            }
-          }
-        }
-      });
+        this.draw.printRadar(this.sessionService.user,"canvas");
     });
-  }
+}
 
   matches: any;
 
-  printCanvas(){
-    this.canvas = <HTMLCanvasElement>document.getElementById("canvas");
-    var ctx = this.canvas.getContext("2d");
-    this.chart = new Chart(ctx, {
-      type: "radar",
-
-      data: {
-        labels: ["Drive", "Backhand", "Serve", "Volley", "Resistance"],
-        datasets: [
-          {
-            label: "Your Statistics",
-            data: [
-              this.user.statisticsAverage.drive.length == 0
-                ? 5
-                : this.user.statisticsAverage.drive.reduce((a, b) => a + b) /
-                  this.user.statisticsAverage.drive.length,
-              this.user.statisticsAverage.backhand.length == 0
-                ? 5
-                : this.user.statisticsAverage.backhand.reduce(
-                    (a, b) => a + b
-                  ) / this.user.statisticsAverage.backhand.length,
-              this.user.statisticsAverage.serve.length == 0
-                ? 5
-                : this.user.statisticsAverage.serve.reduce((a, b) => a + b) /
-                  this.user.statisticsAverage.serve.length,
-              this.user.statisticsAverage.volley.length == 0
-                ? 5
-                : this.user.statisticsAverage.volley.reduce((a, b) => a + b) /
-                  this.user.statisticsAverage.volley.length,
-              this.user.statisticsAverage.resistance.length == 0
-                ? 5
-                : this.user.statisticsAverage.resistance.reduce(
-                    (a, b) => a + b
-                  ) / this.user.statisticsAverage.resistance.length
-            ],
-            borderColor: "rgba(20, 29, 222, 1)",
-            backgroundColor: "rgba(20, 29, 222, 0.2)"
-          },
-          {
-            label: ["  Media"],
-            data: [1, 2, 5, 8, 4],
-            borderColor: "rgba(255, 99, 132, 0.2)",
-            backgroundColor: "rgba(255, 99, 132, 0.2)"
-          }
-        ]
-      },
-      options: {
-        position:'left',
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: {
-              
-          }
-      },
-        scale: {
-          // Hides the scale
-          ticks: {
-            // changes here
-            max: 10,
-            min: 0
-          }
-        }
-      }
-    });
-  }
+  
 
   getMatches(id) {
     this.matchService.getMatches(id).subscribe(matches => {
@@ -184,11 +54,9 @@ canvas:any={};
   }
 
   hideStats(){
-
     $('#canvas').show()
     $('.middle-text').show()
-    this.printCanvas()
-    
+    this.draw.printRadar(this.user,"canvas")
   }
 
 

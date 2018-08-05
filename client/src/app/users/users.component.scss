@@ -1,0 +1,69 @@
+body {
+     text-align: center;
+   }
+   
+   * {
+     font-family: Roboto;
+   }
+   
+   h2{
+     font-weight: 100;
+     font-size: 30pt;
+     line-height: 1.3em;
+     margin: 15px 0;
+   }
+   
+   p{
+     margin-left: 20px;
+     color: white;
+   }
+   
+   div.message {
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     position: relative;
+     padding: 10px;
+     padding-left: 35px;
+     margin: 30px 10px;
+     border-radius: 5px;
+     box-shadow:0 2px 5px rgba(0,0,0,.3);
+     background: #BBB;
+     color: #FFF;
+     
+     -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+         -ms-transition: all .5s ease;
+          -o-transition: all .5s ease;
+             transition: all .5s ease;
+   }
+   div.message:hover{
+     box-shadow: 0 15px 20px rgba(10,0,10,.3);
+     -webkit-filter: brightness(110%);
+   }
+   
+   .userImage {
+     display: inline-block;
+   
+   }
+   .userImage img{
+     display: inline-block;
+     width: 50px;
+     border-radius: 50%;
+     margin-right: 20px;
+   }
+   
+   div.message.information{background: #39B;}
+   div.message.warning{background: #E74;}
+   div.message.success{background: #5A6;}
+   div.message.announcement{background: #EA0;}
+   div.message.error{background: #C43;}
+
+   #hidden-stats{
+      height: 50%;
+   }
+
+   .charts{
+     display:flex;
+     flex-direction: row;
+   }

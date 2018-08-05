@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const Match = require("../models/Match");
 
+
 //Match.find({ roomId: { $in: [req.params.id] } })
 
 router.get('/', (req, res, next) => {
@@ -20,7 +21,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/finish-matches', (req, res, next) => {
-  Match.find({"finish": {"$gt": ("2010-01-01 13:39:35.039"), "$lt" : ("2020-02-01 13:39:35.039") }})
+  let date = new Date();
+  Match.find({"finish": {"$gt": ("2010-01-01 13:39:35.039"), "$lt" : (`${date}`) }})
   .populate("_author")
     .then(matches => {
       res.status(200).json(matches);

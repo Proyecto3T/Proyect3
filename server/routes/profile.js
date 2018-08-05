@@ -4,6 +4,10 @@ const router = express.Router();
 const User = require("../models/User");
 
 
+router.get('/users',(req,res,next) => {
+  User.find({}).then( user => res.status(200).json(user))
+})
+
 router.post('/valoration', (req, res, next) => {
   console.log(req.body)
   User.findById({_id:req.user._id})
