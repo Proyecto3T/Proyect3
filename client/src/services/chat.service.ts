@@ -11,7 +11,7 @@ interface Message {
 })
 export class ChatService {
 
- socket:io.Socket;
+ socket:SocketIOClient.Socket;
  messages:Array<Message> = [];
 
  constructor(){

@@ -22,8 +22,15 @@ export class MyMatchesComponent implements OnInit {
 
   getMatches(id) {
     this.matchService.getMatches(id).subscribe(matches => {
+      console.log(matches)
       this.matches = matches;
     });
+  }
+
+  deleteMatch(id){
+    this.matchService.deleteMatch(id).subscribe(() => {
+      this.getMatches(this.sessionService.user._id)
+    })
   }
 
   

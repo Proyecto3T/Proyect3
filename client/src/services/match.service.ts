@@ -32,14 +32,12 @@ export class MatchService {
   }
 
   getMatches(id){
-    console.log(id)
     return this.http
       .get(`${url}/api/matches/${id}`, this.options)
       .pipe(map(res => res.json()));
   }
 
   getMatch(id){
-    console.log(id)
     return this.http
       .get(`${url}/api/matches/single-match/${id}`, this.options)
       .pipe(map(res => res.json()));
@@ -61,11 +59,22 @@ export class MatchService {
     });
   }
 
-
+  deleteMatch(id){
+    return this.http
+      .get(`${url}/api/matches/delete/${id}`, this.options)
+      .pipe(map(res => res.json()));
+  }
   showFinishMatches(){
     return this.http
       .get(`${url}/api/matches/finish-matches`, this.options)
       .pipe(map(res => res.json()));
+  }
+
+  addPlayer(playerId, matchId){
+    console.log("Hola")
+    return this.http.post(`${url}/api/matches/addPlayer/${playerId}/${matchId}`,{}, this.options)
+    .pipe(map(res => res.json()));
+
   }
   
 }

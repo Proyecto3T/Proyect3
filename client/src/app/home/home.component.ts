@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session.service';
 import { MatchService } from '../../services/match.service';
+import { NotifyService } from '../../services/notify.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { MatchService } from '../../services/match.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private server: SessionService, public matchService:MatchService) { }
+  constructor(private server: SessionService, public matchService:MatchService, public notifyService: NotifyService) { }
 matches:Array<any>
   ngOnInit() {
    this.server.getMatches().subscribe( matches => {
@@ -19,9 +20,6 @@ matches:Array<any>
    })
   }
 
-  challange(id){
-    this.server.challange(id).subscribe()
-  }
 
 
 

@@ -3,6 +3,7 @@ import { SessionService } from '../services/session.service';
 import { MatchService } from '../services/match.service';
 import {Observable} from "rxjs"
 import {SnotifyService, SnotifyPosition, SnotifyToastConfig} from 'ng-snotify';
+import { NotifyService } from '../services/notify.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import {SnotifyService, SnotifyPosition, SnotifyToastConfig} from 'ng-snotify';
 export class AppComponent  implements OnInit{
   title = 'client';
   long:number=0;
-  constructor(public sessionService:SessionService, public matchService :MatchService, private snotifyService: SnotifyService){this.long=0}
+  constructor(public sessionService:SessionService, public matchService :MatchService, private snotifyService: SnotifyService, public notifyService:NotifyService){this.long=0}
   logout(){
     this.sessionService.logout().subscribe()
   }
@@ -23,24 +24,6 @@ export class AppComponent  implements OnInit{
 
   ngOnInit(){
     this.long=0
-    this.sessionService.isLogged().subscribe(user => {
-      if(user){
-        setInterval(() =>{
-          this.sessionService.isLogged().subscribe(user => {
-            if(user){
-          if( user.notifications.length>this.long){
-            this.onClear()
-            this.long = user.notifications.length
-            user.notifications.forEach(element => {
-              this.snotifyService.prompt(this.body, this.title, element).on('input', (toast) => {
-                console.log(toast.value)
-                toast.valid = !!toast.value.match('ng-snotify');
-               });
-            });
-          }}})
-        }, 100000)
-      }
-    })
   }
   style = 'material';
   notifytitle = 'Te han retado!';

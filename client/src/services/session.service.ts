@@ -33,64 +33,10 @@ export class SessionService {
   user: UserObject;
   socialUser: Observable<firebase.User>;
   matches: Array<any>;
-  socket: io.Socket;
+  socket: SocketIOClient.Socket;
   messages: Array<Message> = [];
 
-  title = "Notification"
-  style = "material";
-  notifytitle = "Te han retado!";
-  body = "Te han retado!";
-  timeout = 3000;
-  position: SnotifyPosition = SnotifyPosition.rightBottom;
-  progressBar = true;
-  closeClick = true;
-  newTop = true;
-  filterDuplicates = false;
-  backdrop = -1;
-  dockMax = 8;
-  blockMax = 6;
-  pauseHover = true;
-  titleMaxLength = 15;
-  bodyMaxLength = 80;
-
-  getConfig(): SnotifyToastConfig {
-    this.snotifyService.setDefaults({
-      global: {
-        newOnTop: this.newTop,
-        maxAtPosition: this.blockMax,
-        maxOnScreen: this.dockMax
-      }
-    });
-    return {
-      bodyMaxLength: this.bodyMaxLength,
-      titleMaxLength: this.titleMaxLength,
-      backdrop: this.backdrop,
-      position: this.position,
-      timeout: this.timeout,
-      showProgressBar: this.progressBar,
-      closeOnClick: this.closeClick,
-      pauseOnHover: this.pauseHover
-    };
-  }
-  onPrompt() {
-    const { timeout, closeOnClick, ...config } = this.getConfig();
-    return {
-      ...config,
-      buttons: [
-        {
-          text: "Yes",
-          action: toast => console.log("Said Yes: " + toast.value)
-        },
-        {
-          text: "No",
-          action: toast => {
-            console.log("Said No: " + toast.value);
-            this.snotifyService.remove(toast.id);
-          }
-        }
-      ]
-    };
-  }
+  
   options: object = { withCredentials: true };
 
   constructor(private http: Http, private snotifyService: SnotifyService) {
@@ -227,17 +173,17 @@ export class SessionService {
     );
   }
 
-  challange(id) {
-    let notification = this.onPrompt();
-    return this.http
-      .post(`${url}/api/auth/notify/${id}`, { notification })
-      .pipe(
-        map((res: Response) => {
-          // let user = res.json();
-          // this.user = user;
-          return;
-        }),
-        catchError(e => of(this.errorHandler(e)))
-      );
-  }
+  // challange(id) {
+  //   let notification = this.onPrompt();
+  //   return this.http
+  //     .post(`${url}/api/auth/notify/${id}`, { notification })
+  //     .pipe(
+  //       map((res: Response) => {
+  //         // let user = res.json();
+  //         // this.user = user;
+  //         return;
+  //       }),
+  //       catchError(e => of(this.errorHandler(e)))
+  //     );
+  // }
 }

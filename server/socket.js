@@ -13,6 +13,12 @@ const chatServer = (io) => {
             console.log("Ho!");
             socket.broadcast.emit('chatMessageToGuapo',data);
         });
+
+        socket.on('notify', data => {
+            console.log(data)
+            console.log("Ho!");
+            socket.broadcast.emit(data.otherPlayerId,{otherPlayerId: data.playerId,matchId:data.matchId});
+        });
  
     });
  

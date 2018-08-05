@@ -5,56 +5,59 @@ const Match = require("../models/Match");
 
 //Match.find({ roomId: { $in: [req.params.id] } })
 
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
   Match.find({})
-  .populate("_author")
+    .populate("_author")
     .then(matches => {
       res.status(200).json(matches);
     })
-    .catch( e => {
+    .catch(e => {
       res.status(500).json({
-        status:'error',
-        error:e.message
-      })
-    })
+        status: "error",
+        error: e.message
+      });
+    });
 });
 
-router.get('/finish-matches', (req, res, next) => {
-  Match.find({"finish": {"$gt": ("2010-01-01 13:39:35.039"), "$lt" : ("2020-02-01 13:39:35.039") }})
-  .populate("_author")
+router.get("/finish-matches", (req, res, next) => {
+  Match.find({
+    finish: { $gt: "2010-01-01 13:39:35.039", $lt: "2020-02-01 13:39:35.039" }
+  })
+    .populate("_author")
     .then(matches => {
       res.status(200).json(matches);
     })
-    .catch( e => {
+    .catch(e => {
       res.status(500).json({
-        status:'error',
-        error:e.message
-      })
-    })
+        status: "error",
+        error: e.message
+      });
+    });
 });
 
-router.get('/:id', (req, res, next) => {
-  const playerId = req.params.id
-  Match.find({ players: { $elemMatch: { $eq: playerId} } })
-  .populate("_author")
+router.get("/:id", (req, res, next) => {
+  const playerId = req.params.id;
+  Match.find({ players: { $elemMatch: { $eq: playerId } } })
+    .populate("_author")
+    .populate("players")
     .then(matches => {
       res.status(200).json(matches);
     })
-    .catch( e => {
+    .catch(e => {
       res.status(500).json({
-        status:'error',
-        error:e.message
-      })
-    })
+        status: "error",
+        error: e.message
+      });
+    });
 });
 
-router.post('/new', (req, res, next) => {
-  let players = []
-  players.push(req.user._id)
-  const location ={
+router.post("/new", (req, res, next) => {
+  let players = [];
+  players.push(req.user._id);
+  const location = {
     type: "Point",
     coordinates: [Number(req.body.lat), Number(req.body.lng)]
-}
+  };
   const newMatch = new Match({
     _author: req.user._id,
     players,
@@ -63,6 +66,7 @@ router.post('/new', (req, res, next) => {
     location
   });
 
+  
   newMatch.save((err) => {
     if (err)              { return res.status(500).json(err); }
     if (newMatch.errors) { return res.status(400).json(newMatch); }
@@ -70,21 +74,44 @@ router.post('/new', (req, res, next) => {
     return res.status(200).json(newMatch);
   });
 });
+  router.post("/addPlayer/:playerId/:matchId", (req, res, next) => {
+    Match.findByIdAndUpdate(
+      req.params.matchId,
+      { $push: { players: req.params.playerId } },
+      { new: true }
+    )
+      .then(match => {
+        console.log(match)
+        res.status(200).json(match);
+      })
+      .catch(e => {
+        res.status(500).json({
+          status: "error",
+          error: e.message
+        });
+      });
+  });
 
-router.get('/single-match/:id', (req, res, next) => {
-  const matchId = req.params.id
+
+router.get("/single-match/:id", (req, res, next) => {
+  const matchId = req.params.id;
   Match.findById(matchId)
-  .populate("_author")
+    .populate("_author")
     .then(match => {
       res.status(200).json(match);
     })
-    .catch( e => {
+    .catch(e => {
       res.status(500).json({
-        status:'error',
-        error:e.message
-      })
-    })
+        status: "error",
+        error: e.message
+      });
+    });
 });
 
+router.get("/delete/:id", (req, res) => {
+  Match.findByIdAndRemove(req.params.id).then(e =>
+    res.status(200).json({ message: "Match removed successfully!" })
+  );
+});
 
 module.exports = router;
