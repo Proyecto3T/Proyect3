@@ -1,0 +1,20 @@
+<p>
+  statistics works!
+</p>
+<div class="chart-container" widht="20px">
+    <div [hidden]="!chart">
+            <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+                
+        <canvas id="canvas1">{{ chart }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-container" widht="20px">
+        <div [hidden]="!chart">
+                <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+                    
+            <canvas id="canvas2">{{ chart }}</canvas>
+            </div>
+          </div>
+        </div>

@@ -6,7 +6,7 @@ const Match = require("../models/Match");
 //Match.find({ roomId: { $in: [req.params.id] } })
 
 router.get('/', (req, res, next) => {
-  Match.find({finish: {$eq: false}})
+  Match.find({})
   .populate("_author")
     .then(matches => {
       res.status(200).json(matches);
@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/finish-matches', (req, res, next) => {
-  Match.find({finish: {$eq: true}})
+  Match.find({"finish": {"$gt": ("2010-01-01 13:39:35.039"), "$lt" : ("2020-02-01 13:39:35.039") }})
   .populate("_author")
     .then(matches => {
       res.status(200).json(matches);

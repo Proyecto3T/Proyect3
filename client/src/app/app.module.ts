@@ -29,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleMatchComponent } from './single-match/single-match.component';
 import { ChatComponent } from './chat/chat.component';
 import {SnotifyModule, SnotifyService, ToastDefaults} from '../../node_modules/ng-snotify'
-
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 // Configs 
@@ -65,7 +65,8 @@ return config;
     RecordComponent,
     MyMatchesComponent,
     SingleMatchComponent,
-    ChatComponent
+    ChatComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
