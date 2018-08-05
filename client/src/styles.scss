@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+.material {
+  @import "../node_modules/ng-snotify/styles/material"; 
+}
+
+.dark {
+  @import "../node_modules/ng-snotify/styles/dark"; 
+}
+
+.simple {
+  @import "../node_modules/ng-snotify/styles/simple"; 
+}

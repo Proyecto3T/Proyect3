@@ -16,7 +16,6 @@ const url = environment.BASEURL;
   providedIn: "root"
 })
 export class MatchService {
-  matches: any;
   matchId: string;
   match: any;
   marker: marker;
@@ -62,5 +61,5 @@ export class MatchService {
     });
   }
 
-  
+
 }

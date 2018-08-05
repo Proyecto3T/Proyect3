@@ -6,6 +6,7 @@
      </div>
      <h2>Created By: {{match._author.username}}</h2>
      <p>Date: {{match.date |  date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </p>
+     <button (click)="challange(match._author._id)">Challange</button>
  </div>
 </div>
 

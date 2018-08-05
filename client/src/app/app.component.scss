@@ -11,3 +11,8 @@
 .branding img{
   width: 50px;
 }
+
+.material {
+  @import "../../node_modules/ng-snotify/styles/material"; 
+}
+

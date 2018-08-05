@@ -7,9 +7,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 router.post("/login", (req, res, next) => {
-  
   passport.authenticate("local", (err, theUser, failureDetails) => {
     // Check for errors
     if (err) next(new Error("Something went wrong"));
@@ -74,4 +72,29 @@ router.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
+router.post("/notify/:id", (req, res, next) => {
+  console.log(req.body.notification, req.params.id)
+  
+  User.findByIdAndUpdate(
+    {_id:req.params.id},
+    { $push: {notifications: req.body.notification } },
+    { new: true }
+  ).then(user => {
+    console.log(user)
+    return res.status(201).json(user);
+  });
+});
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.status(200).json({ message: "logged out" });
+});
+
+router.use((err, req, res, next) => {
+  res.status(500).json({ message: err.message });
+});
+
+// listModel.findByIdAndUpdate(list,{ $push:{cards: card._id }})
+// 			.then(list=>{
+// 			return res.status(201).json(card);
+// 		});
 module.exports = router;

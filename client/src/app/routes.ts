@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ValorationComponent } from './valoration/valoration.component';
 import { NewMatchComponent } from './new-match/new-match.component';
 import { HomeComponent } from './home/home.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -16,6 +17,6 @@ export const routes: Routes = [
   { path:'login', component:LoginFormComponent},
   {path:'profile', component:ProfileComponent},
   {path:'valoration', component:ValorationComponent} ,
-  {path:"new-match", component:NewMatchComponent}
-
+  {path:"new-match", component:NewMatchComponent},
+  {path:"chat", component:ChatComponent}
 ];

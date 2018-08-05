@@ -27,6 +27,9 @@ import {
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleMatchComponent } from './single-match/single-match.component';
+import { ChatComponent } from './chat/chat.component';
+import {SnotifyModule, SnotifyService, ToastDefaults} from '../../node_modules/ng-snotify'
+
 
 
 // Configs 
@@ -50,7 +53,6 @@ return config;
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +64,8 @@ return config;
     HomeComponent,
     RecordComponent,
     MyMatchesComponent,
-    SingleMatchComponent
+    SingleMatchComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -74,10 +77,14 @@ return config;
     }),
     SocialLoginModule,
     ClarityModule,
-    BrowserAnimationsModule ],
+    BrowserAnimationsModule,
+    SnotifyModule
+  ],
   providers: [ {
     provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs}
+    useFactory: getAuthServiceConfigs},
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService
 ],
   bootstrap: [AppComponent]
 })

@@ -19,6 +19,10 @@ matches:Array<any>
    })
   }
 
+  challange(id){
+    this.server.challange(id).subscribe()
+  }
+
 
 
 }

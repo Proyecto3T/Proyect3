@@ -16,7 +16,9 @@ const userSchema = new Schema({
     resistance: [{type:Number, default:5}]
   },
   points:{type:Number, default:0},
-  league:{type: String, default: "0"}
+  league:{type: String, default: "0"},
+  notifications: [],
+    
 }, {
   timestamps: {
     createdAt: 'created_at',
