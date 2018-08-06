@@ -32,11 +32,9 @@ export class NotifyService {
         this.socket.on(`${user._id}`, data => {
           let notification = this.onPrompt(data.otherPlayerId,data.matchId);
           console.log(data);
-          this.snotifyService.prompt(this.body, this.title, notification)
+          this.snotifyService.confirm(this.body, this.title, notification)
         });
       });
-
-      // Save messages into array as they arrive from server
     });
   }
 
