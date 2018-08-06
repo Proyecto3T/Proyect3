@@ -5,6 +5,8 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email:String,
+  image:{type:String, default:"https://e00-marca.uecdn.es/assets/multimedia/imagenes/2018/06/10/15286487701441.jpg"},
+  description:{type:String, default:""},
   wonMatches:{type:Number,default:1},
   lostMatches:{type:Number,default:1},
   comments:[{type:Schema.Types.ObjectId, ref: 'Comments'}],
