@@ -31,7 +31,8 @@ import { ChatComponent } from './chat/chat.component';
 import {SnotifyModule, SnotifyService, ToastDefaults} from '../../node_modules/ng-snotify'
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UsersComponent } from './users/users.component';
-
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import {FileSelectDirective} from "ng2-file-upload"
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -64,7 +65,9 @@ return config;
     SingleMatchComponent,
     ChatComponent,
     StatisticsComponent,
-    UsersComponent
+    UsersComponent,
+    EditProfileComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

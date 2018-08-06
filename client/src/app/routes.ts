@@ -8,6 +8,7 @@ import { NewMatchComponent } from './new-match/new-match.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './chat/chat.component';
 import { UsersComponent } from './users/users.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 
@@ -21,5 +22,6 @@ export const routes: Routes = [
   {path:'valoration', component:ValorationComponent} ,
   {path:"new-match", component:NewMatchComponent},
   {path:"chat", component:ChatComponent},
-  {path:"users", component:UsersComponent}
+  {path:"users", component:UsersComponent},
+  {path:"editProfile", component:EditProfileComponent},
 ];

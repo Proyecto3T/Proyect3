@@ -1,0 +1,9 @@
+<form >
+<label>Profile Photo</label>
+<input type="file" name="file" ng2FileSelect  [uploader]="uploader">
+
+<label>Description</label>
+<textarea #description placeholder="Tell us something about you" name="description"></textarea>
+
+<button type="submit" (click)="edit(description.value)">Edit</button>
+</form>

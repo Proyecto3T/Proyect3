@@ -1,7 +1,7 @@
 <div class="profile-container">
-        <div class="profileResume">
-                <img src="https://i.dailymail.co.uk/i/pix/2016/05/05/12/25E03D4400000578-3574782-image-m-87_1462447093168.jpg" class="img-circle">
-              <h3 *ngIf="sessionService.user" class="username-profile"> {{sessionService.user.username}}</h3>
+        <div class="profileResume" *ngIf="sessionService.user" >
+                <img src="{{sessionService.user.image}}" class="img-circle">
+              <h3 class="username-profile"> {{sessionService.user.username}}</h3>
             </div>
    
 <div class="middle-text">
