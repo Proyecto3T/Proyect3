@@ -1,8 +1,12 @@
-<ul>
-    <li *ngFor="let message of chatService.messages">
-      <b>From {{message.origin}}: </b> <span>{{message.content}}</span>
-    </li>
-   </ul>
-   
-   <input [(ngModel)]="chatBox">
-   <button (click)="chatService.sendMessage(chatBox); chatBox=''">Mandálo boludo!</button>
+<ul class="chat-thread">
+  <li *ngFor="let message of chatService.messages">
+    <b>From {{message.origin}}: </b>
+    <span>{{message.content}}</span>
+  </li>
+</ul>
+
+<form class="chat-window">
+  <input [(ngModel)]="chatBox" class="chat-window-message" name="chat-window-message" type="text" autocomplete="off" autofocus
+  />
+  <button class="btn btn-primary" (click)="chatService.sendMessage(chatBox,sessionService.user.username); chatBox=''">Send</button>
+</form>

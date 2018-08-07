@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from '../../../node_modules/ng2-file-upload';
 import { Router } from '../../../node_modules/@angular/router';
+import { SessionService } from '../../services/session.service';
 
 
 
@@ -10,8 +11,8 @@ import { Router } from '../../../node_modules/@angular/router';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  user:any;
+  constructor(private router:Router, public sessionService:SessionService) { }
 
   uploader: FileUploader= new FileUploader({
     url: `http://localhost:3000/api/profiles/update`,
@@ -28,6 +29,9 @@ export class EditProfileComponent implements OnInit {
     };
   }
   ngOnInit() {
+    this.sessionService.isLogged().subscribe(user => {
+      this.user = user;
+    })
   }
 
 }

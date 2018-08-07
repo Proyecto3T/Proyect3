@@ -1,30 +1,32 @@
-<div class="profile-container">
-        <div class="profileResume" *ngIf="sessionService.user" >
-                <img src="{{sessionService.user.image}}" class="img-circle">
-              <h3 class="username-profile"> {{sessionService.user.username}}</h3>
-            </div>
-   
-<div class="middle-text">
-    <p>
-            Matches Played:{{played}}
-    </p>
-    <p>
-            Won: {{wonMatches}}
-    </p>
-    <p>
-            Win Rate:{{winRate}}%
-    </p>
-</div>
-
-<div class="chart-container" widht="20px">
-<div [hidden]="!chart">
-        <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
-            
-    <canvas id="canvas" class="canvas-avance-perfil">{{ chart }}</canvas>
+<div class="container">
+    <div class="profile-container">
+            <div class="profileResume" *ngIf="sessionService.user" >
+                    <img src="{{sessionService.user.image}}" class="img-circle">
+                  <h3 class="username-profile"> {{sessionService.user.username}}</h3>
+                </div>
+       
+    <div class="middle-text">
+        <p>
+                Matches Played:{{played}}
+        </p>
+        <p>
+                Won: {{wonMatches}}
+        </p>
+        <p>
+                Win Rate:{{winRate}}%
+        </p>
     </div>
-  </div>
-</div>
-</div>
+    
+    <div class="chart-container" widht="20px">
+    <div [hidden]="!chart">
+            <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+                
+        <canvas id="canvas" class="canvas-avance-perfil">{{ chart }}</canvas>
+        </div>
+      </div>
+    </div>
+    </div>
+
 
 
 
@@ -64,3 +66,4 @@
     
 </clr-tabs>
 
+</div>

@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    if(!this.server.user){ this.router.navigate(['/signup'])}
+   this.server.isLogged().subscribe(user =>{
+    if(!user)this.router.navigate(['/signup'])
+   })
    this.server.getMatches().subscribe( matches => {
     console.log(matches)
     this.matches=[];

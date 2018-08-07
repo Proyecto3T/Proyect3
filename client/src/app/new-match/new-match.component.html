@@ -44,23 +44,30 @@
     </clr-wizard-page>
 
     <clr-wizard-page>
+
       <ng-template clrPageTitle>Place</ng-template>
-      <label for="latitude">Latitude: </label>
-      <input id="lat" type="text" #lat name="lat" placeholder="choose a latitude" required>
-      <label for="Longitude">Longitude: </label>
-      <input id="lng" type="text" #lng name="lng" placeholder="choose a longitude" required>
-      <br>
-      <agm-map [latitude]="40.4167" [longitude]="-3.70325" [zoom]="14" (mapClick)="mapClicked($event, lat,lng)">
-
-        <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label"></agm-marker>
-
-
-        <agm-info-window>
-          <strong>InfoWindow content</strong>
-        </agm-info-window>
-
-
-      </agm-map>
+      <form>
+        <label for="latitude">Latitude: </label>
+        <input id="lat" type="text" #lat name="lat" placeholder="choose a latitude" required>
+        <label for="Longitude">Longitude: </label>
+        <input id="lng" type="text" #lng name="lng" placeholder="choose a longitude" required>
+        <br>
+        <!-- <div class="search-box">
+            <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [(ngModel)]="query">
+          </div> -->
+          <br>
+        <agm-map [latitude]="40.4167" [longitude]="-3.70325" [zoom]="14" (mapClick)="mapClicked($event, lat,lng)">
+  
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label"></agm-marker>
+  
+  
+          <agm-info-window>
+            <strong>InfoWindow content</strong>
+          </agm-info-window>
+  
+  
+        </agm-map>
+      </form>
     </clr-wizard-page>
 
 

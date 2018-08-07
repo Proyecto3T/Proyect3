@@ -76,13 +76,14 @@ return config;
     HttpModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
-      apiKey: environment.GAPI
+      apiKey: environment.GAPI,
+      libraries: ['places', 'drawing', 'geometry']
     }),
     SocialLoginModule,
     ClarityModule,
     BrowserAnimationsModule,
     SnotifyModule,
-  MatInputModule
+    MatInputModule
   ],
   providers: [ {
     provide: AuthServiceConfig,

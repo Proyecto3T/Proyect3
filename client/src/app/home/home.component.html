@@ -1,4 +1,4 @@
- <div *ngFor="let match of server.matches">
+ <!-- <div *ngFor="let match of server.matches">
 <div *ngIf="match._author._id != server.user._id && !match.closed">
   <div class="information message" >
        <div class="userImage">
@@ -10,19 +10,28 @@
        <button class="btn btn-inverse" (click)="matchService.showSingleMatch(match._id)">Place</button>
    </div>
   </div>
-</div> 
-<!-- <div class="container">
+</div>  -->
+<div class="container">
   <div *ngFor="let match of server.matches">
     <div class="box p5" *ngIf="match._author._id != server.user._id && !match.closed">
       <div class="member">
         <img src="{{match._author.image}}" alt="">
-        <h2>Created By: {{match._author.username}}</h2>
-        <p>Date: {{match.date | date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </p>
+        <h4>Created By: {{match._author.username}}</h4>
+        <h6>Date: {{match.date | date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </h6>
         <button (click)='notifyService.sendChallange(match._author._id, match._id, "challenge")'>Challenge</button>
         <button (click)="matchService.showSingleMatch(match._id)">Place</button>
       </div>
+      <div class="member">
+          <agm-map [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [zoom]="14">
+
+              <agm-marker [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [label]="Place"></agm-marker>
+              <agm-info-window>
+                <strong>InfoWindow content</strong>
+              </agm-info-window>
+            </agm-map>
+      </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <app-single-match [matchId]="matchService.matchId" [match]="matchService.match" [marker]="matchService.marker" [hidden]="!matchService.showSingleMatch1"></app-single-match>
