@@ -53,18 +53,18 @@ canvas:any={};
     this.show = !this.show;
   }
 
-  hideStats(){
-    $('#canvas').show()
-    $('.middle-text').show()
-    this.draw.printRadar(this.user,"canvas")
-  }
+  // hideStats(){
+  //   $('#canvas').show()
+  //   $('.middle-text').show()
+  //   this.draw.printRadar(this.user,"canvas")
+  // }
 
 
-  showStats(){
-    $('.middle-text').hide()
-    $('#canvas').hide()
+  // showStats(){
+  //   $('.middle-text').hide()
+  //   $('#canvas').hide()
 
-  }
+  // }
 
 
 

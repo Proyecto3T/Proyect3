@@ -1,6 +1,5 @@
-
-<div id="hidden-stats">
-    <!-- <h1>{{sessioService.user.name}}</h1> -->
+<!-- <div id="hidden-stats">
+    <h1>{{sessioService.user.name}}</h1>
     <div class="charts">
     <div class="chart-container" widht="20px">
       <div >
@@ -37,6 +36,7 @@
   <button (click)="hideStats()">Skip</button>
   </div>
 
+
 <div *ngFor="let stat of stats">
   <div *ngIf="stat.name != sessionService.user.username">
     <div class="information message"  (click)='showStats(stat.name)'>
@@ -50,10 +50,34 @@
       <p>Win Rate: {{stat.winRate}}%</p>
     </div>
   </div>
-</div>
+</div> -->
 
-
-
-
-
+<div class="container">
+  <div *ngIf="sessionService.user"></div>
+  <div class="margin">
+    <br>
+    <div class=" clr-row">
+      <div *ngFor="let stat of stats">
+        <div *ngIf="stat.name != sessionService.user.username" >
+          <div class="card text-center has-cup card-air  mb-4  col-xs-6 columna" style="margin:30px; max-width:320px;">
+            <div class="card-cup bg-gradient-purple"></div>
+            <div class="card-body">
+              <div class="card-avatar mb-4" (click)="showStats(stat.user)">
+                <img class="img-circle" src="{{stat.image}}" alt="image" />
+              </div>
+              <h4 class="card-title text-pink mb-1">User: {{stat.name}}</h4>
+              <div class="text-muted">Games Played:{{stat.played}} Games Won:{{stat.wonMatches}} Win Rate: {{stat.winRate}}% </div>
   
+              <div>
+                <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%">
+                  <canvas id="{{stat.user.username}}" class="canvas-avance-perfil"></canvas>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

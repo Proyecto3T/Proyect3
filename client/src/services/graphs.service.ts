@@ -73,6 +73,16 @@ export class GraphsService {
           ]
         },
         options: {
+          responsive:true,
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [{
+              display:false,
+                ticks: {
+                    suggestedMin: 0,
+                }
+            }]
+        },
           title: {
             display: true
           }
@@ -141,6 +151,7 @@ export class GraphsService {
           // Hides the scale
           ticks: {
             // changes here
+            display:false,
             max: 10,
             min: 0
           }

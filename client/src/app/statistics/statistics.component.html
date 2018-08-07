@@ -1,22 +1,26 @@
 
-<div class="chart-container" widht="20px">
+  <div class="stats-container">
+  <div class="chart-container" widht="20px">
+      <div [hidden]="!chart">
+              <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%">
+                  
+          <canvas id="canvas2">{{ chart }}</canvas>
+          </div>
+        </div>
+      </div>
+
+<div class="chart-container1" widht="20px">
     <div [hidden]="!chart">
-            <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+            <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%">
                 
-        <canvas id="canvas1">{{ chart }}</canvas>
+        <canvas id="canvas1" style="margin-top: 100px">{{ chart }}</canvas>
         </div>
       </div>
     </div>
 
-    <div class="chart-container" widht="20px">
-        <div [hidden]="!chart">
-                <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
-                    
-            <canvas id="canvas2">{{ chart }}</canvas>
-            </div>
-          </div>
-        </div>
+  
         <br>
         <p>You played: {{played}} matches</p>
         <p>You won: {{wonMatches}} matches</p>
         <p>Your winRate is: {{winRate}} %</p>
+      </div>

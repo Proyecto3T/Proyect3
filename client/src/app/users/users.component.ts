@@ -10,7 +10,9 @@ interface stats{
   name:string,
   played:number,
   wonMatches:number,
-  winRate:number
+  winRate:number,
+  image:string,
+  user:object
 }
 @Component({
   selector: 'app-users',
@@ -19,7 +21,9 @@ interface stats{
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private sessionService:SessionService,public draw:GraphsService) { }
+  constructor(private sessionService:SessionService,public draw:GraphsService) {
+ 
+   }
 users:Array<any>;
 stats:Array<stats>=[];
 showProfile:boolean=false;
@@ -27,19 +31,33 @@ singleUser:any;
 singleUserStats:stats={name:"string",
   played:0,
   wonMatches:0,
-  winRate:0};
+  winRate:0,
+image:"",
+user:{}
+}
 
   ngOnInit() {
-    this.hideStats()
+    // this.hideStats()
     this.sessionService.getUsers().subscribe(users=> {
       this.users=users;
+      console.log(this.users)
+      // this.showStats(this.users);
       for(let i=0; i<users.length;i++){
         let stat = {name:users[i].username, 
                         played:users[i].wonMatches+users[i].lostMatches,
                         wonMatches:users[i].wonMatches,
-                        winRate:users[i].wonMatches/(users[i].wonMatches+users[i].lostMatches)}
-                        this.stats.unshift(stat);
+                        winRate:users[i].wonMatches/(users[i].wonMatches+users[i].lostMatches),
+                        image:users[i].image,
+                        user:users[i],
+                     }
+                        this.stats.unshift(stat);    
+                        
       }
+      setTimeout(()=>{for(let i=0; i<this.users.length;i++){
+        if(this.users[i].username!=this.sessionService.user.username){
+        this.showStats(this.users[i] )
+        }
+      }},200)
       
     });
   }
@@ -68,10 +86,8 @@ singleUserStats:stats={name:"string",
     this.draw.printLine(this.singleUser[0],"canvas2")
   }
 
-  showStats(name){
-    this.seeUserProfile(name);
-    $('#hidden-stats').show()
-   
+  showStats(user){  
+      this.draw.printRadar(user,user.username)
   }
 
 

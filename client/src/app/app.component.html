@@ -22,7 +22,7 @@
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
                 <a [routerLink]="['/editProfile']" clrDropdownItem>Edit Profile</a>
-                <a *ngIf="sessionService.user" [routerLink]="['/login']"  (click)="logout()" clrDropdownItem>Logout</a>
+                <a *ngIf="sessionService.user" [routerLink]="['/signup']"  (click)="logout()" clrDropdownItem>Logout</a>
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
