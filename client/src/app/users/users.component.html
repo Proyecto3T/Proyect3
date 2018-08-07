@@ -1,8 +1,13 @@
-<div class="container">
+<!-- <div id="hidden-stats">
+    <h1>{{sessioService.user.name}}</h1>
+    <div class="charts">
+    <div class="chart-container" widht="20px">
+      <div >
+        <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
   
   <div id="hidden-stats">
       <!-- <h1>{{sessioService.user.name}}</h1> -->
-      <div class="charts">
+      <!-- <div class="charts">
       <div class="chart-container" widht="20px">
         <div >
           <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
@@ -28,8 +33,8 @@
           </div>
         </div>
       </div>
-    </div>
-      <br>
+    </div> -->
+      <!-- <br>
       <div>
       <h1>You played: {{singleUserStats.played}} matches</h1>
       <h1>You won: {{singleUserStats.wonMatches}} matches</h1>
@@ -49,13 +54,54 @@
         <p>Games Played: {{stat.played}}</p>
         <p>Games Won: {{stat.wonMatches}}</p>
         <p>Win Rate: {{stat.winRate}}%</p>
+  </div>
+    <br>
+    <div>
+    <h1>You played: {{singleUserStats.played}} matches</h1>
+    <h1>You won: {{singleUserStats.wonMatches}} matches</h1>
+    <h1>Your winRate is: {{singleUserStats.winRate}} %</h1>
+  </div>
+  <button (click)="hideStats()">Skip</button>
+  </div>
+
+
+<div *ngFor="let stat of stats">
+  <div *ngIf="stat.name != sessionService.user.username">
+    <div class="information message"  (click)='showStats(stat.name)'>
+      <div class="userImage">
+        <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg"
+          alt="">
+      </div>
+    </div>
+  </div>
+</div>  -->
+
+<div class="container">
+  <div *ngIf="sessionService.user"></div>
+  <div class="margin">
+    <br>
+    <div class=" clr-row">
+      <div *ngFor="let stat of stats">
+        <div *ngIf="stat.name != sessionService.user.username" >
+          <div class="card text-center has-cup card-air  mb-4  col-xs-6 columna" style="margin:30px; max-width:320px;">
+            <div class="card-cup bg-gradient-purple"></div>
+            <div class="card-body">
+              <div class="card-avatar mb-4" (click)="showStats(stat.user)">
+                <img class="img-circle" src="{{stat.image}}" alt="image" />
+              </div>
+              <h4 class="card-title text-pink mb-1">User: {{stat.name}}</h4>
+              <div class="text-muted">Games Played:{{stat.played}} Games Won:{{stat.wonMatches}} Win Rate: {{stat.winRate}}% </div>
+  
+              <div>
+                <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%">
+                  <canvas id="{{stat.user.username}}" class="canvas-avance-perfil"></canvas>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-  

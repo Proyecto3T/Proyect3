@@ -1,31 +1,31 @@
-<div class="container">
-    <div class="profile-container">
-            <div class="profileResume" *ngIf="sessionService.user" >
-                    <img src="{{sessionService.user.image}}" class="img-circle">
-                  <h3 class="username-profile"> {{sessionService.user.username}}</h3>
-                </div>
-       
-    <div class="middle-text">
-        <p>
-                Matches Played:{{played}}
-        </p>
-        <p>
-                Won: {{wonMatches}}
-        </p>
-        <p>
-                Win Rate:{{winRate}}%
-        </p>
-    </div>
+<div class="total-container">
     
-    <div class="chart-container" widht="20px">
-    <div [hidden]="!chart">
-            <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
-                
-        <canvas id="canvas" class="canvas-avance-perfil">{{ chart }}</canvas>
-        </div>
-      </div>
+<div class="profile-container">
+        <div class="profileResume" *ngIf="sessionService.user" >
+                <img src="{{sessionService.user.image}}" class="img-circle">
+              <h3 class="username-profile"> {{sessionService.user.username}}</h3>
+            </div>
+   
+<div class="middle-text">
+    <p>
+            Matches Played:{{played}}
+    </p>
+    <p>
+            Won: {{wonMatches}}
+    </p>
+    <p>
+            Win Rate:{{winRate}}%
+    </p>
+</div>
+
+
+<div [hidden]="!chart">
+        <div id="canvas-container" class="chart-container" style="position: relative; height:25vh; width:50vw">
+            
+    <canvas id="canvas" class="canvas-avance-perfil">{{ chart }}</canvas>
     </div>
-    </div>
+  </div>
+</div>
 
 
 
@@ -33,10 +33,11 @@
 
 
 <!-- <button class="btn btn-primary" (click)="showNewMatch()">Add match</button> -->
-
+<div class="tabs-container">
 <clr-tabs>
     <clr-tab>
-        <button clrTabLink  (click)="hideStats()">Record</button>
+        <button clrTabLink  class="btn-clr" style="
+        margin-left: 30%">Record</button>
         <ng-template [(clrIfActive)]="dashboardActive ">
             <clr-tab-content>
                 <app-record></app-record>
@@ -45,7 +46,7 @@
     </clr-tab>
 
     <clr-tab>
-        <button clrTabLink  (click)="hideStats()">My matches</button>
+        <button clrTabLink    class="btn-clr">My matches</button>
         <ng-template [(clrIfActive)]="managementActive">
             <clr-tab-content>
                 <app-my-matches></app-my-matches>
@@ -55,7 +56,7 @@
 
 
     <clr-tab>
-            <button clrTabLink  (click)="showStats()">Statistics</button>
+            <button clrTabLink   class="btn-clr">Statistics</button>
             <ng-template [(clrIfActive)]="StatisticsActive">
                 <clr-tab-content>
                     <app-statistics></app-statistics>
@@ -65,5 +66,7 @@
 
     
 </clr-tabs>
+</div>
+</div>
 
 </div>

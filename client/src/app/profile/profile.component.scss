@@ -50,3 +50,51 @@ float: left;
   height: 200px;
   flex-direction: column;
 }
+
+.profile-container{
+  border:1px solid black;
+  border-radius: 30px;
+  position:fixed;
+ display:flex;
+ flex-direction: column;
+width:40%;
+}
+.total-container{
+  display:flex;
+  justify-content: space-between;
+  margin:3%;
+}
+
+.tabs-container{
+  border:1px solid black;
+  border-radius: 30px;
+  margin-left:50%;
+  width:50%;
+}
+
+.chart-container{
+  float:left;
+}
+
+.profile-container .canvas-container {
+  max-height: 300px;
+  max-width: 800px;
+  position: relative;
+ }
+  
+  
+ .canvas-avance-perfi {
+  height: 200px;
+  width: 600px;
+  position: absolute;
+  left: 25%;
+  top: 25%;
+   }
+
+   .nav{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+   }
+
+   
