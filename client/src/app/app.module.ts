@@ -33,6 +33,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {FileSelectDirective} from "ng2-file-upload"
+import {MatInputModule} from '@angular/material';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -67,7 +68,7 @@ return config;
     StatisticsComponent,
     UsersComponent,
     EditProfileComponent,
-    FileSelectDirective
+    FileSelectDirective,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +81,8 @@ return config;
     SocialLoginModule,
     ClarityModule,
     BrowserAnimationsModule,
-    SnotifyModule
+    SnotifyModule,
+  MatInputModule
   ],
   providers: [ {
     provide: AuthServiceConfig,

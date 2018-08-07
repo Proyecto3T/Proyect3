@@ -8,7 +8,6 @@
     <div class="header-nav">
             <a *ngIf="sessionService.user"  [routerLink]="['home']"  class="nav-link"><span class="nav-text">Home</span></a>
         <a  *ngIf="!sessionService.user" [routerLink]="['/signup']" class="nav-link"><span class="nav-text">Signup</span></a>
-        <a *ngIf="!sessionService.user" [routerLink]="['/login']" class="nav-link"><span class="nav-text">Login</span></a>
         <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
         <a *ngIf="sessionService.user" [routerLink]="['/users']" class="nav-link"><span class="nav-text">Users</span></a>
         <a *ngIf="sessionService.user" (click) = "matchService.toggleShow()" class="nav-link"><span class="nav-text">New Match</span></a>

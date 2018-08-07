@@ -1,4 +1,4 @@
-<div class="back">
+<!-- <div class="back">
   <form>
     <h2> Signup </h2>
     <label> Username </label>
@@ -15,4 +15,63 @@
     <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">Sign in with Google</button>
   </form>
   <p class="error"> {{ error }} </p>
-</div>
+</div> -->
+
+<!-- Mixins-->
+<!-- Pen Title-->
+<div class="pen-title">
+ 
+  <div class="container">
+    <div class=""></div>
+    <div class="card">
+      <h1 class="title">Login</h1>
+      <form>
+        <div class="input-container">
+          <input type="#{type}" id="#{label}" required="required" [(ngModel)]="username" name="username"/>
+          <label for="#{label}">Username</label>
+          <div class="bar"></div>
+        </div>
+        <div class="input-container">
+          <input type="#{type}" id="#{label}" required="required" type="password" [(ngModel)]="password" name="password"/>
+          <label for="#{label}">Password</label>
+          <div class="bar"></div>
+        </div>
+        <div class="button-container"  (click)="login(username,password)">
+          <button><span>Go</span></button>
+          <br>
+        </div>
+        <button  class="loginBtn loginBtn--google" (click)="socialLogIn('google')">Sign in with Google</button>
+        <div class="footer"><a href="#"></a></div>
+      </form>
+    </div>
+    <div class="card alt">
+      <div class="toggle">
+      </div>
+      <h1 class="title">Register
+        <div class="close"></div>
+      </h1>
+      <form>
+        <div class="input-container">
+          <input type="#{type}" id="#{label}" required="required" [(ngModel)]="username" name="username"/>
+          <label for="#{label}">Username</label>
+          <div class="bar"></div>
+        </div>
+        <div class="input-container">
+          <input type="#{type}" id="#{label}" required="required"  [(ngModel)]="email" name="email"/>
+          <label for="#{label}">Email</label>
+          <div class="bar"></div>
+        </div>
+        <div class="input-container">
+          <input type="#{type}" id="#{label}" required="required" type="password" [(ngModel)]="password" name="password"/>
+          <label for="#{label}">Password</label>
+          <div class="bar"></div>
+        </div>
+        <div class="button-container" (click)="signup(username, password,email)">
+          <button><span>Next</span></button>
+        </div>
+          
+        <button class="button-container loginBtn loginBtn--google" (click)="socialSignIn('google')">Sign in with Google</button>
+      </form>
+    </div>
+  </div>
+  
