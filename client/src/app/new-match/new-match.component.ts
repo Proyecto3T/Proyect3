@@ -4,6 +4,7 @@ import { google, Marker } from '../../../node_modules/@agm/core/services/google-
 import { MatchService } from '../../services/match.service';
 import { Router } from '../../../node_modules/@angular/router';
 import { ClrWizard } from '../../../node_modules/@clr/angular';
+import { NotifyService } from '../../services/notify.service';
 
 interface marker {
   lat: number;
@@ -46,7 +47,7 @@ export class NewMatchComponent implements OnInit {
 		  draggable: true
 	  }
   ]
-  constructor(private matchService: MatchService, private router:Router) { }
+  constructor(private matchService: MatchService, private router:Router, public notifyService:NotifyService) { }
 
   ngOnInit() {
     this.minDate = Date.now()
@@ -65,6 +66,7 @@ export class NewMatchComponent implements OnInit {
     console.log(hour, date, lat, lng)
     this.matchService.toggleShow()
     this.matchService.createMatch(hour, date, lat, lng).subscribe(() => {
+      this.notifyService.sendNewMatch()
       this.router.navigate(['/profile']);
     })
   }

@@ -38,15 +38,17 @@
   </div>
 
 <div *ngFor="let stat of stats">
-  <div class="information message"  (click)='showStats(stat.name)'>
-    <div class="userImage">
-      <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg"
-        alt="">
+  <div *ngIf="stat.name != sessionService.user.username">
+    <div class="information message"  (click)='showStats(stat.name)'>
+      <div class="userImage">
+        <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg"
+          alt="">
+      </div>
+      <h2>User: {{stat.name}}</h2>
+      <p>Games Played: {{stat.played}}</p>
+      <p>Games Won: {{stat.wonMatches}}</p>
+      <p>Win Rate: {{stat.winRate}}%</p>
     </div>
-    <h2>User: {{stat.name}}</h2>
-    <p>Games Played: {{stat.played}}</p>
-    <p>Games Won: {{stat.wonMatches}}</p>
-    <p>Win Rate: {{stat.winRate}}%</p>
   </div>
 </div>
 

@@ -77,7 +77,7 @@ router.post("/new", (req, res, next) => {
   router.post("/addPlayer/:playerId/:matchId", (req, res, next) => {
     Match.findByIdAndUpdate(
       req.params.matchId,
-      { $push: { players: req.params.playerId } },
+      { $push: { players: req.params.playerId }, closed:true },
       { new: true }
     )
       .then(match => {

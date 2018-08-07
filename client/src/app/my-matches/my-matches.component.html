@@ -20,17 +20,20 @@
   </div>
 </div> -->
 
-<div class="information message" (click)="matchService.showSingleMatch(match._id)" *ngFor="let match of matches">
-    <div class="userImage">
-      <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg" alt="">
-    </div>
-    <h2>Created By: {{match._author.username}}</h2>
-    <p>Date: {{match.date |  date:'dd/MM/yyyy'}} - Hour: {{match.hour }} </p>
-    <ul *ngFor="let player of match.players">
-      <li>{{player.username}}</li>
-    </ul>
-    <button (click)="deleteMatch(match._id)">Delete Match</button>
-</div>
+
+  <div class="information message" *ngFor="let match of matches">
+      <div class="userImage">
+        <img src="https://banner2.kisspng.com/20180324/jrw/kisspng-tennis-balls-clip-art-tennis-5ab6bc4d699db4.7638924115219251974326.jpg" alt="">
+      </div>
+      <h2>Created By: {{match._author.username}}</h2>
+      <p>Date: {{match.date |  date:'dd/MM/yyyy'}} - Hour: {{match.hour }} </p>
+      <ul *ngFor="let player of match.players">
+        <li>{{player.username}}</li>
+      </ul>
+      <button class="btn btn-inverse" (click)="matchService.showSingleMatch(match._id)">Place</button>
+      <button class="btn btn-inverse" (click)="deleteMatch(match._id)">Delete Match</button>
+  </div>
+
 
 <app-single-match [matchId]="matchService.matchId" [match]="matchService.match" [marker]="matchService.marker" [hidden]="!matchService.showSingleMatch1"></app-single-match>
    

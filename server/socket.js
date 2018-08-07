@@ -17,7 +17,10 @@ const chatServer = (io) => {
         socket.on('notify', data => {
             console.log(data)
             console.log("Ho!");
-            socket.broadcast.emit(data.otherPlayerId,{otherPlayerId: data.playerId,matchId:data.matchId});
+            socket.broadcast.emit(data.otherPlayerId,{otherPlayerId: data.playerId,matchId:data.matchId, type:data.type});
+        });
+        socket.on('new-match', () => {
+            socket.broadcast.emit('new-match');
         });
  
     });

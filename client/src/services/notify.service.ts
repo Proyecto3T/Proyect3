@@ -15,7 +15,7 @@ import { MatchService } from "./match.service";
 const url = environment.BASEURL;
 
 @Injectable({
-  providedIn:"root"
+  providedIn: "root"
 })
 export class NotifyService {
   socket: SocketIOClient.Socket;
@@ -23,16 +23,27 @@ export class NotifyService {
     private http: Http,
     public snotifyService: SnotifyService,
     public sessionService: SessionService,
-    public matchService:MatchService
+    public matchService: MatchService
   ) {
     this.sessionService.isLogged().subscribe(user => {
       this.socket = io("localhost:3000");
       this.socket.on("connect", () => {
         console.log("Connected to WS");
         this.socket.on(`${user._id}`, data => {
-          let notification = this.onPrompt(data.otherPlayerId,data.matchId);
-          console.log(data);
-          this.snotifyService.confirm(this.body, this.title, notification)
+          if (data.type == "challenge") {
+            let notification = this.onPrompt(data.otherPlayerId, data.matchId);
+            console.log(data);
+            this.snotifyService.confirm(this.body, this.title, notification);
+          }else if(data.type == "success"){
+            this.snotifyService.success("Someone accepted you petition","Challange accepted")
+          } else{
+            this.snotifyService.error("Someone rejected your petition", "Challange not accepted")
+          }
+        });
+        this.socket.on(`new-match`, () => {
+          this.sessionService.getMatches().subscribe(matches => {
+            this.matchService.matchesChange.emit(matches);
+          });
         });
       });
     });
@@ -74,6 +85,8 @@ export class NotifyService {
       pauseOnHover: this.pauseHover
     };
   }
+
+  
   onPrompt(playerId, matchId) {
     const { timeout, closeOnClick, ...config } = this.getConfig();
     return {
@@ -81,46 +94,41 @@ export class NotifyService {
       buttons: [
         {
           text: "Yesssssss",
-          action: (toast) => {
-            console.log("Said Yes: " + toast.value)
-            this.matchService.addPlayer(playerId,matchId).subscribe((array) => {
+          action: toast => {
+            console.log("Said Yes: " + toast.value);
+            this.matchService.addPlayer(playerId, matchId).subscribe(array => {
+              this.sendChallange(playerId, matchId, "success")
+              this.sendNewMatch()
               this.snotifyService.remove(toast.id);
-            })}
+            });
+          }
         },
         {
           text: "No",
-          action: (toast) => {
+          action: toast => {
             console.log("Said No: " + toast.value);
+            this.sendChallange(playerId, matchId, "error")
             this.snotifyService.remove(toast.id);
           }
         }
       ],
-      placeholder: 'Enter "ng-snotify" to validate this input' 
+      placeholder: 'Enter "ng-snotify" to validate this input'
     };
   }
-  // challange(id) {
-  //   let notification = this.onPrompt();
-  //   return this.http
-  //     .post(`${url}/api/auth/notify/${id}`, { notification })
-  //     .pipe(
-  //       map((res: Response) => {
-  //         // let user = res.json();
-  //         // this.user = user;
-  //         return;
-  //       }),
-  //       catchError(e => of(this.errorHandler(e)))
-  //     );
-  // }
 
-  
-    sendChallange(otherPlayerId, matchId) {
+  sendChallange(otherPlayerId, matchId, type) {
+    console.log(type);
     let playerId = this.sessionService.user._id;
     console.log(`Sending notify to -> ${otherPlayerId}`);
     this.socket.emit("notify", {
+      type,
       otherPlayerId,
       playerId,
       matchId
     });
+  }
+  sendNewMatch() {
+    this.socket.emit("new-match");
   }
 
   errorHandler(e) {

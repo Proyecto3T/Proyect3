@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SessionService } from "../../services/session.service";
 import { MatchService } from "../../services/match.service";
+import { NotifyService } from "../../services/notify.service";
 
 @Component({
   selector: "app-my-matches",
@@ -11,7 +12,8 @@ export class MyMatchesComponent implements OnInit {
   matches: any;
   constructor(
     public sessionService: SessionService,
-    private matchService: MatchService
+    private matchService: MatchService,
+    public notifyService:NotifyService
   ) {}
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class MyMatchesComponent implements OnInit {
 
   deleteMatch(id){
     this.matchService.deleteMatch(id).subscribe(() => {
+      this.notifyService.sendNewMatch()
       this.getMatches(this.sessionService.user._id)
     })
   }
