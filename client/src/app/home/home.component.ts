@@ -11,8 +11,9 @@ import { Router } from '../../../node_modules/@angular/router';
 })
 export class HomeComponent implements OnInit {
   matches: Array<any>;
+  
    
-  constructor(private server: SessionService, public matchService:MatchService, public notifyService: NotifyService, private router:Router) { 
+  constructor(public server: SessionService, public matchService:MatchService, public notifyService: NotifyService, private router:Router) { 
     this.matchService.matchesChange.subscribe(r => {
       this.matches = r;
     });

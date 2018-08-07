@@ -16,11 +16,12 @@ export class ValorationComponent implements OnInit {
   @ViewChild("wizardlg") wizardLarge: ClrWizard;
   @ViewChild("wizardxl") wizardExtraLarge: ClrWizard;
 
+
   mdOpen: boolean = true;
   lgOpen: boolean = false;
   xlOpen: boolean = false;
   statistics:object;
-  constructor(private service : SessionService, private router:Router) { }
+  constructor(public service : SessionService, private router:Router) { }
 
   ngOnInit() {
   }

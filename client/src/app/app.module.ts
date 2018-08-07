@@ -32,7 +32,7 @@ import {SnotifyModule, SnotifyService, ToastDefaults} from '../../node_modules/n
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import {FileSelectDirective} from "ng2-file-upload"
+import {FileSelectDirective, FileUploadModule} from "ng2-file-upload"
 import {MatInputModule} from '@angular/material';
 
 // Configs 
@@ -68,9 +68,9 @@ return config;
     StatisticsComponent,
     UsersComponent,
     EditProfileComponent,
-    FileSelectDirective,
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     FormsModule,
     HttpModule,

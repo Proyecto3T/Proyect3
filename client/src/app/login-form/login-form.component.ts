@@ -11,6 +11,11 @@ import {AuthService,  FacebookLoginProvider,  GoogleLoginProvider} from 'angular
 })
 export class LoginFormComponent implements OnInit {
 
+  username:any;
+  password:any;
+  email:any;
+  error:any;
+
   signIn:boolean=true;
   constructor(public sessionService:SessionService, public router: Router, private socialAuthService: AuthService) { }
 

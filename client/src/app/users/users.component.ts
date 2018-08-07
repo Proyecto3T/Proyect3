@@ -21,7 +21,7 @@ interface stats{
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private sessionService:SessionService,public draw:GraphsService) {
+  constructor(public sessionService:SessionService,public draw:GraphsService) {
  
    }
 users:Array<any>;
