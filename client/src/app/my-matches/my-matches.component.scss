@@ -26,7 +26,7 @@ div.message {
   padding: 10px;
   padding-left: 35px;
   margin: 30px 10px;
-  border-radius: 5px;
+  border-radius:15px;
   box-shadow:0 2px 5px rgba(0,0,0,.3);
   background: #BBB;
   color: #FFF;
@@ -44,16 +44,20 @@ div.message:hover{
 
 .userImage {
   display: inline-block;
-
 }
 .userImage img{
   display: inline-block;
-  width: 50px;
+  width: 150px;
   border-radius: 50%;
   margin-right: 20px;
 }
 
-div.message.information{background: #39B;}
+.delete-button{
+  display:inline-block;
+  float:right;
+}
+
+div.message.information{background: rgba(155, 154, 154, 0.452);}
 div.message.warning{background: #E74;}
 div.message.success{background: #5A6;}
 div.message.announcement{background: #EA0;}
