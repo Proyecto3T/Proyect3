@@ -18,7 +18,7 @@ export class ChatService {
     sessionService.isLogged().subscribe(user => {
       this.user=user;
       // Connect to websocket for chat
-      this.socket = io("localhost:3000");
+      this.socket = io("http://localhost:3000");
       this.socket.on("connect", () => console.log("Connected to WS"));
 
       // Save messages into array as they arrive from server

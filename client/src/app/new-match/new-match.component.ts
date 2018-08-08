@@ -61,11 +61,13 @@ export class NewMatchComponent implements OnInit{
 	  }
   ]
   constructor(public matchService: MatchService, private router:Router, public notifyService:NotifyService, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone) {
+      this.geolocate()
+     }
 
   ngOnInit() {
     this.minDate = Date.now()
-    
+    this.geolocate()
   }
 
   // ngAfterContentInit() {
@@ -121,5 +123,15 @@ export class NewMatchComponent implements OnInit{
   //     });
   //   }
   // }
+
+  geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position)
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
   
 }

@@ -34,6 +34,7 @@ import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {FileSelectDirective, FileUploadModule} from "ng2-file-upload"
 import {MatInputModule} from '@angular/material';
+import {AgmDirectionModule} from "agm-direction"
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -83,7 +84,8 @@ return config;
     ClarityModule,
     BrowserAnimationsModule,
     SnotifyModule,
-    MatInputModule
+    MatInputModule,
+    AgmDirectionModule
   ],
   providers: [ {
     provide: AuthServiceConfig,

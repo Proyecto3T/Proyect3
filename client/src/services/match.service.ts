@@ -18,6 +18,7 @@ const url = environment.BASEURL;
   providedIn: "root"
 })
 export class MatchService {
+  dir:any;
   matchId: string;
   match: any;
   marker: marker;
@@ -94,5 +95,19 @@ export class MatchService {
         this.options
       )
       .pipe(map(res => res.json()));
+  }
+
+  geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position)
+      this.dir = {
+        origin: { lat: position.coords.latitude, lng: position.coords.longitude},
+        destination:{lat: 40.9, lng:-3.0}
+      }
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
   }
 }

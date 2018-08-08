@@ -70,7 +70,7 @@ export class SessionService {
       }),
       catchError(e => {
         console.log("You have to login first!");
-        return of(e);
+        return of(null);
       })
     );
   }
