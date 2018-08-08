@@ -32,7 +32,7 @@ import {SnotifyModule, SnotifyService, ToastDefaults} from '../../node_modules/n
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import {FileSelectDirective, FileUploadModule} from "ng2-file-upload"
+import { FileUploadModule} from "ng2-file-upload"
 import {MatInputModule} from '@angular/material';
 import { ResultComponent } from './result/result.component';
 import {AgmDirectionModule} from "agm-direction";
@@ -71,7 +71,6 @@ return config;
     StatisticsComponent,
     UsersComponent,
     EditProfileComponent,
-    FileSelectDirective,
     ResultComponent,
     LandingPageComponent,
   ],

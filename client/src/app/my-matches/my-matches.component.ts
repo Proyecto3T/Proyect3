@@ -33,7 +33,8 @@ match:any;
   getMatches(id) {
     this.matchService.getMatches(id).subscribe(matches => {
       console.log(matches)
-      this.matches = matches;
+      console.log(this.showFinishedMatches(matches))
+      this.matches = this.showFinishedMatches(matches);
     });
   }
 
@@ -44,13 +45,14 @@ match:any;
     })
   }
 
-  showFinishedMatches(){
+  showFinishedMatches(matches){
     let date = new Date;
-    for(let i=0; i<this.matches.length;i++){
-      if(this.matches[i].finish<date){
-        this.matches[i].ended=true
+    for(let i=0; i<matches.length;i++){
+      if(matches[i].finish<date){
+        matches[i].ended=true
       }
     }
+    return matches
   }
 
 finishMatch(match){
