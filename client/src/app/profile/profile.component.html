@@ -2,73 +2,75 @@
     
 
 
-
-  <div *ngIf="sessionService.user">
- 
-    <br>
-
-
+<div class="flex">
+    
+      <div *ngIf="sessionService.user">
+     
+        <br>
+    
+    
+          
+              <div class="card text-center has-cup card-air  mb-4  col-xs-6 columna x" style="margin:70px; max-width:320px;">
+                <div class="card-cup bg-gradient-purple"></div>
+                <div class="card-body">
+                  <div class="card-avatar mb-4">
+                    <img class="img-circle" src="{{sessionService.user.image}}" alt="image" />
+                    <h4 class="card-title text-pink mb-1">{{sessionService.user.username}}</h4>
+                  </div>
+                
+                  <ul class="text-muted">
+                    <li>Games Played:{{played}}</li>   
+                    <li>Won:{{wonMatches}}</li>
+                    <li>Win Rate: {{winRate}}%</li>
+                  </ul>
+                  <div>
+                    <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%;">
+                      <canvas id="{{sessionService.user.username}}" class="canvas-avance-perfil" ></canvas>
+                    </div>
+                  </div>
       
-          <div class="card text-center has-cup card-air  mb-4  col-xs-6 columna x" style="margin:70px; max-width:320px;">
-            <div class="card-cup bg-gradient-purple"></div>
-            <div class="card-body">
-              <div class="card-avatar mb-4">
-                <img class="img-circle" src="{{sessionService.user.image}}" alt="image" />
-                <h4 class="card-title text-pink mb-1">{{sessionService.user.username}}</h4>
-              </div>
-            
-              <ul class="text-muted">
-                <li>Games Played:{{played}}</li>   
-                <li>Won:{{wonMatches}}</li>
-                <li>Win Rate: {{winRate}}%</li>
-              </ul>
-              <div>
-                <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%;">
-                  <canvas id="{{sessionService.user.username}}" class="canvas-avance-perfil" ></canvas>
                 </div>
               </div>
-  
-            </div>
-          </div>
-
-</div>
-
-<div class="tabs-container">
-        <clr-tabs>
-            <clr-tab>
-                <button clrTabLink  class="btn-clr" style="
-                margin-left: 35%">Record</button>
-                <ng-template [(clrIfActive)]="dashboardActive ">
-                    <clr-tab-content>
-                        <app-record></app-record>
-                    </clr-tab-content>
-                </ng-template>
-            </clr-tab>
-        
-            <clr-tab>
-                <button clrTabLink    class="btn-clr">My matches</button>
-                <ng-template [(clrIfActive)]="managementActive">
-                    <div style="margin:1.5rem;">
-                    <clr-tab-content class="matches">
-                        <app-my-matches (finishEmit)="onFinish()"style="width:100%"></app-my-matches>
-                    </clr-tab-content>
-                </div>
-                </ng-template>
-            </clr-tab>
-        
-        
-            <clr-tab>
-                    <button clrTabLink   class="btn-clr">Statistics</button>
-                    <ng-template [(clrIfActive)]="StatisticsActive">
-                        <clr-tab-content >
-                            <app-statistics></app-statistics>
+    
+    </div>
+    
+    <div class="tabs-container">
+            <clr-tabs >
+                <clr-tab>
+                    <button clrTabLink  class="btn-clr" style="
+                    margin-left: 35%">Record</button>
+                    <ng-template [(clrIfActive)]="dashboardActive ">
+                        <clr-tab-content>
+                            <app-record></app-record>
                         </clr-tab-content>
                     </ng-template>
                 </clr-tab>
-        
             
-        </clr-tabs>
-        </div>
+                <clr-tab>
+                    <button clrTabLink    class="btn-clr">My matches</button>
+                    <ng-template [(clrIfActive)]="managementActive">
+                        <div style="margin:1.5rem;">
+                        <clr-tab-content class="matches">
+                            <app-my-matches (finishEmit)="onFinish()"style="width:100%"></app-my-matches>
+                        </clr-tab-content>
+                    </div>
+                    </ng-template>
+                </clr-tab>
+            
+            
+                <clr-tab>
+                        <button clrTabLink   class="btn-clr">Statistics</button>
+                        <ng-template [(clrIfActive)]="StatisticsActive">
+                            <clr-tab-content >
+                                <app-statistics></app-statistics>
+                            </clr-tab-content>
+                        </ng-template>
+                    </clr-tab>
+            
+                
+            </clr-tabs>
+            </div>
+</div>
 
 
             
