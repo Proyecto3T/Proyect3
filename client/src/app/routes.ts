@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path:'signup', component:SignupFormComponent},
   { path:'login', component:LoginFormComponent},
   {path:'profile', component:ProfileComponent},
-  {path:'valoration', component:ValorationComponent} ,
+  {path:'valoration/:oponentId', component:ValorationComponent} ,
   {path:"new-match", component:NewMatchComponent},
   {path:"chat", component:ChatComponent},
   {path:"users", component:UsersComponent},

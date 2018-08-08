@@ -19,6 +19,12 @@ const chatServer = (io) => {
             console.log("Ho!");
             socket.broadcast.emit(data.otherPlayerId,{otherPlayerId: data.playerId,matchId:data.matchId, type:data.type});
         });
+        socket.on('finishMatch', data => {
+            console.log(data)
+            console.log("Ho!");
+            socket.broadcast.emit(data.otherPlayerId,{otherPlayerId: data.playerId,matchId:data.matchId, type:data.type});
+            socket.emit(data.playerId,{otherPlayerId: data.playerId,matchId:data.matchId, type:data.type});
+        });
         socket.on('new-match', () => {
             socket.broadcast.emit('new-match');
         });

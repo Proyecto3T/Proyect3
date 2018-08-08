@@ -57,7 +57,7 @@ user:{}
         if(this.users[i].username!=this.sessionService.user.username){
         this.showStats(this.users[i] )
         }
-      }},200)
+      }},20)
       
     });
   }

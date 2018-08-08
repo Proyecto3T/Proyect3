@@ -108,6 +108,23 @@ a:hover, a:focus {
 h6, .h6 {
   font-weight: 500; }
 
+.canvas-avance-perfil{
+  display:none;
+  margin-top:90px;
+}
+
+.chartjs-size-monitor{
+  position: fixed;
+}
+
+.card-body{
+  display:-webkit-box
+}
+li{
+  padding-left: 10px;
+  list-style:none;
+  text-align:left;
+}
 small {
   font-size: 85%; }
 
@@ -1368,6 +1385,9 @@ body.fullscreen-mode {
   border-radius: 50%;
   padding: 0; }
 
+
+
+
 .static-badge {
   width: 52px;
   height: 52px;
@@ -1646,19 +1666,30 @@ body.fullscreen-mode {
 .media-list.media-list-divider .media:not(:first-child) {
   border-top: 1px solid #e1eaec; }
 
+  .card[_ngcontent-c3] {
+    overflow: hidden;
+    border: 0;
+    min-height: 470px;
+}
+
 .card {
   overflow: hidden;
-  border: 0; }
+  border: 0; 
+min-height: 500px;}
   .card .card-title {
     font-weight: 500;
-    margin-top: 0; }
+    margin-top: 20px; 
+    float:right;
+}
   .card .card-avatar img {
     height: 128px;
     width: 128px; }
   .card .card-cup {
     height: 120px; }
   .card.has-cup .card-avatar {
-    margin-top: -77px; }
+    position: absolute;
+    margin-top: -110px;
+  }
     .card.has-cup .card-avatar img {
       border: 5px solid #fff; }
   .card .card-fab-top-right {
@@ -1724,10 +1755,10 @@ body.fullscreen-mode {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2); }
-
+//loco
 .card-air {
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); }
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35); }
 
 .card-header, .card-footer {
   background-color: inherit; }
@@ -2934,9 +2965,9 @@ select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.for
   background-color: transparent !important; }
 
 .bg-gradient-purple {
-  background-image: -webkit-linear-gradient(45deg, #cbf36e 0%, rgb(60, 129, 39) 100%) !important;
-  background-image: -o-linear-gradient(45deg, #cbf36e 0%, rgb(60, 129, 39) 100%) !important;
-  background-image: linear-gradient(45deg, #cbf36e 0%, rgb(60, 129, 39) 100%) !important; }
+  background-image: -webkit-linear-gradient(45deg, #ffffff 0%,#ffffff 100%) !important;
+  background-image: -o-linear-gradient(45deg, #ffffff 0%,#ffffff 100%) !important;
+  background-image: linear-gradient(45deg, #ffffff 0%,#ffffff 100%) !important; }
 
 .bg-gradient-peach {
   background-image: -webkit-linear-gradient(45deg, #F39C12 0%, #E91E63 100%) !important;
@@ -3062,7 +3093,11 @@ select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.for
   color: #3498DB !important; }
 
 .text-muted {
-  color: #aaa !important; }
+  color: black !important;
+  position: absolute;
+  margin-left: 40%;
+  margin-top:-40px;
+ }
 
 .text-light {
   color: #71808f !important; }

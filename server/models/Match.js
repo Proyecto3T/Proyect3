@@ -20,13 +20,15 @@ const matchSchema = new Schema(
     winner: { type: Schema.Types.ObjectId, ref: "User" },
     loser: { type: Schema.Types.ObjectId, ref: "User" },
     finish: {type:Date, default:"2300-01-06 13:39:35.039"},
-    closed:{type: Boolean, default:"false"}
+    closed:{type: Boolean, default:"false"},
+    ended:{type: Boolean, default:"false"},
   },
   {
     timestamps: {
       createdAt: "created_at",
       updatedAt: "updated_at"
-    }
+    },
+    
   }
 );
 

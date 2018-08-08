@@ -45,6 +45,7 @@
                 <span>{{player.username}}</span>
             </ul>
             <button (click)="deleteMatch(match._id)">Delete</button>
+            <button  (click)="finishMatch(match)">Finish Match</button>
           </div>
           <div class="member">
               <agm-map [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [zoom]="14">
@@ -62,3 +63,4 @@
 <app-single-match [matchId]="matchService.matchId" [match]="matchService.match" [marker]="matchService.marker" [hidden]="!matchService.showSingleMatch1"></app-single-match>
    
 
+<app-result class="show"  [match]="match" ></app-result>

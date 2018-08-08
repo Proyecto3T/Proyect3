@@ -1,0 +1,21 @@
+
+
+<clr-wizard #wizardmd [(clrWizardOpen)]="mdOpen" clrWizardSize="md">
+    <clr-wizard-title></clr-wizard-title>
+
+    <clr-wizard-button  (click)="submitForm(drive.value,backhand.value,serve.value,volley.value)"   class="btn btn-primary">Submit</clr-wizard-button>
+<!-- -->
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Result</ng-template>
+        <form   #myForm="ngForm">
+           you1
+              <input #drive type='number' name='' id='' value=5 min="0" max="6">--
+           oponent1
+              <input #backhand type='number' name='' id='' value=5 min="0" max="6">
+           you2
+              <input #serve type='number' name='' id='' value=5 min="0" max="6">--
+           oponent2
+              <input #volley type='number' name='' id='' value=5 min="0" max="6">
+        </form>
+    </clr-wizard-page>
+</clr-wizard>

@@ -11,9 +11,9 @@ router.get('/users',(req,res,next) => {
   User.find({}).then( user => res.status(200).json(user))
 })
 
-router.post('/valoration', (req, res, next) => {
+router.post('/valoration/:id', (req, res, next) => {
   console.log(req.body)
-  User.findById({_id:req.user._id})
+  User.findById({_id:req.params.id})
   .then(user => {
     user.statisticsAverage.drive.unshift(req.body.drive)
     user.statisticsAverage.backhand.unshift(req.body.backhand)

@@ -22,8 +22,13 @@ router.get("/", (req, res, next) => {
 
 router.get('/finish-matches', (req, res, next) => {
   let date = new Date();
-  Match.find({"finish": {"$gt": ("2010-01-01 13:39:35.039"), "$lt" : (`${date}`) }})
-  .populate("_author")
+  Match.find({
+      "finish": {
+        "$gt": ("2010-01-01 13:39:35.039"),
+        "$lt": (`${date}`)
+      }
+    })
+    .populate("_author")
     .then(matches => {
       res.status(200).json(matches);
     })
@@ -37,7 +42,13 @@ router.get('/finish-matches', (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const playerId = req.params.id;
-  Match.find({ players: { $elemMatch: { $eq: playerId } } })
+  Match.find({ "ended": false,
+      players: {
+        $elemMatch: {
+          $eq: playerId
+        }
+      }
+    })
     .populate("_author")
     .populate("players")
     .then(matches => {
@@ -66,31 +77,40 @@ router.post("/new", (req, res, next) => {
     location
   });
 
-  
+
   newMatch.save((err) => {
-    if (err)              { return res.status(500).json(err); }
-    if (newMatch.errors) { return res.status(400).json(newMatch); }
+    if (err) {
+      return res.status(500).json(err);
+    }
+    if (newMatch.errors) {
+      return res.status(400).json(newMatch);
+    }
 
     return res.status(200).json(newMatch);
   });
 });
-  router.post("/addPlayer/:playerId/:matchId", (req, res, next) => {
-    Match.findByIdAndUpdate(
-      req.params.matchId,
-      { $push: { players: req.params.playerId }, closed:true },
-      { new: true }
+router.post("/addPlayer/:playerId/:matchId", (req, res, next) => {
+  Match.findByIdAndUpdate(
+      req.params.matchId, {
+        $push: {
+          players: req.params.playerId
+        },
+        closed: true
+      }, {
+        new: true
+      }
     )
-      .then(match => {
-        console.log(match)
-        res.status(200).json(match);
-      })
-      .catch(e => {
-        res.status(500).json({
-          status: "error",
-          error: e.message
-        });
+    .then(match => {
+      console.log(match)
+      res.status(200).json(match);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
       });
-  });
+    });
+});
 
 
 router.get("/single-match/:id", (req, res, next) => {
@@ -110,8 +130,52 @@ router.get("/single-match/:id", (req, res, next) => {
 
 router.get("/delete/:id", (req, res) => {
   Match.findByIdAndRemove(req.params.id).then(e =>
-    res.status(200).json({ message: "Match removed successfully!" })
+    res.status(200).json({
+      message: "Match removed successfully!"
+    })
   );
 });
 
+router.post("/endMatch/:matchId", (req, res) => {
+  Match.findByIdAndUpdate(req.params.matchId, {
+    winner: req.body.winner,
+    loser: req.body.loser,
+    ended:true
+  }, {
+    new: true
+  }).then(e => {
+    res.status(200).json(e);
+  }).catch(e => {
+    res.status(500).json({
+      status: "error",
+      error: e.message
+    });
+  });
+})
+
+
+router.get('/record/:id', (req, res, next) => {
+  playerId = req.params.id
+  Match.find({
+    "ended": true,
+    players: {
+      $elemMatch: {
+        $eq: playerId
+      }
+    }
+  })
+    .populate("_author")
+    .then(matches => {
+      console.log(matches)
+      res.status(200).json(matches);
+    })
+    .catch(e => {
+      res.status(500).json({
+        status: "error",
+        error: e.message
+      });
+    });
+});
+
+router.get
 module.exports = router;

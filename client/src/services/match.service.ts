@@ -25,6 +25,7 @@ export class MatchService {
   show: boolean = false;
   options: object = { withCredentials: true };
   matchesChange: EventEmitter<any> = new EventEmitter();
+  
   constructor(private http: Http, public sessionService:SessionService) {}
 
   createMatch(hour, date, lat, lng) {
@@ -95,4 +96,17 @@ export class MatchService {
       )
       .pipe(map(res => res.json()));
   }
+
+  finishMatch(matchId, winner,loser){
+   return  this.http.post(`${url}/api/matches/endMatch/${matchId}`,
+    {winner:winner._id, loser:loser._id},
+    this.options) .pipe(map(res => res.json()));
+  }
+
+  getRecord(id){
+   return this.http.get(`${url}/api/matches/record/${id}`,this.options)
+    .pipe(map(res => res.json()));
+  }
+
+  valorated
 }

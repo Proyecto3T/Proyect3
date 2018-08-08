@@ -88,13 +88,17 @@
             <div class="card-body">
               <div class="card-avatar mb-4" (click)="showStats(stat.user)">
                 <img class="img-circle" src="{{stat.image}}" alt="image" />
+                <h4 class="card-title text-pink mb-1">{{stat.name}}</h4>
               </div>
-              <h4 class="card-title text-pink mb-1">User: {{stat.name}}</h4>
-              <div class="text-muted">Games Played:{{stat.played}} Games Won:{{stat.wonMatches}} Win Rate: {{stat.winRate}}% </div>
-  
+            
+              <ul class="text-muted">
+                <li>Games Played:{{stat.played}}</li>   
+                <li>Won:{{stat.wonMatches}}</li>
+                <li>Win Rate: {{stat.winRate}}%</li>
+              </ul>
               <div>
-                <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%">
-                  <canvas id="{{stat.user.username}}" class="canvas-avance-perfil"></canvas>
+                <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%;">
+                  <canvas id="{{stat.user.username}}" class="canvas-avance-perfil" ></canvas>
                 </div>
               </div>
   

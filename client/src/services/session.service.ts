@@ -125,14 +125,13 @@ export class SessionService {
     );
   }
 
-  postValorations(valorations) {
+  postValorations(valorations,userId) {
     return this.http
-      .post(`${url}/api/profiles/valoration`, valorations, this.options)
+      .post(`${url}/api/profiles/valoration/${userId}`, valorations, this.options)
       .pipe(
         map((res: Response) => {
           let user = res.json();
           console.log(user);
-          this.user = user;
           return this.user;
         }),
         catchError(e => of(this.errorHandler(e)))

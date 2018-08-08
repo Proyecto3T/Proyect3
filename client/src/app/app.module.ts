@@ -34,6 +34,7 @@ import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import {FileSelectDirective} from "ng2-file-upload"
 import {MatInputModule} from '@angular/material';
+import { ResultComponent } from './result/result.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -69,6 +70,7 @@ return config;
     UsersComponent,
     EditProfileComponent,
     FileSelectDirective,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,

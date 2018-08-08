@@ -1,3 +1,24 @@
-<p>
-  record works!
-</p>
+
+<div class="container"  *ngIf="record">
+    <div *ngFor="let match of record">
+        <div class="box p5">
+          <div class="member">
+            <!-- <img src="{{match._author.image}}" alt=""> -->
+            <h4>Created By: {{match._author.username}}</h4>
+            <h6>Date: {{match.date | date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </h6>
+            <div *ngFor="let player of match.players">
+            <button *ngIf="player != sessionService.user._id"  (click)="disable(match._id)" class="match-{{match._id}} "  [routerLink]="['/valoration',player]">Valorate</button>
+          </div>
+          </div>
+          <div class="member">
+              <agm-map [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [zoom]="14">
+    
+                  <agm-marker [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [label]="Place"></agm-marker>
+                  <agm-info-window>
+                    <strong>InfoWindow content</strong>
+                  </agm-info-window>
+                </agm-map>
+          </div>
+        </div>
+      </div>
+</div>

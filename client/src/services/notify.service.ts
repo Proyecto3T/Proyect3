@@ -35,9 +35,11 @@ export class NotifyService {
             console.log(data);
             this.snotifyService.confirm(this.body, this.title, notification);
           }else if(data.type == "success"){
-            this.snotifyService.success("Someone accepted you petition","Challange accepted")
-          } else{
-            this.snotifyService.error("Someone rejected your petition", "Challange not accepted")
+            this.snotifyService.success("Someone accepted you petition","Challenge accepted")
+          } else if (data.type =="error"){
+            this.snotifyService.error("Someone rejected your petition", "Challenge not accepted")
+          } else {
+            this.snotifyService.info("You can see it in your record", "Match finished")
           }
         });
         this.socket.on(`new-match`, () => {
@@ -129,6 +131,17 @@ export class NotifyService {
   }
   sendNewMatch() {
     this.socket.emit("new-match");
+  }
+
+ finishMatch(otherPlayerId, matchId, type) {
+   console.log(type)
+    let playerId = this.sessionService.user._id;
+    this.socket.emit("finishMatch", {
+      type,
+      otherPlayerId,
+      playerId,
+      matchId
+    });
   }
 
   errorHandler(e) {

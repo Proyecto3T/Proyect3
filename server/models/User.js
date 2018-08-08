@@ -17,6 +17,7 @@ const userSchema = new Schema({
     volley: [{type:Number, default:5}],
     resistance: [{type:Number, default:5}]
   },
+  valorated:[String],
   points:{type:Number, default:0},
   league:{type: String, default: "0"},
   notifications: [],
