@@ -12,13 +12,13 @@ import * as io from "socket.io-client";
 import { SessionService } from "./session.service";
 import { MatchService } from "./match.service";
 
-const url = environment.BASEURL;
 
 @Injectable({
   providedIn: "root"
 })
 export class NotifyService {
   socket: SocketIOClient.Socket;
+  url = environment.BASEURL;
   constructor(
     private http: Http,
     public snotifyService: SnotifyService,
@@ -26,7 +26,7 @@ export class NotifyService {
     public matchService: MatchService
   ) {
     this.sessionService.isLogged().subscribe(user => {
-      this.socket = io(environment.BASEURL);
+      this.socket = io(this.url);
       this.socket.on("connect", () => {
         console.log("Connected to WS");
         this.socket.on(`${user._id}`, data => {
