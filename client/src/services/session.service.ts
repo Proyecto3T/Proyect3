@@ -6,7 +6,7 @@ import { map, catchError } from "rxjs/operators";
 import { Observable } from "../../node_modules/rxjs";
 import { of } from "rxjs";
 import * as firebase from "firebase/app";
-import * as io from "socket.io-client";
+
 import {
   SnotifyService,
   SnotifyToastConfig,
@@ -43,14 +43,10 @@ export class SessionService {
   constructor(private http: Http, private snotifyService: SnotifyService) {
     // this.socialUser = afAuth.authState;
     this.isLogged().subscribe();
-    this.socket = io("localhost:3000");
-    this.socket.on("connect", () => console.log("Connected to WS"));
+    
 
     // Save messages into array as they arrive from server
-    this.socket.on("matches", data => {
-      // Actually push the message when arrives
-      this.matches = data;
-    });
+    
   }
 
   // loginWithGoogle(){

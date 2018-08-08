@@ -12,13 +12,13 @@ import * as io from "socket.io-client";
 import { SessionService } from "./session.service";
 import { MatchService } from "./match.service";
 
+const {BASEURL} = environment;
 
 @Injectable({
   providedIn: "root"
 })
 export class NotifyService {
   socket: SocketIOClient.Socket;
-  url:string = environment.BASEURL;
   constructor(
     private http: Http,
     public snotifyService: SnotifyService,
@@ -26,7 +26,7 @@ export class NotifyService {
     public matchService: MatchService
   ) {
     this.sessionService.isLogged().subscribe(user => {
-      this.socket = io(`${this.url}`);
+      this.socket = io(`${BASEURL}`);
       this.socket.on("connect", () => {
         console.log("Connected to WS");
         this.socket.on(`${user._id}`, data => {
@@ -44,6 +44,10 @@ export class NotifyService {
           this.sessionService.getMatches().subscribe(matches => {
             this.matchService.matchesChange.emit(matches);
           });
+        });
+        this.socket.on("matches", data => {
+          // Actually push the message when arrives
+          this.sessionService.matches = data;
         });
       });
     });
