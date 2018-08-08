@@ -18,7 +18,7 @@ import { MatchService } from "./match.service";
 })
 export class NotifyService {
   socket: SocketIOClient.Socket;
-  url = environment.BASEURL;
+  url:string = environment.BASEURL;
   constructor(
     private http: Http,
     public snotifyService: SnotifyService,
@@ -26,7 +26,7 @@ export class NotifyService {
     public matchService: MatchService
   ) {
     this.sessionService.isLogged().subscribe(user => {
-      this.socket = io(this.url);
+      this.socket = io(`${this.url}`);
       this.socket.on("connect", () => {
         console.log("Connected to WS");
         this.socket.on(`${user._id}`, data => {

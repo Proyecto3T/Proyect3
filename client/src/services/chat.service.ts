@@ -12,6 +12,7 @@ interface Message {
   providedIn: "root"
 })
 export class ChatService {
+  url:string = environment.BASEURL;
   socket: SocketIOClient.Socket;
   messages: Array<Message> = [];
   user:any;
@@ -19,7 +20,7 @@ export class ChatService {
     sessionService.isLogged().subscribe(user => {
       this.user=user;
       // Connect to websocket for chat
-      this.socket = io(environment.BASEURL);
+      this.socket = io(`${this.url}`);
       this.socket.on("connect", () => console.log("Connected to WS"));
 
       // Save messages into array as they arrive from server
