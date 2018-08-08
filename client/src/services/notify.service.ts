@@ -26,7 +26,7 @@ export class NotifyService {
     public matchService: MatchService
   ) {
     this.sessionService.isLogged().subscribe(user => {
-      this.socket = io("http://localhost:3000");
+      this.socket = io(environment.BASEURL);
       this.socket.on("connect", () => {
         console.log("Connected to WS");
         this.socket.on(`${user._id}`, data => {
