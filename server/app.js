@@ -19,7 +19,7 @@ const cors = require('cors');
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/server', {useMongoClient: true})
+  .connect(process.env.DBURL, {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -92,8 +92,8 @@ app.use(session({
 app.use(flash());
 require('./passport')(app);    
 
-const index = require('./routes/index');
-app.use('/', index);
+// const index = require('./routes/index');
+// app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
@@ -103,7 +103,8 @@ app.use('/api/profiles', profileRoutes);
 
 const matchRoutes = require('./routes/match');
 app.use('/api/matches', matchRoutes);
-      
-      
-
+         
+app.get('*',(req,res) => {
+  res.sendFile(__dirname+'/public/index.html');
+})
 module.exports = app;

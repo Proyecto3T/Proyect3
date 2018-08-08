@@ -16,6 +16,7 @@ export class ValorationComponent implements OnInit {
   @ViewChild("wizardlg") wizardLarge: ClrWizard;
   @ViewChild("wizardxl") wizardExtraLarge: ClrWizard;
 
+
   mdOpen: boolean = true;
   lgOpen: boolean = false;
   xlOpen: boolean = false;

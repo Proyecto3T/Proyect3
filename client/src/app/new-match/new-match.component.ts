@@ -11,6 +11,7 @@ import { FormControl } from '../../../node_modules/@angular/forms';
 declare var google: any
 
 interface marker {
+
   lat: number;
   lng: number;
   label?: string;
@@ -27,6 +28,9 @@ export class NewMatchComponent implements OnInit{
     @ViewChild("wizardlg") wizardLarge: ClrWizard;
     @ViewChild("wizardxl") wizardExtraLarge: ClrWizard;
     @ViewChild("search") searchElementRef: ElementRef;
+    hour:any;
+    date:any;
+    error:any;
     latitude: number;
     longitude: number;
     searchControl: FormControl;
@@ -56,12 +60,14 @@ export class NewMatchComponent implements OnInit{
 		  draggable: true
 	  }
   ]
-  constructor(private matchService: MatchService, private router:Router, public notifyService:NotifyService, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+  constructor(public matchService: MatchService, private router:Router, public notifyService:NotifyService, private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {
+      this.geolocate()
+     }
 
   ngOnInit() {
     this.minDate = Date.now()
-    
+    this.geolocate()
   }
 
   // ngAfterContentInit() {
@@ -117,5 +123,15 @@ export class NewMatchComponent implements OnInit{
   //     });
   //   }
   // }
+
+  geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position)
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
   
 }

@@ -17,7 +17,7 @@ match:any;
 
   constructor(
     public sessionService: SessionService,
-    private matchService: MatchService,
+    public matchService: MatchService,
     public notifyService:NotifyService
   ) { }
 

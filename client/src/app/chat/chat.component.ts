@@ -8,6 +8,7 @@ import { SessionService } from '../../services/session.service';
  styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  chatBox:any;
 
  constructor(public chatService:ChatService, public sessionService:SessionService){
 

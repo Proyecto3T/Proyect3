@@ -13,6 +13,9 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnInit {
+  dashboardActive:any;
+  managementActive:any;
+  StatisticsActive:any;
   user: any;
   show: boolean = false;
   stats: boolean = false;

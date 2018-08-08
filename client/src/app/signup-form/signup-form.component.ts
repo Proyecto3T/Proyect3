@@ -14,6 +14,10 @@ import * as  $ from 'jquery'
 })
 export class SignupFormComponent implements OnInit {
 
+  username:any;
+  password:any;
+  email:any;
+
   constructor(public sessionService: SessionService, public router:Router, private socialAuthService: AuthService) { }
 
   ngOnInit() {
