@@ -123,4 +123,25 @@ export class MatchService {
       alert('Geolocation is not supported by this browser.');
     }
   }
+
+  setWinner(id){
+    return this.http
+      .post(
+        `${url}/api/matches/winnerEndMatch`,
+        {winner:id},
+        this.options
+      )
+      .pipe(map(res => res.json()));
+  }
+
+  setLoser(id){
+    return this.http
+    .post(
+      `${url}/api/matches/loserEndMatch`,
+      {loser:id},
+      this.options
+    )
+    .pipe(map(res => res.json()));
 }
+  }
+

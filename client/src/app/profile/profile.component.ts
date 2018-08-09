@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
       this.played = this.user.wonMatches + this.user.lostMatches;
       this.wonMatches = this.user.wonMatches;
       this.winRate =
-        this.user.wonMatches / (this.user.wonMatches + this.user.lostMatches);
+        parseFloat((this.user.wonMatches / (this.user.wonMatches + this.user.lostMatches)).toFixed(2)) * 100;
       this.draw.printRadar(
         this.sessionService.user,
         this.sessionService.user.username

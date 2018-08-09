@@ -13,13 +13,13 @@ import { NotifyService } from "../../services/notify.service";
 export class MyMatchesComponent  implements OnInit  {
   matches: any;
 mdOpen:boolean=false;
-match:any;
+match1:any;
 
   constructor(
     public sessionService: SessionService,
     public matchService: MatchService,
     public notifyService:NotifyService
-  ) { }
+  ) { $('.show').hide()}
 
 
 
@@ -34,8 +34,8 @@ match:any;
   getMatches(id) {
     this.matchService.getMatches(id).subscribe(matches => {
       console.log(matches)
-      this.matches = matches;
-      // this.showFinishedMatches()
+      console.log(this.showFinishedMatches(matches))
+      this.matches = this.showFinishedMatches(matches);
     });
   }
 
@@ -46,20 +46,22 @@ match:any;
     })
   }
 
-  showFinishedMatches(){
+  showFinishedMatches(matches){
     let date = new Date;
-    for(let i=0; i<this.matches.length;i++){
-      if(this.matches[i].finish<date){
-        this.matches[i].ended=true
+    for(let i=0; i<matches.length;i++){
+      if(new Date(matches[i].date).getTime()<date.getTime()){
+        matches[i].ended=true
       }
     }
+    console.log(matches)
+    return matches
   }
 
 finishMatch(match){
 console.log(match)
 $('.show').show()
 this.mdOpen =true;
-this.match=match;
+this.match1=match;
 }
 
   addResult(){

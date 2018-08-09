@@ -63,6 +63,22 @@ width:40%;
   margin:3%;
 }
 
+.x{
+  position:fixed;
+margin-left:200px;
+margin-top:106px;
+}
+
+.btn {
+  border-radius: 2px;
+  outline: 0 !important;
+  transition: all ease-in-out .15s;
+  position: relative;
+  padding:0 !important;
+  cursor: pointer;
+  overflow: hidden;
+}
+
 .tabs-container{
 
   border-radius: 30px;
@@ -1820,7 +1836,8 @@ min-height: 500px;}
    margin-top: -110px;
  }
    .card.has-cup .card-avatar img {
-     border: 5px solid #fff; }
+     border: 5px solid #fff; 
+    object-fit:cover;}
  .card .card-fab-top-right {
    position: absolute;
    top: 10px;

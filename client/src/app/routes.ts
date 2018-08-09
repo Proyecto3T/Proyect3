@@ -10,21 +10,22 @@ import { ChatComponent } from './chat/chat.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { isLoggedGuardService } from '../services/routesGuard.service';
-import { isnotLoggedGuardService } from '../services/isNotLogged.service';
+
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path:'home', component:HomeComponent},
+  { path: '', redirectTo: 'landing', pathMatch: 'full'},
+  {path:'home', component:HomeComponent, canActivate:[isLoggedGuardService]}, 
   { path:'signup', component:SignupFormComponent},
-  { path:'login', component:LoginFormComponent,canActivate:[isLoggedGuardService]},
   {path:'profile', component:ProfileComponent, canActivate:[isLoggedGuardService]},
   {path:'valoration/:oponentId', component:ValorationComponent} ,
   {path:"new-match", component:NewMatchComponent, canActivate:[isLoggedGuardService]},
   {path:"chat", component:ChatComponent, canActivate:[isLoggedGuardService]},
   {path:"users", component:UsersComponent, canActivate:[isLoggedGuardService]},
   {path:"editProfile", component:EditProfileComponent, canActivate:[isLoggedGuardService]},
-  { path: '**', redirectTo: '' }
+  {path:'landing', component:LandingPageComponent},
+  { path: '**', redirectTo: 'home' }
 ];

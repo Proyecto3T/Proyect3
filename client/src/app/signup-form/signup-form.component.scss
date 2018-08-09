@@ -106,7 +106,7 @@ body {
 .rerun a {
   cursor: pointer;
   display: inline-block;
-  background: #ed2553;
+  background: #82DDF0;
   border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 10px 20px;
@@ -241,10 +241,10 @@ body {
 .card .title {
   position: relative;
   z-index: 1;
-  border-left: 5px solid #ed2553;
+  border-left: 5px solid #82DDF0;
   margin: 0 0 35px;
   padding: 10px 0 10px 50px;
-  color: #ed2553;
+  color: #82DDF0;
   font-size: 32px;
   font-weight: 600;
   text-transform: uppercase;
@@ -299,7 +299,7 @@ body {
 .card .input-container .bar:before, .card .input-container .bar:after {
   content: "";
   position: absolute;
-  background: #ed2553;
+  background: #82DDF0;
   width: 0;
   height: 2px;
   transition: 0.2s ease;
@@ -342,7 +342,7 @@ body {
   top: 50%;
   left: 50%;
   display: block;
-  background: #ed2553;
+  background: #82DDF0;
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -351,10 +351,10 @@ body {
   transition: 0.3s ease;
 }
 .card .button-container button:hover, .card .button-container button:active, .card .button-container button:focus {
-  border-color: #ed2553;
+  border-color: #82DDF0;
 }
 .card .button-container button:hover span, .card .button-container button:active span, .card .button-container button:focus span {
-  color: #ed2553;
+  color: #82DDF0;
 }
 .card .button-container button:active span, .card .button-container button:focus span {
   color: #ffffff;
@@ -398,7 +398,7 @@ body {
 }
 .card.alt .toggle {
   position: relative;
-  background: #4ded25;
+  background: #6A9497;
 
   background-size: cover;
   width: 140px;
@@ -471,7 +471,7 @@ body {
   border-color: #ffffff;
 }
 .card.alt .button-container button span {
-  color: #ed2553;
+  color: #82DDF0;
 }
 .card.alt .button-container button:hover {
   background: rgba(255, 255, 255, 0.9);

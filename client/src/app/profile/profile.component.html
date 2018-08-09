@@ -2,34 +2,26 @@
     
 
 
-<div class="flex">
-    
-      <div *ngIf="sessionService.user">
-     
-        <br>
-    
-    
-          
-              <div class="card text-center has-cup card-air  mb-4  col-xs-6 columna x" style="margin:70px; max-width:320px;">
-                <div class="card-cup bg-gradient-purple"></div>
-                <div class="card-body">
-                  <div class="card-avatar mb-4">
-                    <img class="img-circle" src="{{sessionService.user.image}}" alt="image" />
-                    <h4 class="card-title text-pink mb-1">{{sessionService.user.username}}</h4>
-                  </div>
-                
-                  <ul class="text-muted">
-                    <li>Games Played:{{played}}</li>   
-                    <li>Won:{{wonMatches}}</li>
-                    <li>Win Rate: {{winRate}}%</li>
-                  </ul>
-                  <div>
-                    <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%;">
-                      <canvas id="{{sessionService.user.username}}" class="canvas-avance-perfil" ></canvas>
-                    </div>
-                  </div>
-      
+
+  <div *ngIf="sessionService.user">      
+          <div class="card text-center has-cup card-air  mb-4  col-xs-6 columna x" style="margin:70px; max-width:320px; margin-top:106px; margin-left:200px">
+            <div class="card-cup bg-gradient-purple"></div>
+            <div class="card-body">
+              <div class="card-avatar mb-4">
+                <img class="img-circle" src="{{sessionService.user.image}}" alt="image" />
+                <h4 class="card-title text-pink mb-1">{{sessionService.user.username}}</h4>
+              </div>
+            
+              <ul class="text-muted">
+                <li>Games Played:{{played}}</li>   
+                <li>Won:{{wonMatches}}</li>
+                <li>Win Rate: {{winRate}}%</li>
+              </ul>
+              <div>
+                <div id="canvas-container" class="chart-container" style=" height:25vh; width:100%;">
+                  <canvas id="{{sessionService.user.username}}" class="canvas-avance-perfil" ></canvas>
                 </div>
+              </div>
               </div>
     
     </div>

@@ -36,11 +36,12 @@ userEndedMatches:any;
     this.user = this.sessionService.user;
     this.played= this.user.wonMatches+this.user.lostMatches
     this.wonMatches= this.user.wonMatches
-    this.winRate= this.user.wonMatches/(this.user.wonMatches+this.user.lostMatches)
+    this.winRate= parseFloat((this.user.wonMatches / (this.user.wonMatches + this.user.lostMatches)).toFixed(2)) * 100;
     this.sessionService
       .isLogged()
       .subscribe(() => { 
         this.user = this.sessionService.user;
+        console.log(this.user)
         this.draw.printLine(this.user,"canvas2");
         this.draw.printRadar(this.user,"canvas1");
     });

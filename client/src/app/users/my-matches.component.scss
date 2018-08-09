@@ -14,7 +14,6 @@ h2{
 }
 
 
-
 div.message {
   display: flex;
   justify-content: flex-start;
@@ -55,3 +54,22 @@ div.message.warning{background: #E74;}
 div.message.success{background: #5A6;}
 div.message.announcement{background: #EA0;}
 div.message.error{background: #C43;}
+
+.box {
+  color: black;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 5px;
+  -webkit-transition: 200ms ease-in-out;
+  -o-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+  -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+          box-shadow:  2px 2px 2px rgba(0,0,0,0.6);
+}
+.box:hover {
+  font-size: 19px;
+    -webkit-box-shadow: 0 0 0px rgba(0,0,0,0.7);
+          box-shadow: 0 0 0px rgba(0,0,0,0.7);
+}
