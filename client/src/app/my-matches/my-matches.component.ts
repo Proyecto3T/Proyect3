@@ -28,12 +28,14 @@ match:any;
       .isLogged()
       .subscribe(() => this.getMatches(this.sessionService.user._id));
       $('.show').hide()
+
   }
 
   getMatches(id) {
     this.matchService.getMatches(id).subscribe(matches => {
       console.log(matches)
       this.matches = matches;
+      // this.showFinishedMatches()
     });
   }
 

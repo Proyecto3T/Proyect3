@@ -1,38 +1,4 @@
-<!-- <div *ngIf="matches">
-  <div  class="matches container card" *ngFor="let match of matches">
-    <p class="name">Created By: {{match._author.username}}</p>
-      <p class="about">Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}} </p>
-  </div>
-</div> -->
-<!-- <div *ngIf="matches">
-<div class="container"*ngFor="let match of matches">
-    <div class="card">
-      <div class="user">
-        <div class="circle nick"></div>
-      </div>
-      <div class="info">
-        <div class="text"></div>
-        <p class="name">Created By: {{match._author.username}}</p>
-        <p class="about">Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}}</p>
-        <button class="like">Like</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
-
-  <!-- <div class="information message" *ngFor="let match of matches">
-      <div class="userImage">
-        <img src="{{match._author.image}}" alt="">
-      </div>
-      <h2>Created By: {{match._author.username}}</h2>
-      <p>Date: {{match.date |  date:'dd/MM/yyyy'}} - Hour: {{match.hour }} </p>
-      <ul *ngFor="let player of match.players">
-        <li>{{player.username}}</li>
-      </ul>
-      <button class="btn btn-inverse" (click)="matchService.showSingleMatch(match._id)">Place</button>
-      <button class="btn btn-inverse" (click)="deleteMatch(match._id)">Delete Match</button>
-  </div> -->
   <div class="container">
       <div *ngFor="let match of matches" class="pesao">
         <div class="box p5">
