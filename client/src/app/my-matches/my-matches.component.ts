@@ -13,13 +13,13 @@ import { NotifyService } from "../../services/notify.service";
 export class MyMatchesComponent  implements OnInit  {
   matches: any;
 mdOpen:boolean=false;
-match:any;
+match1:any;
 
   constructor(
     public sessionService: SessionService,
     public matchService: MatchService,
     public notifyService:NotifyService
-  ) { }
+  ) { $('.show').hide()}
 
 
 
@@ -48,10 +48,11 @@ match:any;
   showFinishedMatches(matches){
     let date = new Date;
     for(let i=0; i<matches.length;i++){
-      if(matches[i].finish<date){
+      if(new Date(matches[i].date).getTime()<date.getTime()){
         matches[i].ended=true
       }
     }
+    console.log(matches)
     return matches
   }
 
@@ -59,7 +60,7 @@ finishMatch(match){
 console.log(match)
 $('.show').show()
 this.mdOpen =true;
-this.match=match;
+this.match1=match;
 }
 
   addResult(){

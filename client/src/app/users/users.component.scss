@@ -18,6 +18,8 @@ body {
      color: white;
    }
    
+
+
    div.message {
      display: flex;
      justify-content: flex-start;
@@ -52,6 +54,7 @@ body {
      width: 50px;
      border-radius: 50%;
      margin-right: 20px;
+     object-fit: cover;
    }
    
    div.message.information{background: #39B;}
@@ -2589,7 +2592,8 @@ select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.for
 
 .img-circle {
   -webkit-border-radius: 50%;
-  border-radius: 50%; }
+  border-radius: 50%; 
+  object-fit: cover;}
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {

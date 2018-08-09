@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const Match = require("../models/Match");
+const User= require("../models/User");
 
 
 //Match.find({ roomId: { $in: [req.params.id] } })
@@ -25,7 +26,7 @@ router.get('/finish-matches', (req, res, next) => {
   Match.find({
       "finish": {
         "$gt": ("2010-01-01 13:39:35.039"),
-        "$lt": (`${date}`)
+        "$lt": (`${date.getTime()}`)
       }
     })
     .populate("_author")
@@ -42,7 +43,8 @@ router.get('/finish-matches', (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const playerId = req.params.id;
-  Match.find({ "ended": false,
+  Match.find({
+      "ended": false,
       players: {
         $elemMatch: {
           $eq: playerId
@@ -137,10 +139,12 @@ router.get("/delete/:id", (req, res) => {
 });
 
 router.post("/endMatch/:matchId", (req, res) => {
+ console.log("jsdhbvfjhasdbfjhbasjhdFBJHSDBFJHSBDAFJHSADJHFHJASDGFHJGDSAFHJGDSJHF")
   Match.findByIdAndUpdate(req.params.matchId, {
     winner: req.body.winner,
     loser: req.body.loser,
-    ended:true
+    ended: true,
+    finish:new Date
   }, {
     new: true
   }).then(e => {
@@ -153,17 +157,48 @@ router.post("/endMatch/:matchId", (req, res) => {
   });
 })
 
+router.post("/winnerEndMatch", (req, res) => {
+  console.log(req.body)
+  User.findById({_id:req.body.winner}).then(user => {
+    user.wonMatches++;
+    user.save().then(()=>{
+      res.status(200).json(user)
+  })
+  }).catch(e => {
+    console.log(e)
+    res.status(500).json({
+      status: "error",
+      error: e.message
+    });
+  });
+})
+
+router.post("/loserEndMatch", (req, res) => {
+  console.log(req.body)
+  User.findById({_id:req.body.loser}).then(user => {
+    user.lostMatches++;
+    user.save().then(()=>{
+      res.status(200).json(user)
+  })
+  }).catch(e => {
+    console.log(e)
+    res.status(500).json({
+      status: "error",
+      error: e.message
+    });
+  });
+})
 
 router.get('/record/:id', (req, res, next) => {
   playerId = req.params.id
   Match.find({
-    "ended": true,
-    players: {
-      $elemMatch: {
-        $eq: playerId
+      "ended": true,
+      players: {
+        $elemMatch: {
+          $eq: playerId
+        }
       }
-    }
-  })
+    })
     .populate("_author")
     .then(matches => {
       console.log(matches)

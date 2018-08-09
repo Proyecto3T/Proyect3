@@ -1,66 +1,32 @@
-<!-- <div *ngIf="matches">
-  <div  class="matches container card" *ngFor="let match of matches">
-    <p class="name">Created By: {{match._author.username}}</p>
-      <p class="about">Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}} </p>
-  </div>
-</div> -->
-<!-- <div *ngIf="matches">
-<div class="container"*ngFor="let match of matches">
-    <div class="card">
-      <div class="user">
-        <div class="circle nick"></div>
-      </div>
-      <div class="info">
-        <div class="text"></div>
-        <p class="name">Created By: {{match._author.username}}</p>
-        <p class="about">Date: {{match.date}} - Hour: {{match.hour}} - Place: {{match.location.coordinates}}</p>
-        <button class="like">Like</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
-
-  <!-- <div class="information message" *ngFor="let match of matches">
-      <div class="userImage">
-        <img src="{{match._author.image}}" alt="">
-      </div>
-      <h2>Created By: {{match._author.username}}</h2>
-      <p>Date: {{match.date |  date:'dd/MM/yyyy'}} - Hour: {{match.hour }} </p>
-      <ul *ngFor="let player of match.players">
-        <li>{{player.username}}</li>
-      </ul>
-      <button class="btn btn-inverse" (click)="matchService.showSingleMatch(match._id)">Place</button>
-      <button class="btn btn-inverse" (click)="deleteMatch(match._id)">Delete Match</button>
-  </div> -->
-  <div class="container">
-      <div *ngFor="let match of matches">
-        <div class="box p5">
-          <div class="member">
-            <!-- <img src="{{match._author.image}}" alt=""> -->
-            <h4>Created By: {{match._author.username}}</h4>
-            <h6>Date: {{match.date | date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </h6>
-            Players:
-            <ul *ngFor="let player of match.players">
-                <span>{{player.username}}</span>
-            </ul>
-            <button (click)="deleteMatch(match._id)">Delete</button>
-            <button  (click)="finishMatch(match)">Finish Match</button>
-          </div>
-          <div class="member">
-              <agm-map [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [zoom]="14">
+    <div *ngFor="let match of matches" class="pesao">
+      <div class="box p5">
+        <div class="member">
+          <!-- <img src="{{match._author.image}}" alt=""> -->
+          <h4>Created By: {{match._author.username}}</h4>
+          <h6>Date: {{match.date | date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </h6>
+          Players:
+          <ul *ngFor="let player of match.players">
+            <span>{{player.username}}</span>
+          </ul>
+          <button (click)="deleteMatch(match._id)">Delete</button>
+          <button *ngIf="match.ended" (click)="finishMatch(match)">Finish Match</button>
+        </div>
+        <div class="member">
+          <agm-map [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [zoom]="14">
     
-                  <agm-marker [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [label]="Place"></agm-marker>
-                  <agm-info-window>
-                    <strong>InfoWindow content</strong>
-                  </agm-info-window>
-                </agm-map>
-          </div>
+            <agm-marker [latitude]="match.location.coordinates[0]" [longitude]="match.location.coordinates[1]" [label]="Place"></agm-marker>
+            <agm-info-window>
+              <strong>InfoWindow content</strong>
+            </agm-info-window>
+          </agm-map>
         </div>
       </div>
+      <app-single-match [matchId]="matchService.matchId" [match]="matchService.match" [marker]="matchService.marker" [hidden]="!matchService.showSingleMatch1"></app-single-match>
+    
+      <app-result  *ngIf="match1" class="show" [match]="match1"></app-result>
+      
     </div>
-
-<app-single-match [matchId]="matchService.matchId" [match]="matchService.match" [marker]="matchService.marker" [hidden]="!matchService.showSingleMatch1"></app-single-match>
    
 
-<app-result class="show"  [match]="match" ></app-result>
+

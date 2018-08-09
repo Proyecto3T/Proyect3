@@ -35,13 +35,15 @@ oponent:any;
   let winner;
   let loser;
  if((user1+user2)>(oponent1+oponent2)){
+
    winner=this.service.user;
    loser=oponent;
  } else{
   winner=oponent;
   loser=this.service.user;
  } 
- 
+  this.matchService.setWinner( winner._id).subscribe()
+  this.matchService.setLoser(loser._id).subscribe()
     this.matchService.finishMatch(matchId, winner,loser).subscribe(()=> {
       this.notifyService.finishMatch(oponent._id,matchId,"info")
     })

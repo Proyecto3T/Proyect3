@@ -1,7 +1,7 @@
 
 <div class="container"  *ngIf="record">
-    <div *ngFor="let match of record">
-        <div class="box p5">
+    <div *ngFor="let match of record" class="pesao">
+        <div class="box p5"  >
           <div class="member">
             <!-- <img src="{{match._author.image}}" alt=""> -->
             <h4>Created By: {{match._author.username}}</h4>
@@ -19,6 +19,10 @@
                   </agm-info-window>
                 </agm-map>
           </div>
-        </div>
+        <div *ngIf="match.winner!=sessionService.user._id" class="icon-right">
+          😭
+      </div>
+      <div  *ngIf="match.winner==sessionService.user._id" class="icon-right">
+        🏆
       </div>
 </div>

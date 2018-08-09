@@ -18,8 +18,11 @@ export class GraphsService {
 
   showPlayedGames(matches, user, x) {
     return matches.filter(match => {
+     
       let date = new Date(match.finish);
+      console.log(date)
       if (match._author._id == user._id && date.getMonth() == x) {
+        console.log(match)
         return match;
       }
     }).length;
@@ -27,6 +30,7 @@ export class GraphsService {
 
   printLine(user, canvas) {
     this.matchService.showFinishMatches().subscribe(matches => {
+      console.log(matches)
       // console.log(matches[0]._author)
       // let matchesUser = matches.filter(match=> {
       //   match._author=this.user._id})
