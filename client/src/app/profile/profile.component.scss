@@ -4,7 +4,15 @@
   margin-left:70px;
 }
 
+.flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
+.matches{
+  margin:0 auto;
+}
 .username-profile{
   margin-left:7%;
 }
