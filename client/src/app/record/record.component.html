@@ -6,6 +6,7 @@
             <!-- <img src="{{match._author.image}}" alt=""> -->
             <h4>Created By: {{match._author.username}}</h4>
             <h6>Date: {{match.date | date:'dd/MM/yyyy'}} - Hour: {{match.hour}} </h6>
+            <p style="color:black">Kike vs Papu</p>
             <div *ngFor="let player of match.players">
             <button *ngIf="player != sessionService.user._id"  (click)="disable(match._id)" class="match-{{match._id}} "  [routerLink]="['/valoration',player]">Valorate</button>
           </div>
