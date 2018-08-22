@@ -8,7 +8,8 @@
         <clr-wizard-button  (click)="submitForm(drive.value,backhand.value,serve.value,volley.value,resistance.value,id)"   class="btn btn-primary">Submit</clr-wizard-button>
 <!-- -->
         <clr-wizard-page>
-            <ng-template clrPageTitle>Puntua a tu rival</ng-template>
+                
+            <ng-template clrPageTitle  >Puntua a tu rival</ng-template>
             <form   #myForm="ngForm">
               <p> Drive
                   <input #drive type='number' name='' id='' value=5 min="1" max="10">
