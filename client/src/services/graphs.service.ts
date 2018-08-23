@@ -19,10 +19,9 @@ export class GraphsService {
   showPlayedGames(matches, user, x) {
     return matches.filter(match => {
      
-      let date = new Date(match.finish);
-      console.log(date)
+      let date = new Date(match.date);
       if (match._author._id == user._id && date.getMonth() == x) {
-        console.log(match)
+        console.log(date.getMonth())
         return match;
       }
     }).length;
@@ -38,7 +37,7 @@ export class GraphsService {
       this.canvas = <HTMLCanvasElement>document.getElementById(`${canvas}`);
       var ctx = this.canvas.getContext("2d");
       this.chart = new Chart(ctx, {
-        type: "line",
+        type: "bar",
         data: {
           labels: [
             "Enero",
@@ -72,7 +71,7 @@ export class GraphsService {
               ],
               label: "Partidos Jugados",
               borderColor: "#3e95cd",
-              fill: false
+              backgroundColor:"#3e95cd"
             }
           ]
         },
