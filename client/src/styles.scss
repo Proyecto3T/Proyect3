@@ -18,8 +18,13 @@
   position: fixed;
   z-index: 1;
   width: 100%;
+  max-width: 100vw;
 }
 
 .container {
   margin-top:2.5rem;
+}
+
+img{
+  object-fit: cover;
 }
