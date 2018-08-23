@@ -18,6 +18,10 @@ body {
      color: white;
    }
    
+   .container {
+     display: flex;
+     justify-content: center;
+   }
    div.message {
      display: flex;
      justify-content: flex-start;

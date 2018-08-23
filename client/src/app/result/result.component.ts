@@ -38,6 +38,7 @@ export class ResultComponent implements OnInit {
 
     const matchId = this.match._id;
     // $(".show").hide(); DIEGOOOO KE ISISTEEEEEEEE (Minyu baybe) BUGGGG DEL SCROLL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //this.mdOpen = false;
     let winner;
     let loser;
     if (matchWinner==this.service.user.username ){
