@@ -3,7 +3,7 @@
 <clr-wizard #wizardmd [(clrWizardOpen)]="mdOpen" clrWizardSize="md">
     <clr-wizard-title></clr-wizard-title>
 
-    <clr-wizard-button  (click)="submitForm(winner.value)"   [type]="'cancel'" [type]="'finish'" >Submit</clr-wizard-button>
+    <clr-wizard-button  [type]="'finish'" (click)="submitForm(winner.value)" >Submit</clr-wizard-button>
 <!-- -->
 
       <clr-wizard-page>

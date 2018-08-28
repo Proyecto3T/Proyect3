@@ -25,11 +25,11 @@ router.get("/", (req, res, next) => {
 router.get("/finish-matches", (req, res, next) => {
   let date = new Date();
   Match.find({
-    finish: {
-      $gt: "2010-01-01 13:39:35.039",
-      $lt: `${date.getTime()}`
-    }
-  })
+      finish: {
+        $gt: "2010-01-01 13:39:35.039",
+        $lt: `${date.getTime()}`
+      }
+    })
     .populate("_author")
     .then(matches => {
       res.status(200).json(matches);
@@ -45,13 +45,13 @@ router.get("/finish-matches", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   const playerId = req.params.id;
   Match.find({
-    ended: false,
-    players: {
-      $elemMatch: {
-        $eq: playerId
+      ended: false,
+      players: {
+        $elemMatch: {
+          $eq: playerId
+        }
       }
-    }
-  })
+    })
     .populate("_author")
     .populate("players")
     .then(matches => {
@@ -93,17 +93,15 @@ router.post("/new", (req, res, next) => {
 });
 router.post("/addPlayer/:playerId/:matchId", (req, res, next) => {
   Match.findByIdAndUpdate(
-    req.params.matchId,
-    {
-      $push: {
-        players: req.params.playerId
-      },
-      closed: true
-    },
-    {
-      new: true
-    }
-  )
+      req.params.matchId, {
+        $push: {
+          players: req.params.playerId
+        },
+        closed: true
+      }, {
+        new: true
+      }
+    )
     .then(match => {
       console.log(match);
       res.status(200).json(match);
@@ -141,17 +139,15 @@ router.get("/delete/:id", (req, res) => {
 
 router.post("/endMatch/:matchId", (req, res) => {
   Match.findByIdAndUpdate(
-    req.params.matchId,
-    {
-      winner: req.body.winner,
-      loser: req.body.loser,
-      ended: true,
-      finish: new Date()
-    },
-    {
-      new: true
-    }
-  )
+      req.params.matchId, {
+        winner: req.body.winner,
+        loser: req.body.loser,
+        ended: true,
+        finish: new Date()
+      }, {
+        new: true
+      }
+    )
     .then(e => {
       res.status(200).json(e);
     })
@@ -164,9 +160,16 @@ router.post("/endMatch/:matchId", (req, res) => {
 });
 
 router.post("/winnerEndMatch", (req, res) => {
-  User.findById({ _id: req.body.winner })
+  User.findById({
+      _id: req.body.winner
+    })
     .then(user => {
       user.wonMatches++;
+      user.points += 10;
+      // if (user.points > 100) {
+      //   user.points = 0;
+      //   user.league += 1;
+      
       user.save().then(() => {
         transport
           .sendMail({
@@ -189,9 +192,20 @@ router.post("/winnerEndMatch", (req, res) => {
 
 router.post("/loserEndMatch", (req, res) => {
   console.log(req.body);
-  User.findById({ _id: req.body.loser })
+  User.findById({
+      _id: req.body.loser
+    })
     .then(user => {
       user.lostMatches++;
+      if (user.points > 0) {
+       user.points -= 10
+       }
+      // if (user.league > 0) {
+      //   if (user.points <= 0) {
+      //     user.points = 50;
+      //     user.league -= 1;
+      //   }
+      // }
       user.save().then(() => {
         transport
           .sendMail({
@@ -215,13 +229,13 @@ router.post("/loserEndMatch", (req, res) => {
 router.get("/record/:id", (req, res, next) => {
   playerId = req.params.id;
   Match.find({
-    ended: true,
-    players: {
-      $elemMatch: {
-        $eq: playerId
+      ended: true,
+      players: {
+        $elemMatch: {
+          $eq: playerId
+        }
       }
-    }
-  })
+    })
     .populate("_author")
     .then(matches => {
       console.log(matches);
