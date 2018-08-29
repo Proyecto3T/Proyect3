@@ -10,8 +10,8 @@ import { ChatComponent } from './chat/chat.component';
 import { UsersComponent } from './users/users.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { isLoggedGuardService } from '../services/routesGuard.service';
-
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 
 
@@ -24,6 +24,7 @@ export const routes: Routes = [
   {path:'valoration/:oponentId', component:ValorationComponent} ,
   {path:"new-match", component:NewMatchComponent, canActivate:[isLoggedGuardService]},
   {path:"chat", component:ChatComponent, canActivate:[isLoggedGuardService]},
+  {path:"ranking", component:RankingComponent, canActivate:[isLoggedGuardService]},
   {path:"users", component:UsersComponent, canActivate:[isLoggedGuardService]},
   {path:"editProfile", component:EditProfileComponent, canActivate:[isLoggedGuardService]},
   {path:'landing', component:LandingPageComponent},
