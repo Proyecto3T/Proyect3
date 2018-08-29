@@ -40,5 +40,11 @@ text-align: center;
 }
 
 #navbarSupportedContent{
-  background-color:rgba(189, 186, 186,.3);
+  background-color:#6A9497;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40px;
 }

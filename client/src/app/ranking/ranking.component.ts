@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-ranking',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
-
-  constructor() { }
+  public users: []
+  constructor(public sessionService:SessionService) { }
 
   ngOnInit() {
+    this.sessionService.getUsers().subscribe(users=> {
+      this.users=users;
+    });
   }
 
 }

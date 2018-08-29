@@ -1,89 +1,93 @@
-<header class=" fixed">
-  <!-- <div class="branding">
-                <a [routerLink]="['home']" class="nav-link">
-                    <img src="../assets/Logo Aplicación tenis.png" alt="">
-                    
-                </a>
-            </div>
-    <div class="header-nav clr-nav-level-1">
-            <a *ngIf="sessionService.user"  [routerLink]="['home']"  class="nav-link"><span class="nav-text">Home</span></a>
-        <a  *ngIf="!sessionService.user" [routerLink]="['/signup']" class="nav-link"><span class="nav-text">Sign In</span></a>
-        <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
-        <a *ngIf="sessionService.user" [routerLink]="['/users']" class="nav-link"><span class="nav-text">Users</span></a>
-        <a *ngIf="sessionService.user" (click) = "matchService.toggleShow()" class="nav-link"><span class="nav-text">New Match</span></a>
-        
+
  
-    </div>
-    <div  *ngIf="sessionService.user" class="header-actions settings">
-        <clr-dropdown>
-            <button class="settings" clrDropdownTrigger>
-                {{sessionService.user.email}}
-                <clr-icon shape="caret down"></clr-icon>
-            </button>
-            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-                <a [routerLink]="['/editProfile']" clrDropdownItem>Edit Profile</a>
-                <a *ngIf="sessionService.user" [routerLink]="['/signup']"  (click)="logout()" clrDropdownItem>Logout</a>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-    </div> -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed" style="width:100%; height:60px;">
-    <div class="branding" [routerLink]="['home']">
-      <div class="navbar-brand nav-link"> <img src="../assets/Logo Aplicación tenis.png" alt=""></div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse x" id="navbarSupportedContent" >
-      <ul class="navbar-nav mr-auto " style="
-      margin-top: -13px">
-        <li class="nav-item active">
-          <a *ngIf="sessionService.user" [routerLink]="['home']" class="nav-link"><span class="nav-text">Home</span></a>
-        </li>
-        <li class="nav-item active">
-          <a *ngIf="!sessionService.user" [routerLink]="['/signup']" class="nav-link"><span class="nav-text">Sign In</span></a>
-        </li>
-        <li class="nav-item active">
-          <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
-        </li>
-        <li class="nav-item active">
-          <a *ngIf="sessionService.user" [routerLink]="['/users']" class="nav-link"><span class="nav-text">Users</span></a>
-        </li>
-        <li class="nav-item active">
-          <a *ngIf="sessionService.user" (click)="matchService.toggleShow()" class="nav-link"><span class="nav-text">New
-              Match</span></a>
-        </li>
-      </ul>
-      <div  *ngIf="sessionService.user"  class="nav-item dropdown help1">
-            <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-    </div>
-  </nav>
+    <!-- <nav class="navbar navbar-expand-lg" style="width:100%; height:60px;">
+      <div class="branding" [routerLink]="['home']">
+        <div class="navbar-brand nav-link"> <img src="../assets/Logo Aplicación tenis.png" alt=""></div>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse x" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto " style="
+        margin-top: -13px">
+          <li class="nav-item active">
+            <a *ngIf="sessionService.user" [routerLink]="['home']" class="nav-link"><span class="nav-text">Home</span></a>
+          </li>
+          <li class="nav-item active">
+            <a *ngIf="!sessionService.user" [routerLink]="['/signup']" class="nav-link"><span class="nav-text">Sign In</span></a>
+          </li>
+          <li class="nav-item active">
+            <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
+          </li>
+          <li class="nav-item active">
+            <a *ngIf="sessionService.user" [routerLink]="['/users']" class="nav-link"><span class="nav-text">Users</span></a>
+          </li>
+          <li class="nav-item active">
+            <a *ngIf="sessionService.user" (click)="matchService.toggleShow()" class="nav-link"><span class="nav-text">New
+                Match</span></a>
+          </li>
+        </ul>
+        <div  *ngIf="sessionService.user"  class="nav-item dropdown help1">
+              <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+          </div>
+      </div>
+    </nav> -->
+    <header class="header header-5 fixed">
+      <div class="branding">
+              <a [routerLink]="['home']" class="nav-link">
+                  <img src="../assets/Logo Aplicación tenis.png" alt="">
+                  <!-- <span class="title">Head to Head</span>  -->
+              </a>
+          </div>
+  <div class="header-nav">
+          <a *ngIf="sessionService.user"  [routerLink]="['home']"  class="nav-link"><span class="nav-text">Home</span></a>
+      <a  *ngIf="!sessionService.user" [routerLink]="['/signup']" class="nav-link"><span class="nav-text">Sign In</span></a>
+      <a *ngIf="sessionService.user" [routerLink]="['/profile']" class="nav-link"><span class="nav-text">Profile</span></a>
+      <a *ngIf="sessionService.user" [routerLink]="['/users']" class="nav-link"><span class="nav-text">Users</span></a>
+      <a *ngIf="sessionService.user" [routerLink]="['/ranking']" class="nav-link"><span class="nav-text">Ranking</span></a>
+      <a *ngIf="sessionService.user" (click) = "matchService.toggleShow()" class="nav-link"><span class="nav-text">New Match</span></a>
+      
+      <!-- <a *ngIf="sessionService.user" href="#" class="nav-link" (click)="logout()"><span class="nav-text">Logout</span></a> -->
+  </div>
+  <div  *ngIf="sessionService.user" class="header-actions">
+      <clr-dropdown>
+          <button class="nav-text" clrDropdownTrigger>
+              {{sessionService.user.email}}
+              <clr-icon shape="caret down"></clr-icon>
+          </button>
+          <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+              <a [routerLink]="['/editProfile']" clrDropdownItem>Edit Profile</a>
+              <a *ngIf="sessionService.user" [routerLink]="['/signup']"  (click)="logout()" clrDropdownItem>Logout</a>
+          </clr-dropdown-menu>
+      </clr-dropdown>
+  </div>
   <div *ngIf="sessionService.popValue">
-    <app-valoration></app-valoration>
-  </div>
-  <div *ngIf="matchService.show">
-    <app-new-match></app-new-match>
-  </div>
-  <!-- <ul>
-  <li *ngIf="!sessionService.user"><a [routerLink]="['/signup']">Signup</a></li>
-  <li *ngIf="!sessionService.user"><a [routerLink]="['/login']">Login</a></li>
-  <li *ngIf="sessionService.user"><a [routerLink]="['/profile']">Profile</a></li>
-  <li *ngIf="sessionService.user"><a [routerLink]="['/new-match']">New Match</a></li>
-  <li *ngIf="sessionService.user"><a [routerLink]="['/valoration']">valoration</a></li>
-  <li *ngIf="sessionService.user"><a href="#" (click)="logout()">Logut</a></li>
-
+  <app-valoration></app-valoration>
+</div>
+<div *ngIf="matchService.show">
+<app-new-match></app-new-match>
+</div>
+<!-- <ul>
+<li *ngIf="!sessionService.user"><a [routerLink]="['/signup']">Signup</a></li>
+<li *ngIf="!sessionService.user"><a [routerLink]="['/login']">Login</a></li>
+<li *ngIf="sessionService.user"><a [routerLink]="['/profile']">Profile</a></li>
+<li *ngIf="sessionService.user"><a [routerLink]="['/new-match']">New Match</a></li>
+<li *ngIf="sessionService.user"><a [routerLink]="['/valoration']">valoration</a></li>
+<li *ngIf="sessionService.user"><a href="#" (click)="logout()">Logut</a></li>
 </ul> -->
 </header>
 
 <ng-snotify class="{{style}}"></ng-snotify>
 
 <router-outlet></router-outlet>
+   
+ 
