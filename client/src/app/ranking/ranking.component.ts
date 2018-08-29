@@ -7,7 +7,7 @@ import { SessionService } from '../../services/session.service';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
-  public users: []
+  public users:any;
   constructor(public sessionService:SessionService) { }
 
   ngOnInit() {
