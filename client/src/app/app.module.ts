@@ -36,7 +36,8 @@ import { FileUploadModule} from "ng2-file-upload"
 import {MatInputModule} from '@angular/material';
 import { ResultComponent } from './result/result.component';
 import {AgmDirectionModule} from "agm-direction";
-import { LandingPageComponent } from './landing-page/landing-page.component'
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 // Configs 
 export function getAuthServiceConfigs() {
@@ -73,6 +74,7 @@ return config;
     EditProfileComponent,
     ResultComponent,
     LandingPageComponent,
+    RankingComponent,
   ],
   imports: [
     FileUploadModule,
