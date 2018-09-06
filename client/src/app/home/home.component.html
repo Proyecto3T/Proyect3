@@ -12,7 +12,7 @@
   </div>
 </div>  -->
 <div class="container" >
-  <div *ngFor="let match of server.matches">
+  <div *ngFor="let match of server.matches" class="mobile-home">
     <div class="box p5" *ngIf="match._author._id != server.user._id && !match.closed">
       <div class="member">
         <img src="{{match._author.image}}" alt="">
