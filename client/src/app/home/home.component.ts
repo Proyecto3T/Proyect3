@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     if(!user)this.router.navigate(['/signup'])
    })
    this.server.getMatches().subscribe( matches => {
-    console.log(matches)
     this.matches=[];
     return this.matches = matches
    })

@@ -23,6 +23,8 @@ const url = environment.BASEURL;
 interface UserObject {
   _id: string;
   username: string;
+  league: string;
+  points:number;
 }
 
 @Injectable({

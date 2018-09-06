@@ -31,15 +31,15 @@ export class NotifyService {
         console.log("Connected to WS");
         this.socket.on(`${user._id}`, data => {
           if (data.type == "challenge") {
-            let notification = this.onPrompt(data.otherPlayerId, data.matchId);
+            let notification = this.onPrompt(data.otherPlayerId, data.matchId, data.name,data.league);
             console.log(data);
-            this.snotifyService.confirm(this.body, this.title, notification);
+            this.snotifyService.confirm(data.name + this.body,this.title, notification);
           }else if(data.type == "success"){
-            this.snotifyService.success("Someone accepted you petition","Challenge accepted")
+            this.snotifyService.success(`${data.name} accepted you petition`,"Challenge accepted")
           } else if (data.type =="error"){
-            this.snotifyService.error("Someone rejected your petition", "Challenge not accepted")
+            this.snotifyService.error(`${data.name} rejected your petition`, "Challenge not accepted")
           } else {
-            this.snotifyService.info("You can see it in your record", "Match finished")
+            this.snotifyService.info("You can see it in your record or check your mail", "Match finished")
           }
         });
         this.socket.on(`new-match`, () => {
@@ -58,7 +58,7 @@ export class NotifyService {
   title = "Notification";
   style = "material";
   notifytitle = "Te han retado!";
-  body = "Te han retado!";
+  body = " has send a challenge to you";
   timeout = 3000;
   position: SnotifyPosition = SnotifyPosition.rightBottom;
   progressBar = true;
@@ -93,13 +93,13 @@ export class NotifyService {
   }
 
   
-  onPrompt(playerId, matchId) {
+  onPrompt(playerId, matchId,name,league) {
     const { timeout, closeOnClick, ...config } = this.getConfig();
     return {
       ...config,
       buttons: [
         {
-          text: "Yesssssss",
+          text: "Accept",
           action: toast => {
             console.log("Said Yes: " + toast.value);
             this.matchService.addPlayer(playerId, matchId).subscribe(array => {
@@ -110,7 +110,7 @@ export class NotifyService {
           }
         },
         {
-          text: "No",
+          text: "Reject",
           action: toast => {
             console.log("Said No: " + toast.value);
             this.sendChallange(playerId, matchId, "error")
@@ -125,12 +125,16 @@ export class NotifyService {
   sendChallange(otherPlayerId, matchId, type) {
     console.log(type);
     let playerId = this.sessionService.user._id;
+    let name = this.sessionService.user.username;
+    let league = this.sessionService.user.league;
     console.log(`Sending notify to -> ${otherPlayerId}`);
     this.socket.emit("notify", {
       type,
       otherPlayerId,
       playerId,
-      matchId
+      matchId,
+      name,
+      league
     });
   }
   sendNewMatch() {

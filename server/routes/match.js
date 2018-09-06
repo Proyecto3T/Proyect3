@@ -4,8 +4,8 @@ const router = express.Router();
 const Match = require("../models/Match");
 const User = require("../models/User");
 const transport = require("../mailing/transport");
-const winnerTemplate = require("../mailing/templates");
-const loserTemplate = require("../mailing/templates");
+const {winnerTemplate}= require("../mailing/templates");
+const {loserTemplate} = require("../mailing/templates");
 //Match.find({ roomId: { $in: [req.params.id] } })
 
 router.get("/", (req, res, next) => {

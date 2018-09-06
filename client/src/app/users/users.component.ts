@@ -46,7 +46,7 @@ user:{}
         let stat = {name:users[i].username, 
                         played:users[i].wonMatches+users[i].lostMatches,
                         wonMatches:users[i].wonMatches,
-                        winRate:parseFloat((users[i].wonMatches / (users[i].wonMatches + users[i].lostMatches)).toFixed(2)) * 100,
+                        winRate:parseFloat((users[i].wonMatches / (users[i].wonMatches + users[i].lostMatches)).toFixed(2)) * 100? parseFloat((users[i].wonMatches / (users[i].wonMatches + users[i].lostMatches)).toFixed(2)) * 100:0,
                         image:users[i].image,
                         user:users[i],
                      }

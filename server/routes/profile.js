@@ -8,7 +8,7 @@ const uploadCloud = require("../config/cloudinary")
 
 
 router.get('/users',(req,res,next) => {
-  User.find({}).then( user => res.status(200).json(user))
+  User.find({}).sort({ points: -1 }).then( user => res.status(200).json(user))
 })
 
 router.post('/valoration/:id', (req, res, next) => {

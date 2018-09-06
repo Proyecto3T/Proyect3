@@ -31,6 +31,13 @@ img{
  
 }
 
+header{
+  background-color:#6A9497;
+  position: fixed;
+  top:0;
+  z-index: 1;
+  width: 100vw;
+}
 .center-nav-liks{
   margin-top:-13px;
 }
@@ -48,3 +55,8 @@ text-align: center;
   justify-content: space-between;
   width: 40px;
 }
+
+.header-hamburger-trigger {
+ background-color: white;
+}
+
