@@ -1,16 +1,17 @@
-const express = require("express");
-const passport = require("passport");
+const express = require('express');
+const passport = require('passport');
+
 const router = express.Router();
-const User = require("../models/User");
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
 
 // Bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, theUser, failureDetails) => {
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, theUser, failureDetails) => {
     // Check for errors
-    if (err) next(new Error("Something went wrong"));
+    if (err) next(new Error('Something went wrong'));
     if (!theUser) next(failureDetails);
 
     // Return user and logged in
@@ -18,29 +19,27 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-const login = (req, user) => {
-  return new Promise((resolve, reject) => {
-    req.login(user, err => {
-      if (err) {
-        reject(new Error("Something went wrong"));
-      } else {
-        resolve(user);
-      }
-    });
+const login = (req, user) => new Promise((resolve, reject) => {
+  req.login(user, (err) => {
+    if (err) {
+      reject(new Error('Something went wrong'));
+    } else {
+      resolve(user);
+    }
   });
-};
+});
 
-router.post("/signup", (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-  if (username === "" || password === "" || email === "") {
-    next(new Error("You must provide valid credentials"));
+  if (username === '' || password === '' || email === '') {
+    next(new Error('You must provide valid credentials'));
   }
 
   User.findOne({ username })
-    .then(foundUser => {
-      if (foundUser) throw new Error("Username already exists");
+    .then((foundUser) => {
+      if (foundUser) throw new Error('Username already exists');
 
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
@@ -48,45 +47,45 @@ router.post("/signup", (req, res, next) => {
       return new User({
         username,
         password: hashPass,
-        email
+        email,
       }).save();
     })
     .then(savedUser => login(req, savedUser)) // Login the user using passport
-    .then(user => res.json({ status: "signup & login successfully", user })) // Answer JSON
+    .then(user => res.json({ status: 'signup & login successfully', user })) // Answer JSON
     .catch(e => next(e));
 });
 
-router.get("/currentuser", (req, res, next) => {
+router.get('/currentuser', (req, res, next) => {
   if (req.user) {
     res.status(200).json(req.user);
   } else {
-    next(new Error("Not logged in"));
+    next(new Error('Not logged in'));
   }
 });
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
-  res.status(200).json({ message: "logged out" });
+  res.status(200).json({ message: 'logged out' });
 });
 
 router.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
-router.post("/notify/:id", (req, res, next) => {
-  console.log(req.body.notification, req.params.id)
-  
+router.post('/notify/:id', (req, res, next) => {
+  console.log(req.body.notification, req.params.id);
+
   User.findByIdAndUpdate(
-    {_id:req.params.id},
-    { $push: {notifications: req.body.notification } },
-    { new: true }
-  ).then(user => {
-    console.log(user)
+    { _id: req.params.id },
+    { $push: { notifications: req.body.notification } },
+    { new: true },
+  ).then((user) => {
+    console.log(user);
     return res.status(201).json(user);
   });
 });
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
-  res.status(200).json({ message: "logged out" });
+  res.status(200).json({ message: 'logged out' });
 });
 
 router.use((err, req, res, next) => {
